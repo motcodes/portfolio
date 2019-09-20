@@ -11,12 +11,20 @@ const IndexPage = () => (
     <SEO title="Home" />
     <h1>Matthias Oberholzer</h1>
     <div>
-      <Link to="https://github.com/codingMot/" target="_blank">
+      <a
+        href="https://github.com/codingMot/"
+        target="_blank"
+        style={{ padding: `0 0.5rem` }}
+      >
         <GitHub size={32} />
-      </Link>
-      <Link to="https://instagram.com/matthias.oberholzer" target="_blank">
+      </a>
+      <a
+        href="https://instagram.com/matthias.oberholzer"
+        target="_blank"
+        style={{ padding: `0 0.5rem` }}
+      >
         <Instagram size={32} />
-      </Link>
+      </a>
     </div>
   </Layout>
 )

@@ -1,0 +1,28 @@
+ul li {
+  display: inline-block;
+}
+
+ul {
+  margin: 3px 0 0 3rem !important;
+  list-style: none;
+}
+
+li {
+  padding: 0 1rem;
+  font-size: 1.5rem;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  background-image: blue !important;
+  background-position: 0% 100% !important;
+  background-repeat: no-repeat !important;
+  transition: background-size 0.25s !important;
+}
+a:hover {
+  background-size: 100% 2px !important;
+}
+a:visited {
+  color: initial;
+}

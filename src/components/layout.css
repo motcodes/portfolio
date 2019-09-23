@@ -50,7 +50,7 @@ a:hover {
   outline-width: 0;
 }
 a:visited {
-  color: black;
+  color: initial;
 }
 abbr[title] {
   border-bottom: none;
@@ -627,8 +627,45 @@ pre tt:before,
 pre tt:after {
   content: '';
 }
+
+/* customCSS */
+
+.title {
+  font-size: 4rem;
+}
+
+.lead {
+  font-size: 1.1rem;
+  padding: 0 1.2rem;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+}
+
 @media only screen and (max-width: 480px) {
   html {
     font-size: 100%;
+  }
+  main {
+    padding: 0 10%;
+  }
+  .title {
+    font-size: 2.2rem;
+    padding: 0 1.2rem;
+    text-align: left;
+  }
+  .lead {
+    font-size: 0.9rem;
+    padding: 0 1.2rem;
+    text-align: left;
+  }
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+  main div {
+    padding: 0 1.2rem;
   }
 }

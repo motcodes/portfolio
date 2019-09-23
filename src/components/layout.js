@@ -5,13 +5,13 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 // import { useStaticQuery, graphql } from "gatsby"
-import { BarChart2 } from "react-feather"
+import { BarChart2 } from 'react-feather'
 
-import Header from "./header"
-import "./layout.css"
+import Header from './header'
+import './layout.css'
 
 const Layout = ({ children }) => {
   // const data = useStaticQuery(graphql`
@@ -27,15 +27,6 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      {/* <BarChart2
-        size={32}
-        style={{
-          position: `absolute`,
-          transform: `rotate(90deg)`,
-          top: `4rem`,
-          left: `4rem`,
-        }}
-      /> */}
       <div
         style={{
           margin: `0 auto`,
@@ -63,11 +54,6 @@ const Layout = ({ children }) => {
         >
           {children}
         </main>
-        {/* <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer> */}
       </div>
     </>
   )

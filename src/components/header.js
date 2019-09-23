@@ -13,31 +13,26 @@ const Header = ({ siteTitle }) => {
       id: 1,
       name: 'Email',
       url: 'mailto:matthias.m.oberholzer@gmail.com',
-      delay: 0.1,
     },
     {
       id: 2,
       name: 'Instagram',
       url: 'https://instagram.com/matthias.oberholzer',
-      delay: 0.2,
     },
     {
       id: 3,
       name: 'Github',
       url: 'https://github.com/codingMot/',
-      delay: 0.3,
     },
     {
       id: 4,
       name: 'Twitter',
       url: 'https://twitter.com/CodingMot/',
-      delay: 0.4,
     },
     {
       id: 5,
       name: 'Unsplash',
       url: 'https://unsplash.com/@matthiasoberholzer/',
-      delay: 0.5,
     },
   ]
 
@@ -53,30 +48,29 @@ const Header = ({ siteTitle }) => {
       <BarChart2
         size={32}
         style={{
-          transform: `rotate(90deg)`,
           cursor: `pointer`,
+          transform: `rotate(90deg)`,
         }}
         onClick={() => setVisible(!visible)}
       />
       <ul
-        style={
-          {
-            // opacity: visible ? `1` : `0`,
-            // transform: visible ? `translateX(0)` : `translateX(-30px)`,
-            // transition: `all 0.3s linear`,
-          }
-        }
+        id="nav"
+        style={{
+          opacity: visible ? `1` : `0`,
+          transform: visible ? `translateX(0)` : `translateX(-30px)`,
+          transition: `opacity 0.3s, transform 0.5s`,
+        }}
       >
         {links.map(link => (
-          <li
-            key={link.id}
-            style={{
-              opacity: visible ? `1` : `0`,
-              transform: visible ? `translateX(0)` : `translateX(-30px)`,
-              transition: `opacity 0.3s, transform 0.5s`,
-            }}
-          >
-            <a href={link.url}>{link.name}</a>
+          <li className="navListItem" key={link.id}>
+            <a
+              className="navLink"
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {link.name}
+            </a>
           </li>
         ))}
       </ul>

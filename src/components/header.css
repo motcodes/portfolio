@@ -1,28 +1,27 @@
-ul li {
+#nav .navListItem {
   display: inline-block;
 }
 
-ul {
-  margin: 3px 0 0 3rem !important;
+#nav {
+  margin: 3px 0 0 2rem;
   list-style: none;
 }
 
-li {
-  padding: 0 1rem;
-  font-size: 1.5rem;
+.navListItem {
+  margin: 0;
+  padding: 0 0.7rem;
+  font-size: 1.25rem;
 }
 
-a {
+.navLink {
   display: inline-block;
   text-decoration: none;
-  background-image: blue !important;
-  background-position: 0% 100% !important;
-  background-repeat: no-repeat !important;
-  transition: background-size 0.25s !important;
+  color: #3d3d3d;
 }
-a:hover {
-  background-size: 100% 2px !important;
+.navLink:hover,
+.navLink:visited:hover {
+  color: #000000;
 }
-a:visited {
-  color: initial;
+.navLink:visited {
+  color: #333;
 }

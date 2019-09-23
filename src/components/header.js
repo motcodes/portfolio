@@ -37,24 +37,10 @@ const Header = ({ siteTitle }) => {
   ]
 
   return (
-    <header
-      style={{
-        position: `absolute`,
-        left: `4rem`,
-        top: `4rem`,
-        display: `flex`,
-      }}
-    >
-      <BarChart2
-        size={32}
-        style={{
-          cursor: `pointer`,
-          transform: `rotate(90deg)`,
-        }}
-        onClick={() => setVisible(!visible)}
-      />
+    <header id="nav">
+      <BarChart2 id="navIcon" onClick={() => setVisible(!visible)} />
       <ul
-        id="nav"
+        id="navList"
         style={{
           opacity: visible ? `1` : `0`,
           transform: visible ? `translateX(0)` : `translateX(-30px)`,

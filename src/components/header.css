@@ -1,8 +1,23 @@
-#nav .navListItem {
+#nav {
+  position: absolute;
+  left: 4rem;
+  top: 4rem;
+  display: flex;
+  font-family: 'Proxima Nova';
+}
+
+#navIcon {
+  cursor: pointer;
+  transform: rotate(90deg);
+  width: 32px;
+  height: 32px;
+}
+
+#navList .navListItem {
   display: inline-block;
 }
 
-#nav {
+#navList {
   margin: 3px 0 0 2rem;
   list-style: none;
 }
@@ -24,4 +39,25 @@
 }
 .navLink:visited {
   color: #333;
+}
+
+@media only screen and (max-width: 480px) {
+  #nav {
+    left: 2rem;
+    top: 2rem;
+  }
+
+  #navIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  #navList {
+    margin: 0 0 0 0.75rem;
+  }
+
+  .navListItem {
+    font-size: 0.9rem;
+    padding: 0 0.25rem;
+  }
 }

@@ -30,8 +30,7 @@ const Layout = ({ children }) => {
       <div
         style={{
           margin: `0 auto`,
-          height: `100vh`,
-          // maxWidth: 960,
+          height: `100%`,
           paddingTop: 0,
           textAlign: `center`,
           display: `flex`,
@@ -46,10 +45,6 @@ const Layout = ({ children }) => {
             display: `flex`,
             justifyContent: `center`,
             flexDirection: `column`,
-            height: `calc(100vh - 4rem)`,
-            width: `calc(100vw - 4rem)`,
-            background: `white`,
-            borderRadius: 5,
           }}
         >
           {children}

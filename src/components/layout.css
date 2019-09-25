@@ -630,7 +630,7 @@ pre tt:after {
 main {
   height: calc(100% - 3rem);
   width: calc(100% - 3rem);
-  background: white;
+  background-color: white;
   border-radius: 7px;
 }
 

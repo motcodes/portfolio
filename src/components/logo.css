@@ -25,13 +25,25 @@
 }
 
 #blueHead {
+  stroke: #002878;
   stroke-dasharray: 1000;
   stroke-dashoffset: -500;
   animation: strokepath2 2.5s 0.2s linear forwards;
 }
 @keyframes strokepath2 {
   to {
+    stroke: #002878;
     stroke-dasharray: 3000;
     stroke-dashoffset: 1200;
+  }
+}
+
+#blueNose {
+  stroke: #002878;
+  animation: fillNose 0.01s linear forwards;
+}
+@keyframes fillNose {
+  to {
+    stroke: #002878;
   }
 }

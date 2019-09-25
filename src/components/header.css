@@ -1,9 +1,11 @@
+@import url('https://use.typekit.net/vux8nyf.css');
+
 #nav {
   position: absolute;
   left: 4rem;
   top: 4rem;
   display: flex;
-  font-family: 'Proxima Nova';
+  font-family: proxima-nova;
 }
 
 #navIcon {

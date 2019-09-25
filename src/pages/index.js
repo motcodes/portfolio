@@ -8,21 +8,25 @@ import Logo from '../components/logo'
 const IndexPage = () => (
   <Layout itemScope itemType="http://schema.org/Person">
     <SEO title="About Me" />
-    <Logo size={256} className="logo" />
-    <h1 className="title" itemProp="name">
+    <Logo size={256} className="logo" ariaLable="Logo" />
+    <h1 className="title" itemProp="name" ariaLable="Name">
       <span itemProp="givenName">Matthias</span>{' '}
       <span itemProp="familyName">Oberholzer</span>
     </h1>
-    <p className="lead">
-      a coffee addicted 19 year old Nerd and occasionally a{' '}
-      <span itemProp="jobTitle">Front End Webdeveloper</span> who currently
-      lives in <span itemProp="homeLocation">Salzburg</span>
+    <p className="lead" ariaLable="About">
+      a coffee addicted 19 year old Nerd and occasionally a
+      <span itemProp="jobTitle" style={{ fontStyle: `italic` }}>
+        {' '}
+        Frontend Webdeveloper
+      </span>{' '}
+      who currently lives in <span itemProp="homeLocation">Salzburg</span>
     </p>
     <div>
       {links.map(link => (
         <a
           key={link.id}
           href={link.url}
+          ariaLable={link.name}
           target="_blank"
           rel="noopener noreferrer"
           style={{ padding: `0 0.5rem` }}

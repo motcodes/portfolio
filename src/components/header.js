@@ -7,30 +7,34 @@ const Header = () => {
   const [visible, setVisible] = useState(false)
 
   const links = [
+    // {
+    //   id: 1,
+    //   name: 'Email',
+    //   url: 'mailto:matthias.m.oberholzer@gmail.com',
+    // },
+    // {
+    //   id: 2,
+    //   name: 'Instagram',
+    //   url: 'https://instagram.com/matthias.oberholzer',
+    // },
+    // {
+    //   id: 3,
+    //   name: 'Github',
+    //   url: 'https://github.com/codingMot/',
+    // },
+    // {
+    //   id: 4,
+    //   name: 'Twitter',
+    //   url: 'https://twitter.com/CodingMot/',
+    // },
+    // {
+    //   id: 5,
+    //   name: 'Unsplash',
+    //   url: 'https://unsplash.com/@matthiasoberholzer/',
+    // },
     {
       id: 1,
-      name: 'Email',
-      url: 'mailto:matthias.m.oberholzer@gmail.com',
-    },
-    {
-      id: 2,
-      name: 'Instagram',
-      url: 'https://instagram.com/matthias.oberholzer',
-    },
-    {
-      id: 3,
-      name: 'Github',
-      url: 'https://github.com/codingMot/',
-    },
-    {
-      id: 4,
-      name: 'Twitter',
-      url: 'https://twitter.com/CodingMot/',
-    },
-    {
-      id: 5,
-      name: 'Unsplash',
-      url: 'https://unsplash.com/@matthiasoberholzer/',
+      name: 'coming soon [ Photography, Resume ]',
     },
   ]
 
@@ -47,14 +51,14 @@ const Header = () => {
       >
         {links.map(link => (
           <li className="navListItem" key={link.id}>
-            <a
+            {/* <a
               className="navLink"
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {link.name}
-            </a>
+          </a> */}
+            <p className="navLink">{link.name}</p>
           </li>
         ))}
       </ul>

@@ -1,7 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: `Portfolio of Matthias Oberholzer`,
-    description: `This is the official Portfolio of Matthias Oberholzer, a coffee addicted 19 year old Nerd and occasionally a Front End WebDev who currently lives in Salzburg`,
+    description: `This is the official Portfolio of Matthias Oberholzer, a coffee addicted 19 year old Nerd and occasionally a Frontend Webdeveloper who currently lives in Salzburg`,
+    name: `Matthias Oberholzer`,
     author: `@codingMot`,
     siteUrl: `https://www.matthiasoberholzer.com`,
   },
@@ -19,18 +20,21 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Portfolio of Matthias Oberholzer`,
+        short_name: `Matthias Oberholzer`,
+        description: `This is the official Portfolio of Matthias Oberholzer, a coffee addicted 19 year old Nerd and occasionally a Frontend Webdeveloper who currently lives in Salzburg`,
+        lang: `en`,
         start_url: `/`,
         background_color: `#0051EF`,
         theme_color: `#0051EF`,
-        display: `minimal-ui`,
+        // display: `minimal-ui`,
+        display: `standalone`,
         icon: `src/images/Logo.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-sitemap`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 }

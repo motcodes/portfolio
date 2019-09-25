@@ -6,13 +6,17 @@ import SEO from '../components/seo'
 import Logo from '../components/logo'
 
 const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
+  <Layout itemScope itemType="http://schema.org/Person">
+    <SEO title="About Me" />
     <Logo size={256} className="logo" />
-    <h1 className="title">Matthias Oberholzer</h1>
+    <h1 className="title" itemProp="name">
+      <span itemProp="givenName">Matthias</span>{' '}
+      <span itemProp="familyName">Oberholzer</span>
+    </h1>
     <p className="lead">
-      a coffee addicted 19 year old Nerd and occasionally a Front End WebDev who
-      currently lives in Salzburg
+      a coffee addicted 19 year old Nerd and occasionally a{' '}
+      <span itemProp="jobTitle">Front End Webdeveloper</span> who currently
+      lives in <span itemProp="homeLocation">Salzburg</span>
     </p>
     <div>
       {links.map(link => (
@@ -22,6 +26,7 @@ const IndexPage = () => (
           target="_blank"
           rel="noopener noreferrer"
           style={{ padding: `0 0.5rem` }}
+          itemProp="url"
         >
           {link.icon}
         </a>

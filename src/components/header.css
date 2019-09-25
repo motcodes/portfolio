@@ -43,8 +43,8 @@
 
 @media only screen and (max-width: 480px) {
   #nav {
-    left: 2rem;
-    top: 2rem;
+    left: 1.75rem;
+    top: 1.75rem;
   }
 
   #navIcon {

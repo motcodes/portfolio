@@ -640,10 +640,16 @@ pre tt:after {
 /* customCSS */
 
 main {
-  height: calc(100% - 4rem);
-  width: calc(100% - 4rem);
+  height: calc(100% - 3rem);
+  width: calc(100% - 3rem);
   background: white;
-  border-radius: 5px;
+  border-radius: 7px;
+}
+
+.logo {
+  box-sizing: content-box;
+  padding: 1rem;
+  margin-bottom: 2rem;
 }
 
 .title {
@@ -665,8 +671,13 @@ main {
     font-size: 100%;
   }
   main {
-    height: calc(100% - 2rem);
-    width: calc(100% - 2rem);
+    height: calc(100% - 1.75rem);
+    width: calc(100% - 1.75rem);
+  }
+  .logo {
+    width: 128px;
+    height: 128px;
+    margin-bottom: 1.5rem;
   }
   .title {
     font-size: 2.2rem;

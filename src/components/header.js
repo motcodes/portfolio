@@ -1,11 +1,9 @@
-import { Link } from 'gatsby'
-import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { BarChart2 } from 'react-feather'
 
 import './header.css'
 
-const Header = ({ siteTitle }) => {
+const Header = () => {
   const [visible, setVisible] = useState(false)
 
   const links = [
@@ -62,14 +60,6 @@ const Header = ({ siteTitle }) => {
       </ul>
     </header>
   )
-}
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
 }
 
 export default Header

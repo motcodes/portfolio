@@ -2,12 +2,13 @@ import React from 'react'
 import { Mail, Twitter, Camera, Instagram, GitHub } from 'react-feather'
 
 import Layout from '../components/layout'
-// import Image from "../components/image"
 import SEO from '../components/seo'
+import Logo from '../components/logo'
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
+    <Logo size={256} className="logo" />
     <h1 className="title">Matthias Oberholzer</h1>
     <p className="lead">
       a coffee addicted 19 year old Nerd and occasionally a Front End WebDev who

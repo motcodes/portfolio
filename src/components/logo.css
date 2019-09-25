@@ -1,0 +1,37 @@
+#hairFill {
+  fill: none;
+  animation: fill 2s forwards;
+}
+
+@keyframes fill {
+  25% {
+    fill: transparent;
+  }
+  100% {
+    fill: white;
+  }
+}
+
+#whiteHead {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 500;
+  animation: strokepath 2.5s linear forwards;
+}
+@keyframes strokepath {
+  to {
+    stroke-dasharray: 3000;
+    stroke-dashoffset: 1000;
+  }
+}
+
+#blueHead {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: -500;
+  animation: strokepath2 2.5s 0.2s linear forwards;
+}
+@keyframes strokepath2 {
+  to {
+    stroke-dasharray: 3000;
+    stroke-dashoffset: 1200;
+  }
+}

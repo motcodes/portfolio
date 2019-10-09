@@ -1,3 +1,7 @@
+#background {
+  fill: #0070f5;
+  /* fill: #0051ef; */
+}
 #hairFill {
   fill: none;
   animation: fill 2s forwards;
@@ -45,5 +49,11 @@
 @keyframes fillNose {
   to {
     stroke: #002878;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #background {
+    fill: #0a85ff;
   }
 }

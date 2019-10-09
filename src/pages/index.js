@@ -8,12 +8,12 @@ import Logo from '../components/logo'
 const IndexPage = () => (
   <Layout itemScope itemType="http://schema.org/Person">
     <SEO title="About Me" />
-    <Logo size={256} className="logo" ariaLable="Logo" />
-    <h1 className="title" itemProp="name" ariaLable="Name">
+    <Logo size={256} className="logo" ariaLabel="Logo" />
+    <h1 className="title" itemProp="name" ariaLabel="Name">
       <span itemProp="givenName">Matthias</span>{' '}
       <span itemProp="familyName">Oberholzer</span>
     </h1>
-    <p className="lead" ariaLable="About">
+    <p className="lead" ariaLabel="About">
       a coffee addicted 19 year old Nerd and occasionally a
       <span itemProp="jobTitle" style={{ fontStyle: `italic` }}>
         {' '}
@@ -26,7 +26,7 @@ const IndexPage = () => (
         <a
           key={link.id}
           href={link.url}
-          ariaLable={link.name}
+          ariaLabel={link.name}
           target="_blank"
           rel="noopener noreferrer"
           style={{ padding: `0 0.5rem` }}

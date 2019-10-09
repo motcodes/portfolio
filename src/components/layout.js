@@ -9,6 +9,7 @@ const Layout = ({ children }) => {
     <>
       <Header />
       <div
+        id="wrapper"
         style={{
           margin: `0 auto`,
           height: `100%`,
@@ -17,7 +18,6 @@ const Layout = ({ children }) => {
           display: `flex`,
           alignItems: `center`,
           justifyContent: `center`,
-          background: `#0051EF`,
           overflowY: `hidden`,
         }}
       >

@@ -627,6 +627,12 @@ pre tt:after {
 
 /* customCSS */
 
+#wrapper {
+  /* apple system blue */
+  background-color: #0070f5;
+  /* background-color: #0051ef; */
+}
+
 main {
   height: calc(100% - 3rem);
   width: calc(100% - 3rem);
@@ -681,5 +687,22 @@ main {
   }
   main div {
     padding: 0 1.2rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: white;
+  }
+  #wrapper {
+    background: #0a84ff;
+    /* background: #148dff; */
+  }
+  main {
+    background-color: #1f2022;
+  }
+
+  .icon {
+    color: white;
   }
 }

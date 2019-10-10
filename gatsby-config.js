@@ -25,8 +25,8 @@ module.exports = {
         description: `This is the official Portfolio of Matthias Oberholzer, a coffee addicted 19 year old Nerd and occasionally a Frontend Webdeveloper who currently lives in Salzburg`,
         lang: `en`,
         start_url: `/`,
-        background_color: `#0051EF`,
-        theme_color: `#0051EF`,
+        background_color: `#0070F5`,
+        theme_color: `#0070F5`,
         display: `standalone`,
         icon: `src/images/Logo.png`, // This path is relative to the root of the site.
       },
@@ -34,7 +34,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-149456197-1",
+        trackingId: 'UA-149456197-1',
       },
     },
     `gatsby-plugin-sitemap`,

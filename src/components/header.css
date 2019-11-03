@@ -1,7 +1,7 @@
 @import url('https://use.typekit.net/vux8nyf.css');
 
 #nav {
-  position: absolute;
+  position: fixed;
   left: 4rem;
   top: 4rem;
   display: flex;

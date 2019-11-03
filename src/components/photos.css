@@ -1,0 +1,15 @@
+@import url('https://use.typekit.net/vux8nyf.css');
+
+.row {
+  max-width: 1320px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.imgContainer {
+  width: 32%;
+}
+.photo {
+  width: 100%;
+}

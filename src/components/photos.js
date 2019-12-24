@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './photos.css'
+import Toggle from './toggle'
+import Modal from './modal'
 
 const Photos = () => {
   const [isLoading, setLoding] = useState(false)
@@ -43,26 +45,32 @@ const Photos = () => {
           <p>Loading</p>
         ) : (
           photos.map(p => (
-            <div className="imgContainer">
-              <img
-                className="photo"
-                key={p.id}
-                src={p.urls.small}
-                itemProp="image"
-                itemScope=""
-                itemType="http://schema.org/ImageObject"
-              />
-            </div>
+            <Toggle>
+              {({ on, toggle }) => (
+                <>
+                  <div className="imgContainer" key={p.id} onClick={toggle}>
+                    <img
+                      className="photo"
+                      src={p.urls.regular}
+                      itemProp="image"
+                      itemScope=""
+                      itemType="http://schema.org/ImageObject"
+                    />
+                  </div>
+                  <Modal
+                    on={on}
+                    toggle={toggle}
+                    name={p.name}
+                    photo={p.urls.full}
+                    url={p.links.download}
+                  />
+                </>
+              )}
+            </Toggle>
           ))
         )}
-        <button
-          onClick={() => {
-            fetchPhotos()
-          }}
-        >
-          Load more
-        </button>
       </div>
+      <button onClick={() => fetchPhotos()}>Load more</button>
     </>
   )
 }

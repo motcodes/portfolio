@@ -10,28 +10,22 @@ const PhotographyPage = () => {
       <SEO title="Photos taken by Matthias Oberholzer" />
       <Header />
       <div
-        // id="wrapper"
         style={{
           margin: `0 auto`,
-          paddingTop: 0,
           textAlign: `center`,
           display: `flex`,
-          alignItems: `center`,
           justifyContent: `center`,
-          background: `black`,
+          background: `#1f2022`,
         }}
       >
         <div
           style={{
-            marginTop: `15%`,
-            display: `flex`,
-            justifyContent: `center`,
-            alignItems: `center`,
-            flexDirection: `column`,
+            marginTop: `12rem`,
+            maxWidth: 1320,
           }}
         >
           <h1>Photography</h1>
-          <p style={{ maxWidth: 960, textAlign: `left` }}>
+          <p style={{ maxWidth: 960, textAlign: `left`, margin: `0 auto` }}>
             I started taking pictures in 2018. Two months before I came to New
             York for the second time. Basically, I study photography in one of
             the most beautiful places in the world. But also to one of the

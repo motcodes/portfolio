@@ -61,7 +61,7 @@ const Logo = props => {
         dur="0.5s"
         values="0; 256"
         keyTimes="0; 1"
-        keySplins=".33 .33 1 1;"
+        keysplins=".33 .33 1 1;"
         id="circ-anim"
         fill="freeze"
       />

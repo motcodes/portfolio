@@ -22,6 +22,7 @@ const PhotographyPage = () => {
           style={{
             marginTop: `12rem`,
             maxWidth: 1320,
+            margin: `12rem 2rem 6rem`,
           }}
         >
           <h1>Photography</h1>

@@ -1,0 +1,37 @@
+@import url('https://use.typekit.net/vux8nyf.css');
+
+.row {
+  margin: 2rem 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 1rem;
+
+  @media (min-width: 675px) {
+    margin: 3rem 0;
+  }
+  .photo {
+    padding: 2.5px;
+    margin-bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.btn {
+  box-sizing: border-box;
+  background-color: #0070f5;
+  color: white;
+  width: 16rem;
+  height: 3rem;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 1.77407px 0.430453px rgba(0, 112, 244, 0.0580073),
+    0px 3.65758px 2.04586px rgba(0, 112, 244, 0.0805195),
+    0px 5.82053px 5.64454px rgba(0, 112, 244, 0.0980768),
+    0px 8.71842px 12.933px rgba(0, 112, 244, 0.11736),
+    0px 13.771px 28.5954px rgba(0, 112, 244, 0.145855),
+    0px 24px 76px rgba(0, 112, 244, 0.22);
+
+  outline: none;
+}

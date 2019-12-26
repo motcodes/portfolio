@@ -119,6 +119,9 @@ hr {
   height: 0;
   overflow: visible;
 }
+button {
+  cursor: pointer;
+}
 button,
 input,
 optgroup,
@@ -626,6 +629,15 @@ pre tt:after {
 }
 
 /* customCSS */
+html {
+  font-size: 100%;
+}
+main {
+  height: calc(100% - 1.75rem);
+  width: calc(100% - 1.75rem);
+  background-color: white;
+  border-radius: 7px;
+}
 
 #wrapper {
   /* apple system blue */
@@ -633,61 +645,56 @@ pre tt:after {
   /* background-color: #0051ef; */
 }
 
-main {
-  height: calc(100% - 3rem);
-  width: calc(100% - 3rem);
-  background-color: white;
-  border-radius: 7px;
-}
-
 .logo {
   box-sizing: content-box;
   padding: 1rem;
   margin-bottom: 2rem;
+  width: 128px;
+  height: 128px;
+  margin-bottom: 1.5rem;
 }
 
 .title {
-  font-size: 4rem;
+  font-size: 2rem;
+  padding: 1rem;
 }
 
 .lead {
-  font-size: 1.1rem;
-  padding: 0 1.2rem;
+  font-size: 0.9rem;
+  padding: 0 1rem;
 }
 
 .icon {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (min-width: 675px) {
   html {
     font-size: 100%;
   }
   main {
-    height: calc(100% - 1.75rem);
-    width: calc(100% - 1.75rem);
+    height: calc(100% - 3rem);
+    width: calc(100% - 3rem);
   }
   .logo {
-    width: 128px;
-    height: 128px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
   .title {
-    font-size: 2.2rem;
+    font-size: 4rem;
   }
   .lead {
-    font-size: 0.9rem;
-    padding: 0 auto;
+    font-size: 1.1rem;
+    padding: 0 2rem;
     /* text-align: left; */
   }
   .icon {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
   }
-  main div {
-    padding: 0 1.2rem;
-  }
+  // main div {
+  //   padding: 0 1.2rem;
+  // }
 }
 
 @media (prefers-color-scheme: dark) {

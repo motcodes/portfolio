@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import './photos.css'
+import './photos.scss'
 import Toggle from './toggle'
 import Modal from './modal'
 
@@ -25,7 +25,6 @@ const Photos = () => {
     axios
       .get(baseUrl, options)
       .then(res => {
-        console.log(photos.concat(res.data))
         setPhotos(photos.concat(res.data))
         setLoding(false)
       })
@@ -42,7 +41,7 @@ const Photos = () => {
     <>
       <div className="row">
         {isLoading ? (
-          <p>Loading</p>
+          <p>Loading...</p>
         ) : (
           photos.map(p => (
             <Toggle>
@@ -52,6 +51,7 @@ const Photos = () => {
                     <img
                       className="photo"
                       src={p.urls.regular}
+                      alt={p.alt_description}
                       itemProp="image"
                       itemScope=""
                       itemType="http://schema.org/ImageObject"
@@ -61,6 +61,7 @@ const Photos = () => {
                     on={on}
                     toggle={toggle}
                     name={p.name}
+                    alt={p.alt_description}
                     photo={p.urls.full}
                     url={p.links.download}
                   />
@@ -70,7 +71,9 @@ const Photos = () => {
           ))
         )}
       </div>
-      <button onClick={() => fetchPhotos()}>Load more</button>
+      <button className="btn btn-photos" onClick={() => fetchPhotos()}>
+        Load more
+      </button>
     </>
   )
 }

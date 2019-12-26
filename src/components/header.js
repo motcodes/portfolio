@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { BarChart2 } from 'react-feather'
 
-import './header.css'
+import './header.scss'
 
 const Header = () => {
   const [visible, setVisible] = useState(false)

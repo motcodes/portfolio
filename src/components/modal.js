@@ -3,15 +3,16 @@ import Portal from './portal'
 
 import './modal.css'
 
-const Modal = ({ name, photo, url, on, toggle }) => {
+const Modal = ({ name, photo, alt, url, on, toggle }) => {
   return (
     <Portal>
       {on && (
-        <div className="modalWrapper" onClick={toggle}>
+        <div className="modalWrapper" onClick={toggle} role="modal">
           <div className="modalCard">
             <img
               className="fullSizePhoto"
               src={photo}
+              alt={alt}
               itemProp="image"
               itemScope=""
               itemType="http://schema.org/ImageObject"

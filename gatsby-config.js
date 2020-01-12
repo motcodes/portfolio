@@ -4,7 +4,7 @@ module.exports = {
     description: `This is the official Portfolio of Matthias Oberholzer, a coffee addicted 19 year old Nerd and occasionally a Frontend Webdeveloper who currently lives in Salzburg`,
     name: `Matthias Oberholzer`,
     author: `@codingMot`,
-    siteUrl: `https://www.matthiasoberholzer.com`,
+    siteUrl: `https://matthiasoberholzer.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -40,6 +40,6 @@ module.exports = {
     `gatsby-plugin-sitemap`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    `gatsby-plugin-offline`,
+    // `gatsby-plugin-offline`,
   ],
 }

@@ -37,7 +37,6 @@ module.exports = {
         trackingId: 'UA-149456197-1',
       },
     },
-    `gatsby-plugin-netlify`,
     `gatsby-plugin-sitemap`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

@@ -696,6 +696,8 @@ pre tt:after {
           }
           .link-title {
             margin-bottom: 0;
+            font-size: 0;
+            visibility: hidden;
           }
         }
       }
@@ -719,8 +721,6 @@ pre tt:after {
               font-style: normal;
               font-weight: 500;
               margin-left: 0rem;
-              font-size: 0;
-              visibility: hidden;
               transition: visibility 0.5s ease-in-out,
                 font-size 0.3s 0.1s ease-in-out, margin-left 0.3s 0.1s;
             }

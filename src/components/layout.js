@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Header from './header'
-import './layout.css'
+// import Header from './header'
+import './layout.scss'
 
 const Layout = ({ children }) => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div
         id="wrapper"
         style={{

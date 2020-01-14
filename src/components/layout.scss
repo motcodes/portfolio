@@ -199,7 +199,7 @@ textarea {
   font: inherit;
 }
 html {
-  font: 112.5%/1.45em 'Proxima Nova', serif;
+  font: 100% 'Proxima Nova', serif;
   box-sizing: border-box;
   overflow-y: auto;
 }
@@ -630,79 +630,146 @@ pre tt:after {
 #wrapper {
   /* apple system blue */
   background-color: #0070f5;
-  /* background-color: #0051ef; */
-}
 
-main {
-  height: calc(100% - 3rem);
-  width: calc(100% - 3rem);
-  background-color: white;
-  border-radius: 7px;
-}
-
-.logo {
-  box-sizing: content-box;
-  padding: 1rem;
-  margin-bottom: 2rem;
-}
-
-.title {
-  font-size: 4rem;
-}
-
-.lead {
-  font-size: 1.1rem;
-  padding: 0 1.2rem;
-}
-
-.icon {
-  width: 32px;
-  height: 32px;
-}
-
-@media only screen and (max-width: 480px) {
-  html {
-    font-size: 100%;
-  }
   main {
-    height: calc(100% - 1.75rem);
-    width: calc(100% - 1.75rem);
-  }
-  .logo {
-    width: 128px;
-    height: 128px;
-    margin-bottom: 1.5rem;
-  }
-  .title {
-    font-size: 2.2rem;
-  }
-  .lead {
-    font-size: 0.9rem;
-    padding: 0 auto;
-    /* text-align: left; */
-  }
-  .icon {
-    width: 24px;
-    height: 24px;
-  }
-  main div {
-    padding: 0 1.2rem;
+    height: calc(100% - 2rem);
+    width: calc(100% - 2rem);
+    background-color: #f2f3f7;
+    border-radius: 8px;
+
+    @media (min-width: 675px) {
+      height: calc(100% - 3rem);
+      width: calc(100% - 3rem);
+    }
+
+    .logo {
+      box-sizing: content-box;
+      width: 8rem;
+      height: 8rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+
+      @media (min-width: 675px) {
+        height: initial;
+        width: initial;
+      }
+    }
+
+    .title {
+      font-size: 2rem;
+      padding: 0 1rem;
+      @media (min-width: 675px) {
+        font-size: 4rem;
+      }
+    }
+
+    .lead {
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0 1rem;
+      margin-bottom: 1rem;
+      @media (min-width: 675px) {
+        font-size: 1.5rem;
+        padding: 0 2rem;
+      }
+    }
+
+    .link-wrapper {
+      display: flex;
+      flex-direction: row;
+      padding: 16px;
+      .icon-container {
+        background: #f2f3f7;
+        padding: 8px;
+        margin: 8px;
+        box-shadow: 4px 4px 10px #dde4ef, -4px -4px 10px #ffffff;
+        border-radius: 10px;
+
+        .link-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+          .icon {
+            width: 24px;
+            height: 24px;
+          }
+          .link-title {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      @media (min-width: 675px) {
+        .icon-container {
+          padding: 1rem;
+          margin: 1rem;
+          border-radius: 1rem;
+          text-decoration: none;
+          transition: width 2s;
+
+          .link-container {
+            .icon {
+              width: 32px;
+              height: 32px;
+            }
+
+            .link-title {
+              font-family: Objektiv Mk2;
+              font-style: normal;
+              font-weight: 500;
+              margin-left: 0rem;
+              font-size: 0;
+              visibility: hidden;
+              transition: visibility 0.5s ease-in-out,
+                font-size 0.3s 0.1s ease-in-out, margin-left 0.3s 0.1s;
+            }
+          }
+        }
+        @media (hover: hover) {
+          .icon-container {
+            &:hover {
+              box-shadow: 2px 4px 10px #dde4ef, -4px -2px 10px #ffffff;
+              .link-container {
+                .link-title {
+                  margin-left: 1rem;
+                  font-size: 1rem;
+                  visibility: visible;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 
 @media (prefers-color-scheme: dark) {
   body {
     color: white;
-  }
-  #wrapper {
-    background: #0a84ff;
-    /* background: #148dff; */
-  }
-  main {
-    background-color: #1f2022;
-  }
+    #wrapper {
+      background: #0a84ff;
+      main {
+        background-color: #1f2022;
 
-  .icon {
-    color: white;
+        .link-wrapper {
+          .icon-container {
+            background: #1f2022;
+            box-shadow: 4px 4px 10px #0c0d0f, -4px -4px 10px #2a2b2d;
+            .link-container {
+              color: white;
+            }
+          }
+          @media (hover: hover) {
+            .icon-container {
+              &:hover {
+                box-shadow: 2px 4px 10px #0c0d0f, -4px -2px 10px #2a2b2d;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

@@ -21,7 +21,7 @@ const IndexPage = () => (
       </span>{' '}
       who currently lives in <span itemProp="homeLocation">Salzburg</span>
     </p>
-    <div>
+    <div className="link-wrapper">
       {links.map(link => (
         <a
           key={link.id}
@@ -29,10 +29,13 @@ const IndexPage = () => (
           ariaLabel={link.name}
           target="_blank"
           rel="noopener noreferrer"
-          style={{ padding: `0 0.5rem` }}
+          className="icon-container"
           itemProp="url"
         >
-          {link.icon}
+          <div className="link-container">
+            {link.icon}
+            <p className="link-title">{link.title}</p>
+          </div>
         </a>
       ))}
     </div>
@@ -42,31 +45,31 @@ const IndexPage = () => (
 const links = [
   {
     id: 1,
-    name: 'Email',
+    title: 'Email',
     url: 'mailto:matthias.m.oberholzer@gmail.com',
     icon: <Mail className="icon" />,
   },
   {
     id: 2,
-    name: 'Instagram',
+    title: 'Instagram',
     url: 'https://instagram.com/matthias.oberholzer',
     icon: <Instagram className="icon" />,
   },
   {
     id: 3,
-    name: 'Github',
+    title: 'Github',
     url: 'https://github.com/codingMot/',
     icon: <GitHub className="icon" />,
   },
   {
     id: 4,
-    name: 'Twitter',
+    title: 'Twitter',
     url: 'https://twitter.com/CodingMot/',
     icon: <Twitter className="icon" />,
   },
   {
     id: 5,
-    name: 'Unsplash',
+    title: 'Unsplash',
     url: 'https://unsplash.com/@matthiasoberholzer/',
     icon: <Camera className="icon" />,
   },

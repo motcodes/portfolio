@@ -684,20 +684,31 @@ pre tt:after {
         margin: 8px;
         box-shadow: 4px 4px 10px #dde4ef, -4px -4px 10px #ffffff;
         border-radius: 10px;
-
         .link-container {
           display: flex;
           justify-content: center;
           align-items: center;
           flex-direction: row;
+          font-size: 0;
+
           .icon {
             width: 24px;
             height: 24px;
           }
           .link-title {
             margin-bottom: 0;
+            margin-left: 0;
             font-size: 0;
-            visibility: hidden;
+          }
+          // safari - blocks styling
+          @media not all and (min-resolution: 0.001dpcm) {
+            @supports (-webkit-appearance: none) {
+              .link-title {
+                display: none;
+                width: 0;
+                word-wrap: normal;
+              }
+            }
           }
         }
       }
@@ -708,7 +719,6 @@ pre tt:after {
           margin: 1rem;
           border-radius: 1rem;
           text-decoration: none;
-          transition: width 2s;
 
           .link-container {
             .icon {
@@ -717,7 +727,7 @@ pre tt:after {
             }
 
             .link-title {
-              font-family: Objektiv Mk2;
+              font-family: objektiv-mk2, -apple-system, sans-serif;
               font-style: normal;
               font-weight: 500;
               margin-left: 0rem;
@@ -727,14 +737,28 @@ pre tt:after {
           }
         }
         @media (hover: hover) {
-          .icon-container {
-            &:hover {
-              box-shadow: 2px 4px 10px #dde4ef, -4px -2px 10px #ffffff;
-              .link-container {
-                .link-title {
-                  margin-left: 1rem;
-                  font-size: 1rem;
-                  visibility: visible;
+          .icon-container:hover {
+            box-shadow: 2px 4px 10px #dde4ef, -4px -2px 10px #ffffff;
+            .link-container {
+              .link-title {
+                margin-left: 1rem;
+                font-size: 1rem;
+              }
+            }
+          }
+
+          // safari - blocks styling
+          @media not all and (min-resolution: 0.001dpcm) {
+            @supports (-webkit-appearance: none) {
+              .icon-container:hover {
+                box-shadow: 4px 4px 10px #dde4ef, -4px -4px 10px #ffffff;
+                box-shadow: none;
+                .link-container {
+                  .link-title {
+                    font-size: 0;
+                    margin-left: 0;
+                    display: none;
+                  }
                 }
               }
             }
@@ -762,9 +786,15 @@ pre tt:after {
             }
           }
           @media (hover: hover) {
-            .icon-container {
-              &:hover {
-                box-shadow: 2px 4px 10px #0c0d0f, -4px -2px 10px #2a2b2d;
+            .icon-container:hover {
+              box-shadow: 2px 4px 10px #0c0d0f, -4px -2px 10px #2a2b2d;
+            }
+            // safari - blocks styling
+            @media not all and (min-resolution: 0.001dpcm) {
+              @supports (-webkit-appearance: none) {
+                .icon-container:hover {
+                  box-shadow: 4px 4px 10px #0c0d0f, -4px -4px 10px #2a2b2b;
+                }
               }
             }
           }

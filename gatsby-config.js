@@ -15,20 +15,18 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Portfolio of Matthias Oberholzer`,
         short_name: `Matthias Oberholzer`,
-        description: `This is the official Portfolio of Matthias Oberholzer, a coffee addicted 19 year old Nerd and occasionally a Frontend Webdeveloper who currently lives in Salzburg`,
+        description: `This is the official Website of Matthias Oberholzer`,
         lang: `en`,
         start_url: `/`,
-        background_color: `#0070F5`,
-        theme_color: `#0070F5`,
+        background_color: `#0051ef`,
+        theme_color: `#0051ef`,
         display: `standalone`,
-        icon: `src/images/Logo.png`, // This path is relative to the root of the site.
+        icon: `src/images/Logo.png`,
       },
     },
     {
@@ -37,10 +35,8 @@ module.exports = {
         trackingId: 'UA-149456197-1',
       },
     },
-    `gatsby-plugin-sass`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     `gatsby-plugin-sitemap`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }

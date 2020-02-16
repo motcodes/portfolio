@@ -5,6 +5,9 @@ export const LightTheme = {
     primary: colors.Blue,
     light: colors.LightBlue,
     dark: colors.DarkBlue,
+    text: colors.Black,
+    navText: colors.DarkGrey,
+    bg: `#FFF`,
   },
 }
 
@@ -13,5 +16,8 @@ export const DarkTheme = {
     primary: colors.BlueDarkmode,
     light: colors.LightBlueDarkmode,
     dark: colors.DarkBlueDarkmode,
+    text: `#FFF`,
+    navText: colors.LightGrey,
+    bg: colors.Black,
   },
 }

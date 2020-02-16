@@ -20,6 +20,9 @@ const Indruduction = styled(PrimaryGrid)`
 const Heading1 = styled(H1)`
   grid-column: 1 / 6;
   align-self: end;
+  span {
+    color: ${({ theme }) => theme.colors.primary};
+  }
 `
 
 const Description = styled(Paragraph)`
@@ -51,7 +54,7 @@ const Line = styled.div`
   width: 4px;
   height: 8rem;
   border-radius: 2px;
-  background-color: ${Black};
+  background-color: ${({ theme }) => theme.colors.text};
 `
 
 const Projects = styled(PrimaryGrid)`
@@ -60,14 +63,14 @@ const Projects = styled(PrimaryGrid)`
 
 const Heading2 = styled(H2)`
   grid-column: 2 / 9;
-  color: ${LightTheme.colors.primary};
+  color: ${({ theme }) => theme.colors.primary};
 `
 
 const ProjectCard = styled(Card)`
   grid-column: 2 / 9;
 `
 
-const IndexPage = () => {
+const IndexPage = props => {
   const data = useStaticQuery(graphql`
     query {
       placeholderImage: file(relativePath: { eq: "HomepagePicture.jpg" }) {
@@ -81,54 +84,49 @@ const IndexPage = () => {
   `)
 
   return (
-    <ThemeProvider theme={LightTheme}>
-      <Layout>
-        <Indruduction>
-          <Heading1>
-            Hello There!{' '}
-            <span style={{ color: LightTheme.colors.primary }}>I’m Matt.</span>
-          </Heading1>
-          <Description size="large">
-            I am a young web developer with a passion for designing cool new
-            stuff, coding something exciting, taking photos of everything &amp;
-            enjoying some good rock music.
-            {/* SocialContainer outside of P tag + create Links*/}
-            <SocialContainer>
-              <Twitter />
-              <Instagram />
-              <GitHub />
-              <Mail />
-              <Facebook />
-            </SocialContainer>
-          </Description>
-          <Image fluid={data.placeholderImage.childImageSharp.fluid} />
-        </Indruduction>
-        <Line />
-        <Projects as="section">
-          <Heading2>expierence &amp; projects</Heading2>
-          <ProjectCard>
-            <Card.Heading>
-              Ghostbuilder.io{' '}
-              <span style={{ fontWeight: `normal` }}>
-                - Web App Development
-              </span>
-            </Card.Heading>
-          </ProjectCard>
-          <ProjectCard>
-            <Card.Heading>
-              NCM{' '}
-              <span style={{ fontWeight: `normal` }}>- Content Managment</span>
-            </Card.Heading>
-          </ProjectCard>
-          <ProjectCard>
-            <Card.Heading>
-              Siemens{' '}
-              <span style={{ fontWeight: `normal` }}>- Java developer</span>
-            </Card.Heading>
-          </ProjectCard>
-        </Projects>
-      </Layout>
-    </ThemeProvider>
+    <Layout>
+      <Indruduction>
+        <Heading1>
+          Hello There! <span>I’m Matt.</span>
+        </Heading1>
+        <Description size="large">
+          I am a young web developer with a passion for designing cool new
+          stuff, coding something exciting, taking photos of everything &amp;
+          enjoying some good rock music.
+          {/* SocialContainer outside of P tag + create Links*/}
+          <SocialContainer>
+            <Twitter />
+            <Instagram />
+            <GitHub />
+            <Mail />
+            <Facebook />
+          </SocialContainer>
+        </Description>
+        <Image fluid={data.placeholderImage.childImageSharp.fluid} />
+      </Indruduction>
+      <Line />
+      <Projects as="section">
+        <Heading2>expierence &amp; projects</Heading2>
+        <ProjectCard>
+          <Card.Heading>
+            Ghostbuilder.io{' '}
+            <span style={{ fontWeight: `normal` }}>- Web App Development</span>
+          </Card.Heading>
+        </ProjectCard>
+        <ProjectCard>
+          <Card.Heading>
+            NCM{' '}
+            <span style={{ fontWeight: `normal` }}>- Content Managment</span>
+          </Card.Heading>
+        </ProjectCard>
+        <ProjectCard>
+          <Card.Heading>
+            Siemens{' '}
+            <span style={{ fontWeight: `normal` }}>- Java developer</span>
+          </Card.Heading>
+        </ProjectCard>
+      </Projects>
+    </Layout>
   )
 }
 

@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Logo } from '../image'
 import { Paragraph } from './Paragraphs'
-import { DarkGrey } from '../utilities'
-import { Moon } from 'react-feather'
+import { DarkGrey, LightGrey } from '../utilities'
+import { Moon, Sun } from 'react-feather'
 
 const HeaderWrapper = styled.header`
   display: inline-flex;
@@ -21,7 +21,6 @@ const HeaderWrapper = styled.header`
 
     * {
       margin: 0 1rem;
-      color: ${DarkGrey};
       cursor: pointer;
     }
   }
@@ -30,17 +29,28 @@ const HeaderLink = styled(Paragraph)`
   text-decoration: none;
   border-bottom: 2px solid transparent;
   transition: border 0.3s ease;
+  color: ${({ theme }) => theme.colors.navText};
   &:hover {
-    border-bottom: 2px solid ${DarkGrey};
+    border-bottom: 2px solid ${({ theme }) => theme.colors.navText};
   }
 `
 
-export const Header = () => {
+const DarkmodeButton = styled.button`
+  background: none;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+`
+
+export const Header = ({ isDarkmode, toggleDarkmode }) => {
   return (
     <HeaderWrapper>
       <Logo />
       <nav>
-        <Moon color={DarkGrey} />
+        <DarkmodeButton onClick={toggleDarkmode}>
+          {!isDarkmode ? <Moon color={DarkGrey} /> : <Sun color={LightGrey} />}
+        </DarkmodeButton>
         <HeaderLink as="a" href="/about/">
           About
         </HeaderLink>

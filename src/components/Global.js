@@ -1,12 +1,11 @@
 import { createGlobalStyle } from 'styled-components'
-import { Black } from './utilities'
 
 const GlobalStyle = createGlobalStyle`
-/* but import in react-helmet */
-  @import url("https://use.typekit.net/vux8nyf.css");
   html{
     box-sizing: border-box;
-    color: ${props => props.theme.colors.text}
+    color: ${({ theme }) => theme.colors.text};
+    font-family: 'Inter', sans-serif;
+    background-color: ${({ theme }) => theme.colors.bg};
   }
 
   *, *::before, *::after{
@@ -14,5 +13,33 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @media(min-width: 1024px){
+      &::-webkit-scrollbar {
+        width: 14px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: ${({ theme }) => theme.colors.bg};
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        /* background: ${({ theme }) => theme.colors.grey}; */
+        border: 3px solid ${({ theme }) => theme.colors.bg};
+        border-radius: 8px;
+        width: 8px;
+        padding: 0 1px
+      }
+    }
+  }
+  h1,h2,h3,h4,h5,h6{
+    font-family: objektiv-mk2, sans-serif;
+    font-style: normal;
+  }
+
+  
 `
 export default GlobalStyle

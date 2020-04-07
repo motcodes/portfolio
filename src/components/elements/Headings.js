@@ -1,28 +1,53 @@
 import styled from 'styled-components'
+import { above } from '../utilities'
 
 export const H1 = styled.h1`
-  font-family: Objektiv Mk2;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 2rem;
+  line-height: 1.5;
+
+  ${above.med`
+    font-size: 3rem;
+  `}
+`
+export const H2 = styled.h2`
   font-style: normal;
   font-weight: bold;
-  font-size: 48px;
-  line-height: 69px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+
+  ${above.med`
+    font-size: 2rem;
+  `}
 `
-export const H2 = styled(H1)`
-  font-size: 32px;
-  line-height: 46px;
-`
-export const H3 = styled(H1)`
+export const H3 = styled.h3`
+  font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 35px;
+  font-size: 1.25rem;
+  line-height: 1.5;
+
+  ${above.med`
+    font-size: 1.5rem;
+  `}
 `
-export const H4 = styled(H1)`
+export const H4 = styled.h4`
+  font-style: normal;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 23px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+
+  ${above.med`
+    font-size: 1rem;
+  `}
 `
-export const H5 = styled(H1)`
+export const H5 = styled.h5`
+  font-style: normal;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+
+  ${above.med`
+    font-size: 0.875rem;
+  `}
 `

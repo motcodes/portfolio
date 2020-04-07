@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 
 export const Paragraph = styled.p`
-  font-family: Inter;
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 20px;
 
   ${({ size }) => {
@@ -16,8 +15,8 @@ export const Paragraph = styled.p`
     }
     if (size === 'small') {
       return `
-        font-size: 12px;
-        line-height: 18px;
+        font-size: 14px;
+        line-height: 21px;
       `
     }
   }}

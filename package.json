@@ -6,6 +6,7 @@
   "author": "Matthias Oberholzer <matthias.m.oberholzer@gmail.com>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.7",
+    "framer-motion": "^1.8.4",
     "gatsby": "^2.15.16",
     "gatsby-image": "^2.2.19",
     "gatsby-plugin-google-analytics": "^2.1.20",
@@ -22,6 +23,7 @@
     "react-dom": "^16.9.0",
     "react-feather": "^2.0.3",
     "react-helmet": "^5.2.1",
+    "react-intersection-observer": "^8.26.1",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {

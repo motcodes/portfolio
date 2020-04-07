@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Portfolio of Matthias Oberholzer`,
-    description: `This is the official Portfolio of Matthias Oberholzer, a coffee addicted 19 year old Nerd and occasionally a Frontend Webdeveloper who currently lives in Salzburg`,
+    description: `I am a young web developer with a passion for designing cool new stuff, coding something exciting, taking photos of everything and enjoying some good rock music.`,
     name: `Matthias Oberholzer`,
     author: `@codingMot`,
     siteUrl: `https://matthiasoberholzer.com`,
@@ -20,7 +20,7 @@ module.exports = {
       options: {
         name: `Portfolio of Matthias Oberholzer`,
         short_name: `Matthias Oberholzer`,
-        description: `This is the official Website of Matthias Oberholzer`,
+        description: `I am a young web developer with a passion for designing cool new stuff, coding something exciting, taking photos of everything and enjoying some good rock music.`,
         lang: `en`,
         start_url: `/`,
         background_color: `#0051ef`,

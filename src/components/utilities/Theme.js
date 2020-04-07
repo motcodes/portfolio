@@ -1,4 +1,5 @@
 import * as colors from './Colors'
+import gradients from './Gradients'
 
 export const LightTheme = {
   colors: {
@@ -7,7 +8,9 @@ export const LightTheme = {
     dark: colors.DarkBlue,
     text: colors.Black,
     navText: colors.DarkGrey,
+    grey: colors.DarkGrey,
     bg: `#FFF`,
+    gradient: gradients[0],
   },
 }
 
@@ -18,6 +21,11 @@ export const DarkTheme = {
     dark: colors.DarkBlueDarkmode,
     text: `#FFF`,
     navText: colors.LightGrey,
-    bg: colors.Black,
+    grey: colors.LightGrey,
+    bg: `#0F1217`,
+    gradient: gradients[1],
   },
 }
+
+console.log(DarkTheme.colors.text)
+console.log(LightTheme.colors.text)

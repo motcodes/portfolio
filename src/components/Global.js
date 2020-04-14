@@ -4,7 +4,8 @@ const GlobalStyle = createGlobalStyle`
   html{
     box-sizing: border-box;
     color: ${({ theme }) => theme.colors.text};
-    font-family: 'Inter', sans-serif;
+    /* font-family: 'Inter', sans-serif; */
+    font-family: work-sans, sans-serif;
     background-color: ${({ theme }) => theme.colors.bg};
   }
 

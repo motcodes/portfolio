@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 import { motion } from 'framer-motion'
 import { Moon, Sun } from 'react-feather'
-import { Paragraph } from './Paragraphs'
 import { DarkGrey, LightGrey, above } from '../utilities'
 import { Logo } from './Logo'
+import { PageLink } from './Links'
 import { LogoDarkmode } from './LogoDarkmode'
 
 const HeaderWrapper = styled.header`
@@ -16,6 +16,7 @@ const HeaderWrapper = styled.header`
   padding-top: 1rem;
   width: 100%;
   max-width: 960px;
+  z-index: 1;
 
   ${above.med`
     padding-top: 2rem;
@@ -51,15 +52,6 @@ const LogoWrapper = styled(Link)`
     width: 6rem;
   `};
 `
-const HeaderLink = styled(Paragraph)`
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
-  transition: border 0.3s ease;
-  color: ${({ theme }) => theme.colors.navText};
-  &:hover {
-    border-bottom: 2px solid ${({ theme }) => theme.colors.navText};
-  }
-`
 
 const DarkmodeButton = styled(motion.button)`
   background: none;
@@ -92,15 +84,15 @@ export const Header = ({ isDarkmode, toggleDarkmode }) => {
             <Sun color={LightGrey} style={{ margin: 0 }} />
           )}
         </DarkmodeButton>
-        <HeaderLink as="a" href="/about/">
+        <PageLink to="/about/" activeClassName="active">
           About
-        </HeaderLink>
-        <HeaderLink as="a" href="/photography/">
-          Photogaphy
-        </HeaderLink>
-        <HeaderLink as="a" href="/photography/">
+        </PageLink>
+        <PageLink to="/photography/" activeClassName="active">
+          Photography
+        </PageLink>
+        {/* <PageLink to="/photography/">
           Blog
-        </HeaderLink>
+        </PageLink> */}
       </nav>
     </HeaderWrapper>
   )

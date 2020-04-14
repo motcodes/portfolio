@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { H2 } from './Headings'
 import { Paragraph } from './Paragraphs'
-import { Link } from './Links'
+import { A } from './Links'
 import { useScrollInView } from '../helpers'
 import { above } from '../utilities'
 
@@ -95,7 +95,7 @@ export default styled(Card)`
   background: transparent;
   border: 3px solid ${({ theme }) => theme.colors.primary};
   border-radius: 8px;
-  padding: 0 2rem;
+  padding: 0 1rem;
   box-sizing: content-box;
 
   display: flex;
@@ -106,7 +106,7 @@ export default styled(Card)`
 const Heading = styled(motion.custom(H2))`
   margin-top: 1rem;
   ${above.large`
-  text-align: center;
+    text-align: center;
   `}
 `
 
@@ -123,11 +123,6 @@ const InfoContainer = styled(motion.div)`
 const Timeperiod = styled(motion.custom(Paragraph))`
   color: ${({ theme }) => theme.colors.grey};
 `
-// animate with grid
 const Description = styled(motion.custom(Paragraph))``
 
-const ProjectLink = styled(motion.custom(Link))``
-
-// const isMobile = useMediaQuery('(max-width: 400px)')
-// const isTablet = useMediaQuery('(min-width: 401px)')
-// const isLargeDesktop = useMediaQuery('(min-width: 1025px)')
+const ProjectLink = styled(motion.custom(A))``

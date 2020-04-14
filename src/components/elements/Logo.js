@@ -8,7 +8,7 @@ export const Logo = () => {
       logo: file(relativePath: { eq: "Logo.png" }) {
         childImageSharp {
           fluid(maxHeight: 256) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp_noBase64
           }
         }
       }

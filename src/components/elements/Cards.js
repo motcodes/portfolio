@@ -19,6 +19,7 @@ const cardMotion = {
     visibility: `visible`,
     transition: {
       duration: 0.5,
+      delay: 0.75,
     },
   },
   exit: {

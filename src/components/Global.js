@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     /* font-family: 'Inter', sans-serif; */
     font-family: work-sans, sans-serif;
     background-color: ${({ theme }) => theme.colors.bg};
+    overflow-x: hidden;
   }
 
   *, *::before, *::after{
@@ -17,12 +18,16 @@ const GlobalStyle = createGlobalStyle`
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    &::-webkit-scrollbar {
+        width: 0px;
+    }
     @media(min-width: 1024px){
       &::-webkit-scrollbar {
-        width: 14px;
+        width: 0px;
       }
 
       &::-webkit-scrollbar-track {
+        /* background: ${({ theme }) => theme.colors.bg}; */
         background: ${({ theme }) => theme.colors.bg};
       }
       
@@ -39,6 +44,19 @@ const GlobalStyle = createGlobalStyle`
   h1,h2,h3,h4,h5,h6{
     font-family: objektiv-mk2, sans-serif;
     font-style: normal;
+  }
+  li {
+    list-style-position: inside
+  }
+  li > ol {
+    margin-left: 1.45rem;
+    margin-bottom: calc(1.45rem / 2);
+    margin-top: calc(1.45rem / 2);
+  }
+  li > ul {
+    margin-left: 1.45rem;
+    margin-bottom: calc(1.45rem / 2);
+    margin-top: calc(1.45rem / 2);
   }
 
   

@@ -1,30 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
-import { Header } from '../elements'
-import { Footer } from '../elements/Footer'
+import { Header, Footer } from '../elements'
 import GlobalStyle from '../Global'
-import { DarkTheme, LightTheme, above } from '../utilities'
+import { DarkTheme, LightTheme } from '../utilities'
 import { useDarkmode } from '../helpers'
+import SEO from '../seo'
 
 const Container = styled.div`
-  padding: 0 1rem;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.bg};
   transition: background-color 0.5s ease;
-
-  ${above.med`
-    padding: 0 2rem;
-  `}
 `
 
-export const Layout = ({ children }) => {
+export default function Layout({ children, location }) {
   const [isDarkmode, toggleDarkmode] = useDarkmode()
+  const [height, setHeight] = useState(0)
+
+  useEffect(() => {
+    setHeight(window.innerHeight)
+    document.documentElement.style.setProperty(
+      '--vh',
+      `${window.innerHeight * 0.01}px`
+    )
+  }, [])
 
   return (
     <ThemeProvider theme={isDarkmode ? DarkTheme : LightTheme}>
       <Container>
+        <SEO title="Portfolio of Matthias Oberholzer" />
         <GlobalStyle />
         <Header isDarkmode={isDarkmode} toggleDarkmode={toggleDarkmode} />
         <main>{children}</main>

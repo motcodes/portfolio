@@ -1,7 +1,26 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+const React = require('react')
+const Layout = require('./src/components/layouts/Layout').default
 
-// You can delete this file if you're not using it
+exports.wrapPageElement = ({ element, props }) => {
+  // props provide same data to Layout as Page element will get
+  // including location, data, etc - you don't need to pass it
+  return <Layout {...props}>{element}</Layout>
+}
+const transitionDelay = 500
+exports.shouldUpdateScroll = (
+  { routerProps: { location }, getSavedScrollPosition },
+  pluginOptions
+) => {
+  const { transitions = true } = pluginOptions
+
+  if (location.action === 'PUSH') {
+    window.setTimeout(() => window.scrollTo(0, 0), transitions ? 350 : 0)
+  } else {
+    const savedPosition = getSavedScrollPosition(location)
+    window.setTimeout(
+      () => window.scrollTo(...(savedPosition || [0, 0])),
+      transitions ? 350 : 0
+    )
+  }
+  return false
+}

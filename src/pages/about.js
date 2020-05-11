@@ -1,19 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { Layout } from '../components/layouts/Layout'
 import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
 import SEO from '../components/seo'
 import { PrimaryGrid, above } from '../components/utilities'
-import { H1, H2, Paragraph } from '../components/elements'
+import { H1, H2, Paragraph, Overlay } from '../components/elements'
 import { Twitter, Instagram, GitHub, Facebook, Mail } from 'react-feather'
 
 export default function About({ data }) {
   const { aboutPicture } = data
   return (
-    <Layout>
+    <>
       <SEO title="About this dude" />
+      <Overlay title="about" />
       <AboutContainer>
         <H1>Here is some stuff about me.</H1>
         <Paragraph>
@@ -96,12 +96,12 @@ export default function About({ data }) {
           </motion.a>
         </AboutLinks>
       </AboutContainer>
-    </Layout>
+    </>
   )
 }
 
 const AboutContainer = styled(PrimaryGrid)`
-  margin-top: 2rem;
+  margin-top: 1rem;
   row-gap: 1rem;
   ${above.med`
     margin-top: 4rem;

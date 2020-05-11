@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Twitter, Instagram, GitHub, Mail, Facebook } from 'react-feather'
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { useScrollInView } from '../components/helpers'
 import SEO from '../components/seo'
-import { Layout } from '../components/layouts/Layout'
 import { PrimaryGrid, breakpoints, above } from '../components/utilities'
-import { H1, H2, Paragraph } from '../components/elements'
+import { H1, H2, Paragraph, Overlay } from '../components/elements'
 import Cards from '../components/elements/Cards'
 
 const xMotion = {
@@ -27,6 +26,7 @@ const xMotion = {
     },
   },
 }
+
 const lineMotion = {
   rest: {
     y: -128,
@@ -36,9 +36,26 @@ const lineMotion = {
     y: 0,
     opacity: 1,
     transition: {
-      delay: 0.7,
+      delay: 0.5,
       default: { duration: 1 },
       opacity: { duration: 0.4 },
+    },
+  },
+}
+
+const h2Motion = {
+  rest: {
+    y: 32,
+    opacity: 0,
+    visibility: `hidden`,
+  },
+  scroll: {
+    y: 0,
+    opacity: 1,
+    visibility: `visible`,
+    transition: {
+      duration: 0.5,
+      delay: 0.75,
     },
   },
 }
@@ -47,17 +64,20 @@ const IndexPage = ({ data }) => {
   const { homepagePicture, site } = data
   const [linePosition, setLinePosition] = useState(0)
   const { ref, controls } = useScrollInView()
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
     const pageHeight = window.innerHeight
     const intro = document.getElementById('intro').offsetHeight
     const header = document.getElementsByTagName('header')[0].clientHeight
     setLinePosition(pageHeight - (intro + header) + 96)
+    setLoaded(true)
   }, [])
 
   return (
-    <Layout>
+    <>
       <SEO title="Portfolio of Matthias Oberholzer" />
+      <Overlay title="homepage" />
       <Indruduction id="intro" linePosition={linePosition}>
         <Heading1>
           Hello There! <span>I’m Matt.</span>
@@ -137,7 +157,14 @@ const IndexPage = ({ data }) => {
         </motion.svg>
       </LineWrapper>
       <Projects as="section">
-        <Heading2>expierence &amp; projects</Heading2>
+        <Heading2
+          ref={ref}
+          initial="rest"
+          animate={controls}
+          variants={h2Motion}
+        >
+          expierence &amp; projects
+        </Heading2>
         {projectData.map(project => (
           <ProjectCard
             key={project.title}
@@ -149,16 +176,16 @@ const IndexPage = ({ data }) => {
           />
         ))}
       </Projects>
-    </Layout>
+    </>
   )
 }
 
 const Indruduction = styled(PrimaryGrid)`
-  margin-top: 1rem;
   grid-template-rows: 1fr auto;
-  margin-bottom: ${({ linePosition }) => linePosition + 'px'};
+  margin-top: ${({ linePosition }) => linePosition / 4 + 'px'};
+  margin-bottom: ${({ linePosition }) => linePosition / 1.5 + 'px'};
   ${above.med`
-    margin-top: 4rem;
+    // margin-top: 3rem;
     grid-template-rows: 1fr auto 1fr;
   `};
 `
@@ -176,6 +203,7 @@ const Heading1 = styled(H1)`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: table;
+    color: ${({ theme }) => theme.colors.primary};
 
     @media (min-width: ${breakpoints.xl}px) {
       display: initial;
@@ -259,7 +287,7 @@ const Projects = styled(PrimaryGrid)`
   }
 `
 
-const Heading2 = styled(H2)`
+const Heading2 = styled(motion.custom(H2))`
   grid-column: 1 / 5;
   color: ${({ theme }) => theme.colors.primary};
 

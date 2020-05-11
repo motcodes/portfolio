@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 import { motion } from 'framer-motion'
 import { Moon, Sun } from 'react-feather'
@@ -14,12 +14,14 @@ const HeaderWrapper = styled.header`
   align-items: center;
   margin: 0 auto;
   padding-top: 1rem;
+  padding-bottom: 1rem;
   width: 100%;
   max-width: 960px;
   z-index: 1;
 
   ${above.med`
     padding-top: 2rem;
+    padding-bottom: 2rem;
   `}
 
   nav {
@@ -36,6 +38,18 @@ const HeaderWrapper = styled.header`
       `}
     }
   }
+  ${({ collection }) => {
+    if (collection) {
+      return css`
+        padding-left: 1rem;
+        padding-right: 1rem;
+        ${above.med`
+          padding-left: 2rem;
+          padding-right: 2rem;
+        `}
+      `
+    }
+  }}
 `
 
 const LogoWrapper = styled(Link)`
@@ -66,9 +80,9 @@ const DarkmodeButton = styled(motion.button)`
   }
 `
 
-export const Header = ({ isDarkmode, toggleDarkmode }) => {
+export const Header = ({ isDarkmode, toggleDarkmode, collection }) => {
   return (
-    <HeaderWrapper>
+    <HeaderWrapper collection={collection}>
       <LogoWrapper to="/">
         {!isDarkmode ? <Logo /> : <LogoDarkmode />}
       </LogoWrapper>

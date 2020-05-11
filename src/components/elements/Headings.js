@@ -16,10 +16,10 @@ export const H2 = styled.h2`
   font-weight: bold;
   font-size: 1.5rem;
   line-height: 1.5;
-
+  color: ${({ theme }) => theme.colors.primary};
   ${above.med`
     font-size: 2rem;
-  `}
+  `};
 `
 export const H3 = styled.h3`
   font-style: normal;

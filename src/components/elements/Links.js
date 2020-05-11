@@ -10,7 +10,10 @@ export const A = styled.a`
   cursor: pointer;
 
   &:hover {
-    text-decoration: underline;
+    border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
+  }
+  &:visited {
+    color: ${({ theme }) => theme.colors.primary};
   }
 
   ${({ size }) => {
@@ -40,6 +43,9 @@ export const PageLink = styled(Link)`
   color: ${({ theme }) => theme.colors.navText};
   &:hover {
     border-bottom: 2px solid ${({ theme }) => theme.colors.navText};
+  }
+  &:visited {
+    color: ${({ theme }) => theme.colors.navText};
   }
   &.active {
     border-bottom: 2px solid ${({ theme }) => theme.colors.navText};

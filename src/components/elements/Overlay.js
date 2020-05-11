@@ -15,7 +15,6 @@ export function Overlay({ title }) {
           opacity: 0,
           visibility: `hidden`,
         }}
-        exit={{ y: 0 }}
         transition={{
           default: {
             duration: 0.5,
@@ -27,6 +26,9 @@ export function Overlay({ title }) {
             delay: 4.75,
             ease: 'easeOut',
           },
+        }}
+        style={{
+          background: `${({ theme }) => theme.colors.bg}`,
         }}
       ></Container>
       <Heading>
@@ -43,12 +45,8 @@ const Container = styled(motion.div)`
   left: 0;
 
   height: 100vh;
-  height: calc(var(--vh, 1vh) * 200);
   height: calc(var(--vh, 1vh) * 100);
-  width: 200vw;
   width: 100vw;
-  background: darkblue;
-  background: ${({ theme }) => theme.colors.bg};
   z-index: 100;
   display: flex;
   justify-content: center;
@@ -62,8 +60,4 @@ const Heading = styled(motion.custom(H1))`
   width: fit-content;
   font-size: 6rem;
   z-index: 101;
-  svg {
-    stroke: ${({ theme }) => theme.colors.text};
-    stroke-width: 1;
-  }
 `

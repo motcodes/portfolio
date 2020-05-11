@@ -6,7 +6,6 @@ import PortableText from '../helpers/portableText'
 import { above } from '../utilities'
 
 export default function Collection({ data }) {
-  console.log(data)
   const { title, mainImage, slug, _rawBody } = data.collection
 
   return (

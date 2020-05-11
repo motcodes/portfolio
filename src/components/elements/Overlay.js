@@ -27,9 +27,6 @@ export function Overlay({ title }) {
             ease: 'easeOut',
           },
         }}
-        style={{
-          background: `${({ theme }) => theme.colors.bg}`,
-        }}
       ></Container>
       <Heading>
         <OverlayText title={title} />
@@ -51,6 +48,7 @@ const Container = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${({ theme }) => theme.colors.bg};
 `
 const Heading = styled(motion.custom(H1))`
   position: absolute;

@@ -26,6 +26,3 @@ export const DarkTheme = {
     gradient: gradients[1],
   },
 }
-
-console.log(DarkTheme.colors.text)
-console.log(LightTheme.colors.text)

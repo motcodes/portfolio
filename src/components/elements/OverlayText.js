@@ -1,6 +1,12 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { useDarkmode } from '../helpers'
+import styled from 'styled-components'
+
+const SVG = styled(motion.svg)`
+  stroke: ${({ theme }) => theme.colors.text};
+  /* strokewidth: 1; */
+`
 
 export default function OverlayText({ title }) {
   const [isDarkmode] = useDarkmode()
@@ -44,16 +50,12 @@ export default function OverlayText({ title }) {
     },
   }
   return title === 'homepage' ? (
-    <motion.svg
+    <SVG
       width="500"
       height="40"
       viewBox="0 0 499 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        stroke: ({ theme }) => theme.colors.text,
-        strokeWidth: 1,
-      }}
     >
       <motion.path
         d="M1.90423 2.51999H7.66423L20.6722 27.048L33.3442 2.51999H39.1042L41.0242 39H35.3122L34.1602 11.448L23.0242 32.856H18.0322L6.84823 11.976L5.69623 39H0.0322266L1.90423 2.51999Z"
@@ -163,18 +165,14 @@ export default function OverlayText({ title }) {
         initial="hidden"
         animate="visible"
       />
-    </motion.svg>
+    </SVG>
   ) : title === 'about' ? (
-    <motion.svg
+    <SVG
       width="240"
       height="40"
       viewBox="0 0 241 41"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        stroke: ({ theme }) => theme.colors.text,
-        strokeWidth: 1,
-      }}
     >
       <motion.path
         d="M15.0349 2.5413H21.5737L36.4568 39.3452H29.9668L26.063 29.0304H10.2528L6.34906 39.3452H0.151855L15.0349 2.5413ZM24.2087 24.2362L18.1091 8.15874L12.0583 24.2362H24.2087Z"
@@ -218,18 +216,14 @@ export default function OverlayText({ title }) {
         initial="hidden"
         animate="visible"
       />
-    </motion.svg>
+    </SVG>
   ) : title === 'photography' ? (
-    <motion.svg
+    <SVG
       width="310"
       height="52"
       viewBox="0 0 310 52"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        stroke: ({ theme }) => theme.colors.text,
-        strokeWidth: 1,
-      }}
     >
       <motion.path
         d="M0.65625 2.51999H11.9843C14.5123 2.51999 16.7523 3 18.7043 3.96C20.6563 4.888 22.1763 6.232 23.2642 7.992C24.3843 9.752 24.9443 11.816 24.9443 14.184C24.9443 16.488 24.4163 18.536 23.3603 20.328C22.3043 22.088 20.7843 23.48 18.8003 24.504C16.8483 25.496 14.5603 25.992 11.9363 25.992H6.41625V39H0.65625V2.51999ZM6.41625 21.096H11.0723C13.6963 21.096 15.6803 20.52 17.0243 19.368C18.3683 18.216 19.0403 16.52 19.0403 14.28C19.0403 12.04 18.3523 10.344 16.9762 9.192C15.6322 8.008 13.6643 7.41599 11.0723 7.41599H6.41625V21.096Z"
@@ -297,18 +291,14 @@ export default function OverlayText({ title }) {
         initial="hidden"
         animate="visible"
       />
-    </motion.svg>
+    </SVG>
   ) : (
-    <motion.svg
+    <SVG
       width="390"
       height="40"
       viewBox="0 0 390 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        stroke: ({ theme }) => theme.colors.text,
-        strokeWidth: 1,
-      }}
     >
       <motion.path
         d="M0.65625 2.51999H11.9843C14.5123 2.51999 16.7523 3 18.7043 3.96C20.6563 4.888 22.1763 6.232 23.2642 7.992C24.3843 9.752 24.9443 11.816 24.9443 14.184C24.9443 16.488 24.4163 18.536 23.3603 20.328C22.3043 22.088 20.7843 23.48 18.8003 24.504C16.8483 25.496 14.5603 25.992 11.9363 25.992H6.41625V39H0.65625V2.51999ZM6.41625 21.096H11.0723C13.6963 21.096 15.6803 20.52 17.0243 19.368C18.3683 18.216 19.0403 16.52 19.0403 14.28C19.0403 12.04 18.3523 10.344 16.9762 9.192C15.6322 8.008 13.6643 7.41599 11.0723 7.41599H6.41625V21.096Z"
@@ -400,6 +390,6 @@ export default function OverlayText({ title }) {
         initial="hidden"
         animate="visible"
       />
-    </motion.svg>
+    </SVG>
   )
 }

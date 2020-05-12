@@ -1,11 +1,14 @@
-import React from 'react'
-import styled, { ThemeProvider } from 'styled-components'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useEffect } from 'react'
+import styled from 'styled-components'
+import { motion } from 'framer-motion'
 import { H1 } from './Headings'
-import { useDarkmode } from '../helpers'
 import OverlayText from './OverlayText'
 
 export function Overlay({ title }) {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    setTimeout(() => (document.body.style.overflow = 'unset'), 6000)
+  }, [])
   return (
     <>
       <Container
@@ -27,11 +30,46 @@ export function Overlay({ title }) {
             ease: 'easeOut',
           },
         }}
-      ></Container>
+      />
       <Heading>
         <OverlayText title={title} />
       </Heading>
     </>
+  )
+}
+export function UnmountOverlay() {
+  return (
+    <Container
+      style={{ background: 'red' }}
+      initial={{
+        originX: 0,
+        originY: 0,
+        opacity: 0,
+        visibility: `hidden`,
+      }}
+      animate={{
+        y: 0,
+        opacity: 1,
+        visibility: `visible`,
+      }}
+      exit={{
+        y: 0,
+        opacity: 1,
+        visibility: `visible`,
+      }}
+      transition={{
+        default: {
+          duration: 1,
+          delay: 1,
+          ease: 'easeOut',
+        },
+        y: {
+          duration: 2,
+          delay: 2,
+          ease: 'easeOut',
+        },
+      }}
+    />
   )
 }
 

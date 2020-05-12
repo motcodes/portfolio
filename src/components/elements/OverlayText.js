@@ -5,7 +5,8 @@ import styled from 'styled-components'
 
 const SVG = styled(motion.svg)`
   stroke: ${({ theme }) => theme.colors.text};
-  /* strokewidth: 1; */
+  box-sizing: border-box;
+  max-width: 90vw;
 `
 
 export default function OverlayText({ title }) {

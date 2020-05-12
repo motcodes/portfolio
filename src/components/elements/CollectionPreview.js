@@ -10,7 +10,7 @@ export function CollectionPreview({ title, imgSrc, slug }) {
   return (
     <Container whileTap={{ scale: 0.99 }}>
       <Img src={imageUrlFor(buildImageObj(imgSrc)).url()} alt="header image" />
-      <TitleWrapper to={slug.current}>
+      <TitleWrapper to={`/collections/${slug.current}`}>
         <Title>{title}</Title>
       </TitleWrapper>
     </Container>

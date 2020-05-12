@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
+import { graphql } from 'gatsby'
 import { CollectionHeader, Overlay } from '../elements'
 import styled from 'styled-components'
 import PortableText from '../helpers/portableText'
@@ -18,13 +18,6 @@ export default function Collection({ data }) {
     </>
   )
 }
-
-const Flex = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* margin-top: 1rem; */
-`
 
 const Text = styled.article`
   margin-top: 2rem;

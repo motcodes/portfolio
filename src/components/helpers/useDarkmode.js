@@ -10,7 +10,10 @@ function useDarkmode() {
   const enabled =
     typeof enabledState !== 'undefined' ? enabledState : prefersDarkmode
 
-  const toggle = useCallback(() => setEnabledState(!enabled), [enabled])
+  const toggle = useCallback(() => setEnabledState(!enabled), [
+    enabled,
+    setEnabledState,
+  ])
 
   return [enabledState, toggle]
 }

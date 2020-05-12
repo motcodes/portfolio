@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 import { motion } from 'framer-motion'
 import { Moon, Sun } from 'react-feather'
+import { useLocation } from '@reach/router'
 import { DarkGrey, LightGrey, above } from '../utilities'
 import { Logo } from './Logo'
 import { PageLink } from './Links'
@@ -80,9 +81,15 @@ const DarkmodeButton = styled(motion.button)`
   }
 `
 
-export const Header = ({ isDarkmode, toggleDarkmode, collection }) => {
+export const Header = ({ isDarkmode, toggleDarkmode }) => {
+  const { pathname } = useLocation()
   return (
-    <HeaderWrapper collection={collection}>
+    <HeaderWrapper
+      style={{
+        paddingLeft: pathname.includes('collections') ? `1rem` : `0`,
+        paddingRight: pathname.includes('collections') ? `1rem` : `0`,
+      }}
+    >
       <LogoWrapper to="/">
         {!isDarkmode ? <Logo /> : <LogoDarkmode />}
       </LogoWrapper>

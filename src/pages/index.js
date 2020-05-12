@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Twitter, Instagram, GitHub, Mail, Facebook } from 'react-feather'
 import styled from 'styled-components'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { useScrollInView } from '../components/helpers'
@@ -64,14 +64,12 @@ const IndexPage = ({ data }) => {
   const { homepagePicture, site } = data
   const [linePosition, setLinePosition] = useState(0)
   const { ref, controls } = useScrollInView()
-  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
     const pageHeight = window.innerHeight
     const intro = document.getElementById('intro').offsetHeight
     const header = document.getElementsByTagName('header')[0].clientHeight
     setLinePosition(pageHeight - (intro + header) + 96)
-    setLoaded(true)
   }, [])
 
   return (

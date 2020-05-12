@@ -7,7 +7,6 @@ const GlobalStyle = createGlobalStyle`
     /* font-family: 'Inter', sans-serif; */
     font-family: work-sans, sans-serif;
     background-color: ${({ theme }) => theme.colors.bg};
-    overflow-x: hidden;
   }
 
   *, *::before, *::after{
@@ -18,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow: auto;
     &::-webkit-scrollbar {
         width: 0px;
     }

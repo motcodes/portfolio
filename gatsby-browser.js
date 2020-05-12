@@ -6,7 +6,6 @@ exports.wrapPageElement = ({ element, props }) => {
   // including location, data, etc - you don't need to pass it
   return <Layout {...props}>{element}</Layout>
 }
-const transitionDelay = 500
 exports.shouldUpdateScroll = (
   { routerProps: { location }, getSavedScrollPosition },
   pluginOptions

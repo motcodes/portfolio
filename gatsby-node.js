@@ -20,15 +20,13 @@ exports.createPages = ({ graphql, actions, reporter }) => {
     }
   `).then(result => {
     if (result.errors) throw result.errors
-
     const collectionEdges = result.data.collections.edges
-
     collectionEdges.forEach(edge => {
       const { id, slug } = edge.node
-      reporter.info(`Creating blog post page: ${slug.current}`)
+      reporter.info(`Creating photo collection page: ${slug.current}`)
 
       createPage({
-        path: `/${slug.current}/`,
+        path: `/collections/${slug.current}/`,
         component: collectionTemplate,
         context: {
           id,

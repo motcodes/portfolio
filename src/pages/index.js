@@ -336,7 +336,7 @@ export const IndexQuery = graphql`
   query HomepageQuery {
     homepagePicture: file(relativePath: { eq: "HomepagePicture.jpg" }) {
       childImageSharp {
-        fluid(maxHeight: 1024, quality: 100) {
+        fluid(maxHeight: 768) {
           ...GatsbyImageSharpFluid_withWebp_noBase64
         }
       }

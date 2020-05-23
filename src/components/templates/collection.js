@@ -4,12 +4,15 @@ import { CollectionHeader, Overlay } from '../elements'
 import styled from 'styled-components'
 import PortableText from '../helpers/portableText'
 import { above } from '../utilities'
+import SEO from '../seo'
 
 export default function Collection({ data }) {
   const { title, mainImage, slug, _rawBody } = data.collection
+  console.log(_rawBody)
 
   return (
     <>
+      <SEO title={title} />
       <Overlay title="collection" />
       <CollectionHeader imgSrc={mainImage} title={title} slug={slug} />
       <Text>

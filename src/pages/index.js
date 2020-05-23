@@ -87,22 +87,25 @@ const IndexPage = ({ data }) => {
             whileTap={{ scale: 0.9 }}
             href="https://twitter.com/codingMot"
             target="_blank"
+            rel="noopener"
           >
-            <Twitter />
+            <Twitter title="Twitter Link to Matthias Oberholzer" />
           </motion.a>
           <motion.a
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             href="https://instagram.com/matthias.oberholzer"
             target="_blank"
+            rel="noopener"
           >
-            <Instagram />
+            <Instagram title="Instagram Link to Matthias Oberholzer" />
           </motion.a>
           <motion.a
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             href="https://github.com/codingMot"
             target="_blank"
+            rel="noopener"
           >
             <GitHub />
           </motion.a>
@@ -111,16 +114,18 @@ const IndexPage = ({ data }) => {
             whileTap={{ scale: 0.9 }}
             href="mailto:matthias.m.oberholzer@gmail.com"
             target="_blank"
+            rel="noopener"
           >
-            <Mail />
+            <Mail title="Email from Matthias Oberholzer" />
           </motion.a>
           <motion.a
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             href="https://facebook.com/mat.oberholzer"
             target="_blank"
+            rel="noopener"
           >
-            <Facebook />
+            <Facebook title="Facebook Link to Matthias Oberholzer" />
           </motion.a>
         </SocialContainer>
         <Image fluid={homepagePicture.childImageSharp.fluid} />

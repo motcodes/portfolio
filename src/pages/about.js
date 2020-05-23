@@ -10,9 +10,13 @@ import { Twitter, Instagram, GitHub, Facebook, Mail } from 'react-feather'
 
 export default function About({ data }) {
   const { aboutPicture } = data
+  const description = `My name is Matthias Oberholzer. I live in Schleedorf, Austria. My passions are designing things, taking photos and coding coole websites.`
   return (
     <>
-      <SEO title="About this dude" />
+      <SEO
+        title="Some infos about this dude | Matthias Oberholzer"
+        description={description}
+      />
       <Overlay title="about" />
       <AboutContainer>
         <H1>Here is some stuff about me.</H1>
@@ -51,8 +55,9 @@ export default function About({ data }) {
             whileTap={{ scale: 0.9 }}
             href="https://twitter.com/codingMot"
             target="_blank"
+            rel="noopener"
           >
-            <Twitter />
+            <Twitter title="Twitter Link to Matthias Oberholzer" />
             <span>Twitter</span>
           </motion.a>
           <motion.a
@@ -60,8 +65,9 @@ export default function About({ data }) {
             whileTap={{ scale: 0.9 }}
             href="https://instagram.com/matthias.oberholzer"
             target="_blank"
+            rel="noopener"
           >
-            <Instagram />
+            <Instagram title="Instagram Link to Matthias Oberholzer" />
             <span>Instagram</span>
           </motion.a>
           <motion.a
@@ -69,8 +75,9 @@ export default function About({ data }) {
             whileTap={{ scale: 0.9 }}
             href="https://github.com/codingMot"
             target="_blank"
+            rel="noopener"
           >
-            <GitHub />
+            <GitHub title="Github Link to Matthias Oberholzer" />
             <span>GitHub</span>
           </motion.a>
           <motion.a
@@ -78,8 +85,9 @@ export default function About({ data }) {
             whileTap={{ scale: 0.9 }}
             href="https://facebook.com/mat.oberholzer"
             target="_blank"
+            rel="noopener"
           >
-            <Facebook />
+            <Facebook title="Facebook Link to Matthias Oberholzer" />
             <span>Facebook</span>
           </motion.a>
         </AboutLinks>
@@ -90,8 +98,9 @@ export default function About({ data }) {
             whileTap={{ scale: 0.9 }}
             href="mailto:matthias.m.oberholzer@gmail.com"
             target="_blank"
+            rel="noopener"
           >
-            <Mail />
+            <Mail title="Email from Matthias Oberholzer" />
             <span>matthias.m.oberholzer@gmail.com</span>
           </motion.a>
         </AboutLinks>

@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500');
+  @import url("https://use.typekit.net/vux8nyf.css");
   html{
     box-sizing: border-box;
     color: ${({ theme }) => theme.colors.text};

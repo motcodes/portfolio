@@ -83,7 +83,12 @@ const Card = ({
       <InfoContainer variants={infoMotion}>
         <Timeperiod variants={infoItemMotion}>{timeperiod}</Timeperiod>
         <Description variants={infoItemMotion}>{description}</Description>
-        <ProjectLink variants={infoItemMotion} href={link} target="_blank">
+        <ProjectLink
+          variants={infoItemMotion}
+          href={link}
+          target="_blank"
+          rel="noopener"
+        >
           {title}
         </ProjectLink>
       </InfoContainer>

@@ -14,5 +14,10 @@ export const Logo = () => {
       }
     }
   `)
-  return <Img fluid={data.logo.childImageSharp.fluid} />
+  return (
+    <Img
+      fluid={data.logo.childImageSharp.fluid}
+      alt="Logo of Matthias Oberholzer"
+    />
+  )
 }

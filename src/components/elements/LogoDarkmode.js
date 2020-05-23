@@ -15,5 +15,10 @@ export const LogoDarkmode = () => {
     }
   `)
 
-  return <Img fluid={data.logoDarkmode.childImageSharp.fluid} />
+  return (
+    <Img
+      fluid={data.logoDarkmode.childImageSharp.fluid}
+      alt="Logo of Matthias Oberholzer in Darkmode"
+    />
+  )
 }

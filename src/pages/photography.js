@@ -13,19 +13,17 @@ import { above } from '../components/utilities'
 
 export default function Photography({ data }) {
   const collections = data.collections.edges.map(edge => edge.node)
+  const description = `I started taking pictures in 2018. Two months before I visited New York for the second time. Basically, I study photography in one of the most beautiful places in the world. But also to one of the swiftest and most scary places in the world, which can face a person from a simple village.`
   return (
     <>
-      <SEO title="Photogrpahy Collections by Matthias Oberholzer" />
+      <SEO
+        title="Photogrpahy Collections by Matthias Oberholzer"
+        description={description}
+      />
       <Overlay title="photography" />
       <DescriptionContainer>
         <Heading1>Some collections of my photos.</Heading1>
-        <Description>
-          I started taking pictures in 2018. Two months before I visited New
-          York for the second time. Basically, I study photography in one of the
-          most beautiful places in the world. But also to one of the swiftest
-          and most scary places in the world, which can face a person from a
-          simple village.
-        </Description>
+        <Description>{description}</Description>
       </DescriptionContainer>
 
       <CollectionContainer>

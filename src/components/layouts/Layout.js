@@ -14,12 +14,15 @@ const Container = styled(motion.div)`
   transition: background-color 0.5s ease;
 `
 
-export default function Layout({ children, location }) {
+export default function Layout({
+  children,
+  location,
+  BackgroundLightmode,
+  BackgroundDarkmode,
+}) {
   const [isDarkmode, toggleDarkmode] = useDarkmode()
-  // const [height, setHeight] = useState(0)
 
   useEffect(() => {
-    // setHeight(window.innerHeight)
     document.documentElement.style.setProperty(
       '--vh',
       `${window.innerHeight * 0.01}px`
@@ -33,19 +36,13 @@ export default function Layout({ children, location }) {
       <AnimatePresence>
         <Container
           key={location.pathname}
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           exit={{
             opacity: 0,
             y: 80,
           }}
-          transition={{
-            duration: 0.5,
-          }}
+          transition={{ duration: 0.5 }}
           style={{
             paddingLeft: location.pathname.includes('collections')
               ? `0`
@@ -53,6 +50,9 @@ export default function Layout({ children, location }) {
             paddingRight: location.pathname.includes('collections')
               ? `0`
               : `1rem`,
+            backgroundColor: isDarkmode
+              ? BackgroundDarkmode
+              : BackgroundLightmode,
           }}
         >
           <Header isDarkmode={isDarkmode} toggleDarkmode={toggleDarkmode} />

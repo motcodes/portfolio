@@ -1,9 +1,8 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useMediaQuery } from './useMedia'
 import { useLocalStorage } from './useLocalStorage'
 
 function useDarkmode() {
-  // const [state, setState] = useState(initialState)
   const [enabledState, setEnabledState] = useLocalStorage('dark-mode-enabled')
   const prefersDarkmode = usePrefersDarkmode()
 
@@ -14,6 +13,12 @@ function useDarkmode() {
     enabled,
     setEnabledState,
   ])
+
+  useEffect(() => {
+    window.onunload = () => {
+      setEnabledState(false)
+    }
+  })
 
   return [enabledState, toggle]
 }

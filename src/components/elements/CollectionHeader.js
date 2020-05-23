@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { H2 } from './Headings'
+import { H1 } from './Headings'
 import { imageUrlFor, buildImageObj } from '../helpers'
 
 export function CollectionHeader({ title, imgSrc }) {
@@ -54,7 +54,7 @@ const TitleWrapper = styled.div`
   text-decoration: none;
 `
 
-const Title = styled(H2)`
+const Title = styled(H1)`
   color: #fff;
   text-decoration: none;
 `

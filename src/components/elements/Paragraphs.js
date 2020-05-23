@@ -5,6 +5,7 @@ export const Paragraph = styled.p`
   font-weight: 500;
   font-size: 1rem;
   line-height: 20px;
+  color: ${({ theme }) => theme.colors.text};
 
   ${({ size }) => {
     if (size === 'large') {
@@ -19,5 +20,5 @@ export const Paragraph = styled.p`
         line-height: 21px;
       `
     }
-  }}
+  }};
 `

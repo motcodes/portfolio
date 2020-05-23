@@ -47,7 +47,10 @@ export default function Photography({ data }) {
 
 const DescriptionContainer = styled.div`
   max-width: 992px;
-  margin: 4rem auto;
+  margin: 4rem auto 2rem;
+  ${above.med`
+    margin: 4rem auto;
+  `}
 `
 
 const Heading1 = styled(H1)`
@@ -71,6 +74,7 @@ const CollectionContainer = styled.div`
 const CollectionHeading = styled(H2)`
   max-width: 992px;
   margin: 4rem auto 0;
+  color: ${({ theme }) => theme.colors.primary};
 `
 
 const CollectionList = styled.div`

@@ -183,7 +183,6 @@ const Indruduction = styled(PrimaryGrid)`
   margin-top: ${({ linePosition }) => linePosition / 4 + 'px'};
   margin-bottom: ${({ linePosition }) => linePosition / 1.5 + 'px'};
   ${above.med`
-    // margin-top: 3rem;
     grid-template-rows: 1fr auto 1fr;
   `};
 `
@@ -317,11 +316,19 @@ const projectData = [
     description: `My diploma thesis in cooperation with the company PC Builders Club. My Part was to prototyp, design & develop the whole webapp from scratch. My prototyping tool of choice was XD. The UI is coded with the ReactJs Framework. Later in the Project I also migrated the site to Gatsby for a faster expierence & added the CMS Sanity.io for handling the meta data and blog.`,
   },
   {
+    title: 'Land schafft Leben',
+    subtitle: `Product template for education`,
+    timeperiod: `march 2020 - may 2020`,
+    link: `https://landschafftleben.at`,
+    description:
+      '"Land schafft Leben" wrote to me whether I could create a template for the various food data for them. With the help of this data, teachers should have an easier time getting picture and video material, as well as infographics and worksheets for the students. Since the hosting server can only process simple scripts, I decided to use good old vanilla Javascript. In order to get more out of the video player, I also used the "plyr" library and integrated it via a cdn. The prototype of the design was created by Land schafft Lebens\'s own graphic department and translated into a responsive layout by me, so that it works well in every format.',
+  },
+  {
     title: `NCM`,
     subtitle: `Content Managment`,
     timeperiod: `6 weeks, summer 2016`,
     link: `https://www.ncm.at/`,
-    description: `My first intern in a Web Agency. I helped out adding &  editing articles, images and components into the  Contao CMS System. I also detected & fixed frontend  bugs in HTML and CSS/LESS.`,
+    description: `My first intern in a Web Agency. I helped out adding & editing articles, images and components into the  Contao CMS System. I also detected & fixed frontend  bugs in HTML and CSS/LESS.`,
   },
   {
     title: `Siemens`,
@@ -336,8 +343,8 @@ export const IndexQuery = graphql`
   query HomepageQuery {
     homepagePicture: file(relativePath: { eq: "HomepagePicture.jpg" }) {
       childImageSharp {
-        fluid(maxHeight: 768) {
-          ...GatsbyImageSharpFluid_withWebp_noBase64
+        fluid(maxHeight: 1440) {
+          ...GatsbyImageSharpFluid
         }
       }
     }

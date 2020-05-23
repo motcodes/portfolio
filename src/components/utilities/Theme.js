@@ -9,7 +9,7 @@ export const LightTheme = {
     text: colors.Black,
     navText: colors.DarkGrey,
     grey: colors.DarkGrey,
-    bg: `#FFF`,
+    bg: colors.BackgroundLightmode,
     gradient: gradients[0],
   },
 }
@@ -22,7 +22,7 @@ export const DarkTheme = {
     text: `#FFF`,
     navText: colors.LightGrey,
     grey: colors.LightGrey,
-    bg: `#0F1217`,
+    bg: colors.BackgroundDarkmode,
     gradient: gradients[1],
   },
 }

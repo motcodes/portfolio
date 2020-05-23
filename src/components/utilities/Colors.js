@@ -10,3 +10,6 @@ export const Black = '#212429'
 export const Grey = '#9F9F9F'
 export const LightGrey = '#E0E0E0'
 export const DarkGrey = '#4F4F4F'
+
+export const BackgroundLightmode = '#FFF'
+export const BackgroundDarkmode = '#0F1217'

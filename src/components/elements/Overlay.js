@@ -31,7 +31,16 @@ export function Overlay({ title }) {
           },
         }}
       />
-      <Heading>
+      <Heading
+        animate={{
+          display: `none`,
+        }}
+        transition={{
+          duration: 0.5,
+          delay: 7.1,
+          ease: 'easeOut',
+        }}
+      >
         <OverlayText title={title} />
       </Heading>
     </>

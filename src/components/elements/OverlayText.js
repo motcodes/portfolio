@@ -7,6 +7,8 @@ const SVG = styled(motion.svg)`
   stroke: ${({ theme }) => theme.colors.text};
   box-sizing: border-box;
   max-width: 90vw;
+  height: 100px;
+  /* max-height: 20vh; */
 `
 
 export default function OverlayText({ title }) {
@@ -52,8 +54,8 @@ export default function OverlayText({ title }) {
   }
   return title === 'homepage' ? (
     <SVG
-      width="500"
-      height="40"
+      // width="500"
+      // height="40"
       viewBox="0 0 499 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -169,8 +171,8 @@ export default function OverlayText({ title }) {
     </SVG>
   ) : title === 'about' ? (
     <SVG
-      width="240"
-      height="40"
+      // width="240"
+      // height="40"
       viewBox="0 0 241 41"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -220,8 +222,8 @@ export default function OverlayText({ title }) {
     </SVG>
   ) : title === 'photography' ? (
     <SVG
-      width="310"
-      height="52"
+      // width="310"
+      // height="52"
       viewBox="0 0 310 52"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -295,8 +297,8 @@ export default function OverlayText({ title }) {
     </SVG>
   ) : (
     <SVG
-      width="390"
-      height="40"
+      // width="390"
+      // height="40"
       viewBox="0 0 390 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

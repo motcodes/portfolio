@@ -4,7 +4,6 @@ const GlobalStyle = createGlobalStyle`
   html{
     box-sizing: border-box;
     color: ${({ theme }) => theme.colors.text};
-    /* font-family: 'Inter', sans-serif; */
     font-family: work-sans, sans-serif;
     background-color: ${({ theme }) => theme.colors.bg};
   }
@@ -18,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow: auto;
+    background-color: ${({ theme }) => theme.colors.bg};
     &::-webkit-scrollbar {
         width: 0px;
     }

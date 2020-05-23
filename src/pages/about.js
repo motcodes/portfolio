@@ -51,7 +51,7 @@ export default function About({ data }) {
         <H2>Find me there</H2>
         <AboutLinks>
           <motion.a
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
             href="https://twitter.com/codingMot"
             target="_blank"
@@ -61,7 +61,7 @@ export default function About({ data }) {
             <span>Twitter</span>
           </motion.a>
           <motion.a
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
             href="https://instagram.com/matthias.oberholzer"
             target="_blank"
@@ -71,7 +71,7 @@ export default function About({ data }) {
             <span>Instagram</span>
           </motion.a>
           <motion.a
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
             href="https://github.com/codingMot"
             target="_blank"
@@ -81,7 +81,7 @@ export default function About({ data }) {
             <span>GitHub</span>
           </motion.a>
           <motion.a
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
             href="https://facebook.com/mat.oberholzer"
             target="_blank"
@@ -94,7 +94,7 @@ export default function About({ data }) {
         <H2>Wanna meet up for a coffee?</H2>
         <AboutLinks>
           <motion.a
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.124 }}
             whileTap={{ scale: 0.9 }}
             href="mailto:matthias.m.oberholzer@gmail.com"
             target="_blank"

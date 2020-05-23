@@ -95,7 +95,7 @@ export const Header = ({ isDarkmode, toggleDarkmode }) => {
       </LogoWrapper>
       <nav>
         <DarkmodeButton
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.25 }}
           whileTap={{ scale: 0.9 }}
           onClick={toggleDarkmode}
           ariaLabel="Toggle Darkmode"

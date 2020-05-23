@@ -88,6 +88,7 @@ const Card = ({
           href={link}
           target="_blank"
           rel="noopener"
+          whileTap={{ scale: 0.9 }}
         >
           {title}
         </ProjectLink>

@@ -83,7 +83,7 @@ const IndexPage = ({ data }) => {
         <Description>{site.siteMetadata.description}</Description>
         <SocialContainer>
           <motion.a
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
             href="https://twitter.com/codingMot"
             target="_blank"
@@ -92,7 +92,7 @@ const IndexPage = ({ data }) => {
             <Twitter title="Twitter Link to Matthias Oberholzer" />
           </motion.a>
           <motion.a
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
             href="https://instagram.com/matthias.oberholzer"
             target="_blank"
@@ -101,7 +101,7 @@ const IndexPage = ({ data }) => {
             <Instagram title="Instagram Link to Matthias Oberholzer" />
           </motion.a>
           <motion.a
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
             href="https://github.com/codingMot"
             target="_blank"
@@ -110,7 +110,7 @@ const IndexPage = ({ data }) => {
             <GitHub />
           </motion.a>
           <motion.a
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
             href="mailto:matthias.m.oberholzer@gmail.com"
             target="_blank"
@@ -119,7 +119,7 @@ const IndexPage = ({ data }) => {
             <Mail title="Email from Matthias Oberholzer" />
           </motion.a>
           <motion.a
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
             href="https://facebook.com/mat.oberholzer"
             target="_blank"
@@ -227,12 +227,16 @@ const SocialContainer = styled(motion.div)`
   padding: 1rem 0 0.5rem;
 
   a {
-    display: inline-block;
+    display: inline-flex;
     margin-right: 1rem;
     color: ${({ theme }) => theme.colors.text};
 
     &:visited {
       color: ${({ theme }) => theme.colors.text};
+    }
+    svg {
+      width: 100%;
+      height: 100%;
     }
   }
 

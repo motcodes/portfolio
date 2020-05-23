@@ -109,10 +109,7 @@ const SEO = ({ description, lang, meta, title, data }) => {
         },
       ].concat(meta)}
     >
-      {/* <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500');
-        @import url("https://use.typekit.net/vux8nyf.css");
-      </style> */}
+      <link rel="stylesheet" href="https://use.typekit.net/vux8nyf.css" />
     </Helmet>
   )
 }

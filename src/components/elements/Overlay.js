@@ -7,7 +7,7 @@ import OverlayText from './OverlayText'
 export function Overlay({ title }) {
   useEffect(() => {
     document.body.style.overflow = 'hidden'
-    setTimeout(() => (document.body.style.overflow = 'unset'), 6000)
+    setTimeout(() => (document.body.style.overflow = 'unset'), 6500)
   }, [])
   return (
     <>
@@ -17,6 +17,7 @@ export function Overlay({ title }) {
           y: `100vh`,
           opacity: 0,
           visibility: `hidden`,
+          display: `none`,
         }}
         transition={{
           default: {
@@ -28,6 +29,10 @@ export function Overlay({ title }) {
             duration: 2,
             delay: 4.75,
             ease: 'easeOut',
+          },
+          display: {
+            duration: 0.001,
+            delay: 7.6,
           },
         }}
       />

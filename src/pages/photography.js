@@ -17,7 +17,7 @@ export default function Photography({ data }) {
   return (
     <>
       <SEO
-        title="Photogrpahy Collections by Matthias Oberholzer"
+        title="Photography Collections by Matthias Oberholzer"
         description={description}
       />
       <Overlay title="photography" />
@@ -109,6 +109,7 @@ export const query = graphql`
         node {
           id
           title
+          description
           slug {
             current
           }

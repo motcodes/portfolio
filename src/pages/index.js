@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import { Twitter, Instagram, GitHub, Mail, Facebook } from 'react-feather'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
-import { useScrollInView } from '../components/helpers'
+import {
+  useScrollInView,
+  imageUrlFor,
+  buildImageObj,
+} from '../components/helpers'
 import SEO from '../components/seo'
 import { PrimaryGrid, breakpoints, above } from '../components/utilities'
-import { H1, H2, Paragraph, Overlay } from '../components/elements'
-import Cards from '../components/elements/Cards'
+import {
+  H1,
+  H2,
+  Paragraph,
+  Overlay,
+  Card,
+  SocialContainer,
+} from '../components/elements'
 
 const xMotion = {
   rest: {
@@ -61,7 +69,7 @@ const h2Motion = {
 }
 
 const IndexPage = ({ data }) => {
-  const { homepagePicture, site } = data
+  const { homepage } = data
   const [linePosition, setLinePosition] = useState(0)
   const { ref, controls } = useScrollInView()
 
@@ -74,61 +82,18 @@ const IndexPage = ({ data }) => {
 
   return (
     <>
-      <SEO title="Portfolio of Matthias Oberholzer" />
+      <SEO title="The offical site of Matthias Oberholzer" />
       <Overlay title="homepage" />
       <Indruduction id="intro" linePosition={linePosition}>
         <Heading1>
           Hello There! <span>I’m Matt.</span>
         </Heading1>
-        <Description>{site.siteMetadata.description}</Description>
-        <SocialContainer>
-          <motion.a
-            whileHover={{ scale: 1.25 }}
-            whileTap={{ scale: 0.9 }}
-            href="https://twitter.com/codingMot"
-            target="_blank"
-            rel="noopener"
-          >
-            <Twitter title="Twitter Link to Matthias Oberholzer" />
-          </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.25 }}
-            whileTap={{ scale: 0.9 }}
-            href="https://instagram.com/matthias.oberholzer"
-            target="_blank"
-            rel="noopener"
-          >
-            <Instagram title="Instagram Link to Matthias Oberholzer" />
-          </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.25 }}
-            whileTap={{ scale: 0.9 }}
-            href="https://github.com/codingMot"
-            target="_blank"
-            rel="noopener"
-          >
-            <GitHub />
-          </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.25 }}
-            whileTap={{ scale: 0.9 }}
-            href="mailto:matthias.m.oberholzer@gmail.com"
-            target="_blank"
-            rel="noopener"
-          >
-            <Mail title="Email from Matthias Oberholzer" />
-          </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.25 }}
-            whileTap={{ scale: 0.9 }}
-            href="https://facebook.com/mat.oberholzer"
-            target="_blank"
-            rel="noopener"
-          >
-            <Facebook title="Facebook Link to Matthias Oberholzer" />
-          </motion.a>
-        </SocialContainer>
-        <Image fluid={homepagePicture.childImageSharp.fluid} />
+        <Description>{homepage.description}</Description>
+        <SocialMediaLinks />
+        <Image
+          src={imageUrlFor(buildImageObj(homepage.image))}
+          alt={homepage.image.alt}
+        />
       </Indruduction>
       <LineWrapper>
         <motion.svg
@@ -168,14 +133,14 @@ const IndexPage = ({ data }) => {
         >
           expierence &amp; projects
         </Heading2>
-        {projectData.map(project => (
+        {homepage.projects.map(project => (
           <ProjectCard
-            key={project.title}
+            key={project.id}
             title={project.title}
             subtitle={project.subtitle}
             timeperiod={project.timeperiod}
-            description={project.description}
-            link={project.link}
+            description={project.projectDescription}
+            link={project.projectLink}
           />
         ))}
       </Projects>
@@ -221,34 +186,14 @@ const Description = styled(Paragraph)`
   `}
 `
 
-const SocialContainer = styled(motion.div)`
+const SocialMediaLinks = styled(SocialContainer)`
   grid-column: 1 / 5;
   align-self: start;
-  padding: 1rem 0 0.5rem;
-
-  a {
-    display: inline-flex;
-    margin-right: 1rem;
-    color: ${({ theme }) => theme.colors.text};
-
-    &:visited {
-      color: ${({ theme }) => theme.colors.text};
-    }
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
   ${above.med`
-    padding: 1rem 0;
     grid-column: 1 / 6;
-    &:first-child{
-      margin-left: 1rem;
-    }
   `}
 `
-const Image = styled(Img)`
+const Image = styled.img`
   grid-column: 1 / 5;
   grid-row: 1 / 2;
   height: 20rem;
@@ -260,7 +205,7 @@ const Image = styled(Img)`
 
   ${above.med`
     grid-row: 1 / 4;
-    grid-column: 6 / end;
+    grid-column: 6 / 9;
     height: initial;
     max-height: 512px;
     box-shadow: 0px 1.02343px 1.4595px rgba(0, 0, 0, 0.0731357),
@@ -302,7 +247,7 @@ const Heading2 = styled(motion.custom(H2))`
   `}
 `
 
-const ProjectCard = styled(Cards)`
+const ProjectCard = styled(Card)`
   grid-column: 1 / 5;
   ${above.med`
     grid-column: 2 / 9;
@@ -316,51 +261,43 @@ const Path = styled.path`
   stroke-linejoin: round;
 `
 
-const projectData = [
-  {
-    title: `Ghostbuilder.io`,
-    subtitle: `Web App Development`,
-    timeperiod: `september 2019 - present`,
-    link: `https://ghostbuilder.io`,
-    description: `My diploma thesis in cooperation with the company PC Builders Club. My Part was to prototyp, design & develop the whole webapp from scratch. My prototyping tool of choice was XD. The UI is coded with the ReactJs Framework. Later in the Project I also migrated the site to Gatsby for a faster expierence & added the CMS Sanity.io for handling the meta data and blog.`,
-  },
-  {
-    title: 'Land schafft Leben',
-    subtitle: `Product template for education`,
-    timeperiod: `march 2020 - may 2020`,
-    link: `https://landschafftleben.at`,
-    description:
-      '"Land schafft Leben" wrote to me whether I could create a template for the various food data for them. With the help of this data, teachers should have an easier time getting picture and video material, as well as infographics and worksheets for the students. Since the hosting server can only process simple scripts, I decided to use good old vanilla Javascript. In order to get more out of the video player, I also used the "plyr" library and integrated it via a cdn. The prototype of the design was created by Land schafft Lebens\'s own graphic department and translated into a responsive layout by me, so that it works well in every format.',
-  },
-  {
-    title: `NCM`,
-    subtitle: `Content Managment`,
-    timeperiod: `6 weeks, summer 2016`,
-    link: `https://www.ncm.at/`,
-    description: `My first intern in a Web Agency. I helped out adding & editing articles, images and components into the  Contao CMS System. I also detected & fixed frontend  bugs in HTML and CSS/LESS.`,
-  },
-  {
-    title: `Siemens`,
-    subtitle: `Java Developer`,
-    timeperiod: `4 weeks, summer 2018`,
-    link: `https://new.siemens.com/at/de/unternehmen/ueber-uns/standorte/standort-salzburg.html`,
-    description: `I designed & developed a new version of Siemens ssh-tool for connecting to other networks & computer. For the UI I chose to work with Java Window Builder.`,
-  },
-]
-
 export const IndexQuery = graphql`
   query HomepageQuery {
-    homepagePicture: file(relativePath: { eq: "HomepagePicture.jpg" }) {
-      childImageSharp {
-        fluid(maxHeight: 1440) {
-          ...GatsbyImageSharpFluid
-        }
+    homepage: sanityHomepage {
+      description
+      image {
+        alt
+        ...SanityHomepageImage
+      }
+      projects {
+        id
+        projectDescription
+        projectLink
+        subtitle
+        timeperiod
+        title
       }
     }
-    site {
-      siteMetadata {
-        description
-      }
+  }
+  fragment SanityHomepageImage on SanityHomepageImage {
+    crop {
+      _key
+      _type
+      top
+      bottom
+      left
+      right
+    }
+    hotspot {
+      _key
+      _type
+      x
+      y
+      height
+      width
+    }
+    asset {
+      _id
     }
   }
 `

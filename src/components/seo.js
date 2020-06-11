@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-const SEO = ({ description, lang, meta, title, data }) => {
+const SEO = ({ description, lang, meta, title, img, data }) => {
   const { site } = useStaticQuery(graphql`
     {
       site {
@@ -12,16 +12,14 @@ const SEO = ({ description, lang, meta, title, data }) => {
           description
           author
           siteUrl
+          bannerImg
         }
       }
     }
   `)
 
   const metaDescription = description || site.siteMetadata.description
-  // const titleTemplateEnding =
-  //   `${titleTemplate}` || `| ${site.siteMetadata.title}`
   const metaTitle = `${title}`
-  // const metaTitle = `${title} ${titleTemplateEnding}`.trim()
   const siteUrl =
     typeof window !== `undefined`
       ? window.location.href
@@ -33,7 +31,6 @@ const SEO = ({ description, lang, meta, title, data }) => {
         lang,
       }}
       title={title}
-      // titleTemplate={`%s ${titleTemplateEnding}`.trim()}
       meta={[
         {
           name: `description`,
@@ -45,7 +42,7 @@ const SEO = ({ description, lang, meta, title, data }) => {
         },
         {
           name: `image`,
-          content: `https://matthiasoberholzer.com/matthiasOberholzer.jpg`,
+          content: img || site.siteMetadata.bannerImg,
         },
         {
           property: `og:site_name`,
@@ -65,11 +62,14 @@ const SEO = ({ description, lang, meta, title, data }) => {
         },
         {
           property: `og:image`,
-          content: `https://matthiasoberholzer.com/matthiasOberholzer.jpg`,
+          content: img || site.siteMetadata.bannerImg,
         },
         {
           property: `og:image:alt`,
-          content: `A picture of Matthias Oberholzer in September 2019`,
+          content:
+            img === undefined
+              ? title
+              : `A picture of Matthias Oberholzer in May 2020`,
         },
         {
           name: `twitter:card`,
@@ -89,11 +89,14 @@ const SEO = ({ description, lang, meta, title, data }) => {
         },
         {
           property: `twitter:image`,
-          content: `https://matthiasoberholzer.com/matthiasOberholzer.jpg`,
+          content: img || site.siteMetadata.bannerImg,
         },
         {
           property: `twitter:image:alt`,
-          content: `A picture of Matthias Oberholzer in September 2019`,
+          content:
+            img === undefined
+              ? title
+              : `A picture of Matthias Oberholzer in May 2020`,
         },
         {
           name: `apple-mobile-wep-app-title`,

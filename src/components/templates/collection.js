@@ -1,18 +1,23 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { CollectionHeader, Overlay } from '../elements'
 import styled from 'styled-components'
+import { CollectionHeader, Overlay } from '../elements'
 import PortableText from '../helpers/portableText'
 import { above } from '../utilities'
 import SEO from '../seo'
+import { imageUrlFor, buildImageObj } from '../helpers'
 
 export default function Collection({ data }) {
   const { title, mainImage, slug, _rawBody } = data.collection
-  console.log(_rawBody)
-
   return (
     <>
-      <SEO title={title} />
+      <SEO
+        title={`${title} - a Collection by Matthias Oberholzer`}
+        img={imageUrlFor(buildImageObj(mainImage))
+          .width(1200)
+          .height(628)
+          .url()}
+      />
       <Overlay title="collection" />
       <CollectionHeader imgSrc={mainImage} title={title} slug={slug} />
       <Text>

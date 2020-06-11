@@ -58,7 +58,7 @@ const infoItemMotion = {
   },
 }
 
-const Card = ({
+export const Card = ({
   title,
   subtitle,
   timeperiod,
@@ -69,7 +69,7 @@ const Card = ({
   const { ref, controls } = useScrollInView()
 
   return (
-    <motion.div
+    <CardContainer
       ref={ref}
       className={className}
       initial="rest"
@@ -93,11 +93,11 @@ const Card = ({
           {title}
         </ProjectLink>
       </InfoContainer>
-    </motion.div>
+    </CardContainer>
   )
 }
 
-export default styled(Card)`
+const CardContainer = styled(motion.div)`
   min-height: 16rem;
   background: transparent;
   border: 3px solid ${({ theme }) => theme.colors.primary};

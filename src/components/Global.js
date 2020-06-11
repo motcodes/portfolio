@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500');
-  @import url("https://use.typekit.net/vux8nyf.css");
   html{
     box-sizing: border-box;
     color: ${({ theme }) => theme.colors.text};
@@ -29,13 +27,11 @@ const GlobalStyle = createGlobalStyle`
       }
 
       &::-webkit-scrollbar-track {
-        /* background: ${({ theme }) => theme.colors.bg}; */
         background: ${({ theme }) => theme.colors.bg};
       }
       
       ::-webkit-scrollbar-thumb {
         background: #888;
-        /* background: ${({ theme }) => theme.colors.grey}; */
         border: 3px solid ${({ theme }) => theme.colors.bg};
         border-radius: 8px;
         width: 8px;

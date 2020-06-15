@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
@@ -10,9 +10,7 @@ import {
 } from '../components/helpers'
 import SEO from '../components/seo'
 import { PrimaryGrid, breakpoints, above } from '../components/utilities'
-import { H1, H2, Paragraph, Overlay } from '../components/elements'
-
-const Card = lazy(() => import('../components/elements/Cards'))
+import { H1, H2, Paragraph, Overlay, Card } from '../components/elements'
 
 const xMotion = {
   rest: {

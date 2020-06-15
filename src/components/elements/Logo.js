@@ -7,8 +7,8 @@ export const Logo = () => {
     query Logo {
       logo: file(relativePath: { eq: "Logo.png" }) {
         childImageSharp {
-          fluid(maxHeight: 256) {
-            ...GatsbyImageSharpFluid_withWebp_noBase64
+          fluid(maxWidth: 112, maxHeight: 112) {
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }

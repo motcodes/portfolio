@@ -98,7 +98,7 @@ export const Header = ({ isDarkmode, toggleDarkmode }) => {
           whileHover={{ scale: 1.25 }}
           whileTap={{ scale: 0.9 }}
           onClick={toggleDarkmode}
-          ariaLabel="Toggle Darkmode"
+          aria-label="Toggle Darkmode"
         >
           {!isDarkmode ? (
             <Moon color={DarkGrey} style={{ margin: 0 }} />

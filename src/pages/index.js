@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
+import { Twitter, Instagram, GitHub, Mail, Facebook } from 'react-feather'
 import {
   useScrollInView,
   imageUrlFor,
@@ -9,14 +10,7 @@ import {
 } from '../components/helpers'
 import SEO from '../components/seo'
 import { PrimaryGrid, breakpoints, above } from '../components/utilities'
-import {
-  H1,
-  H2,
-  Paragraph,
-  Overlay,
-  Card,
-  SocialContainer,
-} from '../components/elements'
+import { H1, H2, Paragraph, Overlay, Card } from '../components/elements'
 
 const xMotion = {
   rest: {
@@ -89,7 +83,53 @@ const IndexPage = ({ data }) => {
           Hello There! <span>I’m Matt.</span>
         </Heading1>
         <Description>{homepage.description}</Description>
-        <SocialMediaLinks />
+        <SocialMediaContainer>
+          <motion.a
+            whileHover={{ scale: 1.25 }}
+            whileTap={{ scale: 0.9 }}
+            href="https://twitter.com/codingMot"
+            target="_blank"
+            rel="noopener"
+          >
+            <Twitter title="Twitter Link to Matthias Oberholzer" />
+          </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.25 }}
+            whileTap={{ scale: 0.9 }}
+            href="https://instagram.com/matthias.oberholzer"
+            target="_blank"
+            rel="noopener"
+          >
+            <Instagram title="Instagram Link to Matthias Oberholzer" />
+          </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.25 }}
+            whileTap={{ scale: 0.9 }}
+            href="https://github.com/codingMot"
+            target="_blank"
+            rel="noopener"
+          >
+            <GitHub title="Github Link to Matthias Oberholzer" />
+          </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.25 }}
+            whileTap={{ scale: 0.9 }}
+            href="mailto:matthias.m.oberholzer@gmail.com"
+            target="_blank"
+            rel="noopener"
+          >
+            <Mail title="Email from Matthias Oberholzer" />
+          </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.25 }}
+            whileTap={{ scale: 0.9 }}
+            href="https://facebook.com/mat.oberholzer"
+            target="_blank"
+            rel="noopener"
+          >
+            <Facebook title="Facebook Link to Matthias Oberholzer" />
+          </motion.a>
+        </SocialMediaContainer>
         <Image
           src={imageUrlFor(buildImageObj(homepage.image))}
           alt={homepage.image.alt}
@@ -150,27 +190,32 @@ const IndexPage = ({ data }) => {
 
 const Indruduction = styled(PrimaryGrid)`
   grid-template-rows: 1fr auto;
-  margin-top: ${({ linePosition }) => linePosition / 4 + 'px'};
+  grid-template-columns: 1fr;
+  margin-top: ${({ linePosition }) => linePosition / 8 + 'px'};
   margin-bottom: ${({ linePosition }) => linePosition / 1.5 + 'px'};
   ${above.med`
+    margin-top: ${({ linePosition }) => linePosition / 4 + 'px'};
     grid-template-rows: 1fr auto 1fr;
+    grid-template-columns: 6fr 4fr;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
   `};
 `
 
 const Heading1 = styled(H1)`
-  grid-column: 1 / 5;
+  grid-column: 1;
   align-self: end;
   line-height: 1.25;
   ${above.med`
-    grid-column: 1 / 6;
     line-height: 1.5;
-  `}
+    `}
   span {
     background-image: ${({ theme }) => theme.colors.gradient};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    display: table;
-    color: ${({ theme }) => theme.colors.primary};
+    /* display: table; */
+    /* color: ${({ theme }) => theme.colors.primary}; */
 
     @media (min-width: ${breakpoints.xl}px) {
       display: initial;
@@ -179,33 +224,50 @@ const Heading1 = styled(H1)`
 `
 
 const Description = styled(Paragraph)`
-  grid-column: 1 / 5;
+  grid-column: 1;
   align-self: start;
-  ${above.med`
-    grid-column: 1 / 6;
-  `}
 `
 
-const SocialMediaLinks = styled(SocialContainer)`
-  grid-column: 1 / 5;
+const SocialMediaContainer = styled.div`
+  grid-column: 1;
   align-self: start;
+  padding: 1rem 0 0.5rem;
+  a {
+    display: inline-flex;
+    margin-right: 1rem;
+    color: ${({ theme }) => theme.colors.text};
+
+    &:visited {
+      color: ${({ theme }) => theme.colors.text};
+    }
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   ${above.med`
-    grid-column: 1 / 6;
+    padding: 1rem 0;
+    &:first-child {
+      margin-left: 1rem;
+    }
   `}
 `
 const Image = styled.img`
-  grid-column: 1 / 5;
+  grid-column: 1;
   grid-row: 1 / 2;
-  height: 20rem;
+  height: 50vh;
+  width: 100%;
   border-radius: 6px;
   margin-bottom: 1rem;
+  object-fit: cover;
+  object-position: 0 15%;
   picture img {
-    object-position: 0 30% !important;
   }
 
   ${above.med`
     grid-row: 1 / 4;
-    grid-column: 6 / 9;
+    grid-column: 2;
     height: initial;
     max-height: 512px;
     box-shadow: 0px 1.02343px 1.4595px rgba(0, 0, 0, 0.0731357),

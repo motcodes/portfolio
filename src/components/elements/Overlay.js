@@ -22,17 +22,17 @@ export function Overlay({ title }) {
         transition={{
           default: {
             duration: 0.5,
-            delay: 7.1,
+            delay: 5.5,
             ease: 'easeOut',
           },
           y: {
             duration: 2,
-            delay: 4.75,
+            delay: 3.75,
             ease: 'easeOut',
           },
           display: {
             duration: 0.001,
-            delay: 7.6,
+            delay: 6.6,
           },
         }}
       />
@@ -42,7 +42,7 @@ export function Overlay({ title }) {
         }}
         transition={{
           duration: 0.5,
-          delay: 7.1,
+          delay: 4,
           ease: 'easeOut',
         }}
       >
@@ -89,7 +89,7 @@ export function UnmountOverlay() {
 
 const Container = styled(motion.div)`
   overflow-x: hidden;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
 
@@ -103,7 +103,7 @@ const Container = styled(motion.div)`
   background-color: ${({ theme }) => theme.colors.bg};
 `
 const Heading = styled(motion.custom(H1))`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);

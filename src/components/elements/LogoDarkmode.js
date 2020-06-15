@@ -7,8 +7,8 @@ export const LogoDarkmode = () => {
     {
       logoDarkmode: file(relativePath: { eq: "LogoDarkmode.png" }) {
         childImageSharp {
-          fluid(maxWidth: 96) {
-            ...GatsbyImageSharpFluid
+          fluid(maxWidth: 112, maxHeight: 112) {
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }

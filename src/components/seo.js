@@ -102,14 +102,6 @@ const SEO = ({ description, lang, meta, title, img, data }) => {
           name: `apple-mobile-wep-app-title`,
           content: `Matthias Oberholzer`,
         },
-        {
-          name: `robots`,
-          content: `index,follow`,
-        },
-        {
-          name: `googlebot`,
-          content: `index,follow`,
-        },
       ].concat(meta)}
     >
       <link rel="stylesheet" href="https://use.typekit.net/vux8nyf.css" />

@@ -8,7 +8,6 @@ const SVG = styled(motion.svg)`
   box-sizing: border-box;
   max-width: 90vw;
   height: 100px;
-  /* max-height: 20vh; */
 `
 
 export default function OverlayText({ title }) {
@@ -32,7 +31,7 @@ export default function OverlayText({ title }) {
       fill: isDarkmode ? 'rgba(255, 255, 255, 1)' : 'rgba(33, 36, 41, 1)',
       transition: {
         default: {
-          duration: 2.5,
+          duration: 2,
           delay: 1,
           ease: 'easeOut',
         },
@@ -41,13 +40,13 @@ export default function OverlayText({ title }) {
           delay: 0.2,
         },
         fill: {
-          duration: 1.5,
-          delay: 2,
+          duration: 1.25,
+          delay: 1.5,
           ease: [1, 0, 0.8, 1],
         },
         opacity: {
-          transition: 0.5,
-          delay: 4.5,
+          transition: 0.3,
+          delay: 3.5,
         },
       },
     },

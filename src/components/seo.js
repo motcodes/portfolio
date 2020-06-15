@@ -42,7 +42,7 @@ const SEO = ({ description, lang, meta, title, img, data }) => {
         },
         {
           name: `image`,
-          content: img || site.siteMetadata.bannerImg,
+          content: img === undefined ? site.siteMetadata.bannerImg : img,
         },
         {
           property: `og:site_name`,
@@ -62,7 +62,7 @@ const SEO = ({ description, lang, meta, title, img, data }) => {
         },
         {
           property: `og:image`,
-          content: img || site.siteMetadata.bannerImg,
+          content: img === undefined ? site.siteMetadata.bannerImg : img,
         },
         {
           property: `og:image:alt`,

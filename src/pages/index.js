@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
 import { Twitter, Instagram, GitHub, Mail, Facebook } from 'react-feather'
 import {
   useScrollInView,
@@ -130,10 +131,11 @@ const IndexPage = ({ data }) => {
             <Facebook title="Facebook Link to Matthias Oberholzer" />
           </motion.a>
         </SocialMediaContainer>
-        <Image
+        {/* <Image
           src={imageUrlFor(buildImageObj(homepage.image))}
           alt={homepage.image.alt}
-        />
+        /> */}
+        <Image fluid={homepage.image.asset.fluid} alt={homepage.image.alt} />
       </Indruduction>
       <LineWrapper>
         <motion.svg
@@ -253,7 +255,8 @@ const SocialMediaContainer = styled.div`
     }
   `}
 `
-const Image = styled.img`
+// const Image = styled.img`
+const Image = styled(Img)`
   grid-column: 1;
   grid-row: 1 / 2;
   height: 50vh;
@@ -330,6 +333,11 @@ export const IndexQuery = graphql`
       image {
         alt
         ...SanityHomepageImage
+        asset {
+          fluid(maxWidth: 700) {
+            ...GatsbySanityImageFluid
+          }
+        }
       }
       projects {
         id

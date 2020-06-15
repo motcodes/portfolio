@@ -9,7 +9,7 @@ import { H1, H2, Paragraph, Overlay } from '../components/elements'
 import { Twitter, Instagram, GitHub, Facebook, Mail } from 'react-feather'
 
 export default function About({ data }) {
-  const { aboutPicture } = data
+  const { about } = data
   const description = `My name is Matthias Oberholzer. I live in Schleedorf, Austria. My passions are designing things, taking photos and coding coole websites.`
   return (
     <>
@@ -21,7 +21,7 @@ export default function About({ data }) {
       <AboutContainer>
         <H1>Here is some stuff about me.</H1>
         <Paragraph>
-          My name is Matthias M. Oberholzer. I currently live in Schleedorf, a
+          {/* My name is Matthias M. Oberholzer. I currently live in Schleedorf, a
           small village in Austria{' '}
           <span role="img" aria-label="Austria Flag">
             🇦🇹
@@ -45,9 +45,11 @@ export default function About({ data }) {
           like The Beatles, Pink Floyd, Led Zepplin &amp; many more.
           <br /> This is kinda cliche for a programmer but I love coffee. In
           every variation. Although, you know a coffee is really good if you
-          like to drink it black.
+          like to drink it black. */}
+          {about.description}
         </Paragraph>
-        <AboutImage fluid={aboutPicture.childImageSharp.fluid} />
+        <AboutImage fluid={about.image.asset.fluid} alt={about.image.alt} />
+
         <H2>Find me there</H2>
         <AboutLinks>
           <motion.a
@@ -204,10 +206,14 @@ const AboutLinks = styled.div`
 
 export const AboutQuery = graphql`
   query AboutPageQuery {
-    aboutPicture: file(relativePath: { eq: "AboutPicture.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 1024, quality: 100) {
-          ...GatsbyImageSharpFluid_withWebp_noBase64
+    about: sanityAbout {
+      description
+      image {
+        alt
+        asset {
+          fluid(maxWidth: 1024) {
+            ...GatsbySanityImageFluid
+          }
         }
       }
     }

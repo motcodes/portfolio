@@ -4,7 +4,7 @@ import { Paragraph } from './Paragraphs'
 import { Logo } from './Logo'
 import { LogoDarkmode } from './LogoDarkmode'
 
-const FooterWrapper = styled.div`
+const FooterWrapper = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;

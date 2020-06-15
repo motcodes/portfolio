@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, lazy } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
-import { Header, Footer } from '../elements'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Header } from '../elements'
+import SEO from '../seo'
 import GlobalStyle from '../Global'
 import { DarkTheme, LightTheme } from '../utilities'
 import { useDarkmode } from '../helpers'
-import SEO from '../seo'
-import { AnimatePresence, motion } from 'framer-motion'
+
+const Footer = lazy(() => import('../elements/Footer'))
 
 const Container = styled(motion.div)`
   display: flex;
@@ -36,7 +38,6 @@ export default function Layout({
       <AnimatePresence>
         <Container
           key={location.pathname}
-          // initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{
             opacity: 0,

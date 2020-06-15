@@ -1,31 +1,29 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
+const SEO = ({ description, lang, meta, title, img, data }) => {
+  const { site } = useStaticQuery(graphql`
+    {
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          siteUrl
+          bannerImg
         }
       }
-    `
-  )
+    }
+  `)
 
   const metaDescription = description || site.siteMetadata.description
+  const metaTitle = `${title}`
+  const siteUrl =
+    typeof window !== `undefined`
+      ? window.location.href
+      : site.siteMetadata.siteUrl
 
   return (
     <Helmet
@@ -33,7 +31,6 @@ function SEO({ description, lang, meta, title }) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
           name: `description`,
@@ -41,7 +38,15 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: metaTitle,
+        },
+        {
+          name: `image`,
+          content: img === undefined ? site.siteMetadata.bannerImg : img,
+        },
+        {
+          property: `og:site_name`,
+          content: site.siteMetadata.title,
         },
         {
           property: `og:description`,
@@ -50,6 +55,21 @@ function SEO({ description, lang, meta, title }) {
         {
           property: `og:type`,
           content: `website`,
+        },
+        {
+          property: `og:url`,
+          content: siteUrl,
+        },
+        {
+          property: `og:image`,
+          content: img === undefined ? site.siteMetadata.bannerImg : img,
+        },
+        {
+          property: `og:image:alt`,
+          content:
+            img === undefined
+              ? title
+              : `A picture of Matthias Oberholzer in May 2020`,
         },
         {
           name: `twitter:card`,
@@ -61,14 +81,31 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: metaTitle,
         },
         {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          property: `twitter:image`,
+          content: img || site.siteMetadata.bannerImg,
+        },
+        {
+          property: `twitter:image:alt`,
+          content:
+            img === undefined
+              ? title
+              : `A picture of Matthias Oberholzer in May 2020`,
+        },
+        {
+          name: `apple-mobile-wep-app-title`,
+          content: `Matthias Oberholzer`,
+        },
       ].concat(meta)}
-    />
+    >
+      <link rel="stylesheet" href="https://use.typekit.net/vux8nyf.css" />
+    </Helmet>
   )
 }
 

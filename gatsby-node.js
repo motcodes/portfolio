@@ -1,7 +1,37 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const path = require('path')
 
-// You can delete this file if you're not using it
+exports.createPages = ({ graphql, actions, reporter }) => {
+  const { createPage } = actions
+  const collectionTemplate = path.resolve(
+    './src/components/templates/collection.js'
+  )
+  return graphql(`
+    {
+      collections: allSanityCollection {
+        edges {
+          node {
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `).then(result => {
+    if (result.errors) throw result.errors
+    const collectionEdges = result.data.collections.edges
+    collectionEdges.forEach(edge => {
+      const { id, slug } = edge.node
+      reporter.info(`Creating photo collection page: ${slug.current}`)
+
+      createPage({
+        path: `/collections/${slug.current}/`,
+        component: collectionTemplate,
+        context: {
+          id,
+        },
+      })
+    })
+  })
+}

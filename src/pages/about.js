@@ -20,34 +20,7 @@ export default function About({ data }) {
       <Overlay title="about" />
       <AboutContainer>
         <H1>Here is some stuff about me.</H1>
-        <Paragraph>
-          {/* My name is Matthias M. Oberholzer. I currently live in Schleedorf, a
-          small village in Austria{' '}
-          <span role="img" aria-label="Austria Flag">
-            🇦🇹
-          </span>
-          , not to be confused with Australia.
-          <br /> I visited the department of electronics and technical
-          informatics at the higher technical education institute of Salzburg,
-          where I graduated in 2019.
-          <br /> Midway thru my third school year I started to develop a passion
-          for drawing &amp; designing things. Later on for photography{' '}
-          <span role="img" aria-label="Camera">
-            📸
-          </span>{' '}
-          too. This all happend while I tought myself how to program in
-          javascript. And of course all the other import stuff of web
-          development. Some of my project are already listed on the homepage.
-          <br /> Also I’m a huge fan of rock music{' '}
-          <span role="img" aria-label="Guitar">
-            🎸
-          </span>{' '}
-          like The Beatles, Pink Floyd, Led Zepplin &amp; many more.
-          <br /> This is kinda cliche for a programmer but I love coffee. In
-          every variation. Although, you know a coffee is really good if you
-          like to drink it black. */}
-          {about.description}
-        </Paragraph>
+        <Paragraph>{about.description}</Paragraph>
         <AboutImage fluid={about.image.asset.fluid} alt={about.image.alt} />
 
         <H2>Find me there</H2>

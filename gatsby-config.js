@@ -35,12 +35,6 @@ module.exports = {
       options: {
         projectId: `qhdnmhc0`,
         dataset: `production`,
-        // a token with read permissions is required
-        // if you have a private dataset
-        // token: process.env.MY_SANITY_TOKEN,
-
-        // If the Sanity GraphQL API was deployed using `--tag <name>`,
-        // use `graphqlTag` to specify the tag name. Defaults to `default`.
         graphqlTag: 'default',
       },
     },
@@ -50,9 +44,9 @@ module.exports = {
         trackingId: 'UA-149456197-1',
       },
     },
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-sitemap`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-styled-components`,
   ],
 }

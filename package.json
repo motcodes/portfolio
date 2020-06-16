@@ -8,7 +8,7 @@
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/image-url": "^0.140.18",
     "babel-plugin-styled-components": "^1.10.7",
-    "framer-motion": "^1.8.4",
+    "framer-motion": "^1.11.1",
     "gatsby": "^2.19.5",
     "gatsby-image": "^2.2.19",
     "gatsby-plugin-google-analytics": "^2.1.20",
@@ -16,7 +16,7 @@
     "gatsby-plugin-react-helmet": "^3.1.7",
     "gatsby-plugin-sharp": "^2.4.0",
     "gatsby-plugin-sitemap": "^2.2.14",
-    "gatsby-plugin-styled-components": "^3.1.19",
+    "gatsby-plugin-styled-components": "^3.3.4",
     "gatsby-source-filesystem": "^2.1.22",
     "gatsby-source-sanity": "^5.0.6",
     "gatsby-transformer-sharp": "^2.2.14",
@@ -27,7 +27,7 @@
     "react-feather": "^2.0.3",
     "react-helmet": "^5.2.1",
     "react-intersection-observer": "^8.26.1",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

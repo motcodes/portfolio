@@ -30,7 +30,7 @@ export default function Layout({
   }, [])
 
   return (
-    <ThemeProvider theme={isDarkmode ? DarkTheme : LightTheme}>
+    <ThemeProvider theme={isDarkmode === true ? DarkTheme : LightTheme}>
       <SEO title="Matthias Oberholzer" />
       <GlobalStyle />
       <AnimatePresence>

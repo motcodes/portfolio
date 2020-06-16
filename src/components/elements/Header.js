@@ -10,9 +10,10 @@ import { PageLink } from './Links'
 import { LogoDarkmode } from './LogoDarkmode'
 
 const HeaderWrapper = styled.header`
-  display: inline-flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
+  align-content: center;
   margin: 0 auto;
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -112,9 +113,6 @@ export const Header = ({ isDarkmode, toggleDarkmode }) => {
         <PageLink to="/photography/" activeClassName="active">
           Photography
         </PageLink>
-        {/* <PageLink to="/photography/">
-          Blog
-        </PageLink> */}
       </nav>
     </HeaderWrapper>
   )

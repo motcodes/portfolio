@@ -4,13 +4,9 @@ import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { Twitter, Instagram, GitHub, Mail, Facebook } from 'react-feather'
-import {
-  useScrollInView,
-  imageUrlFor,
-  buildImageObj,
-} from '../components/helpers'
 import SEO from '../components/seo'
-import { PrimaryGrid, breakpoints, above } from '../components/utilities'
+import { useScrollInView } from '../components/helpers'
+import { above } from '../components/utilities'
 import { H1, H2, Paragraph, Overlay, Card } from '../components/elements'
 
 const xMotion = {
@@ -131,11 +127,11 @@ const IndexPage = ({ data }) => {
             <Facebook title="Facebook Link to Matthias Oberholzer" />
           </motion.a>
         </SocialMediaContainer>
-        {/* <Image
-          src={imageUrlFor(buildImageObj(homepage.image))}
+        <Image
+          fluid={homepage.image.asset.fluid}
           alt={homepage.image.alt}
-        /> */}
-        <Image fluid={homepage.image.asset.fluid} alt={homepage.image.alt} />
+          imgBackground={homepage.image.asset.fluid.src}
+        />
       </Indruduction>
       <LineWrapper>
         <motion.svg
@@ -153,17 +149,17 @@ const IndexPage = ({ data }) => {
         </motion.svg>
         <motion.svg
           width="16"
-          height="144"
-          viewBox="0 0 16 144"
+          height="192"
+          viewBox="0 0 16 192"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           ref={ref}
           initial="rest"
           animate={controls}
-          style={{ marginTop: `24px` }}
           variants={lineMotion}
+          style={{ marginTop: `24px` }}
         >
-          <Path d="M8 8V136" />
+          <Path d="M8 8V190" />
         </motion.svg>
       </LineWrapper>
       <Projects as="section">
@@ -175,7 +171,7 @@ const IndexPage = ({ data }) => {
         >
           expierence &amp; projects
         </Heading2>
-        {homepage.projects.map((project) => (
+        {homepage.projects.map(project => (
           <ProjectCard
             key={project.id}
             title={project.title}
@@ -190,16 +186,19 @@ const IndexPage = ({ data }) => {
   )
 }
 
-const Indruduction = styled(PrimaryGrid)`
+const Indruduction = styled.div`
+  display: grid;
+  justify-content: center;
   grid-template-rows: 1fr auto;
   grid-template-columns: 1fr;
+  grid-column-gap: 1rem;
   margin-top: ${({ linePosition }) => linePosition / 8 + 'px'};
   margin-bottom: ${({ linePosition }) => linePosition / 1.5 + 'px'};
   ${above.med`
-    margin-top: ${({ linePosition }) => linePosition / 4 + 'px'};
     grid-template-rows: 1fr auto 1fr;
     grid-template-columns: 6fr 4fr;
     max-width: 960px;
+    margin-top: ${({ linePosition }) => linePosition / 4 + 'px'};
     margin-left: auto;
     margin-right: auto;
   `};
@@ -211,17 +210,15 @@ const Heading1 = styled(H1)`
   line-height: 1.25;
   ${above.med`
     line-height: 1.5;
-    `}
+  `}
+
   span {
     background-image: ${({ theme }) => theme.colors.gradient};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    /* display: table; */
-    /* color: ${({ theme }) => theme.colors.primary}; */
-
-    @media (min-width: ${breakpoints.xl}px) {
+    ${above.xl`
       display: initial;
-    }
+    `}
   }
 `
 
@@ -247,7 +244,6 @@ const SocialMediaContainer = styled.div`
       height: 100%;
     }
   }
-
   ${above.med`
     padding: 1rem 0;
     &:first-child {
@@ -255,17 +251,16 @@ const SocialMediaContainer = styled.div`
     }
   `}
 `
-// const Image = styled.img`
 const Image = styled(Img)`
   grid-column: 1;
   grid-row: 1 / 2;
   height: 50vh;
   width: 100%;
-  border-radius: 6px;
+  border-radius: 0.5rem;
   margin-bottom: 1rem;
   object-fit: cover;
-  object-position: 0 15%;
   picture img {
+    object-position: 0 15% !important;
   }
 
   ${above.med`
@@ -295,35 +290,39 @@ const LineWrapper = styled(motion.div)`
     margin: 0 auto 6rem;
   `}
 `
-
-const Projects = styled(PrimaryGrid)`
-  grid-row-gap: 1rem;
-  @media (min-width: ${breakpoints.med}px) {
-    grid-row-gap: 2rem;
-  }
-`
-
-const Heading2 = styled(motion.custom(H2))`
-  grid-column: 1 / 5;
-  color: ${({ theme }) => theme.colors.primary};
-
-  ${above.med`
-    grid-column: 2 / 9;
-  `}
-`
-
-const ProjectCard = styled(Card)`
-  grid-column: 1 / 5;
-  ${above.med`
-    grid-column: 2 / 9;
-  `}
-`
-
 const Path = styled.path`
   stroke: ${({ theme }) => theme.colors.text};
   stroke-width: 4;
   stroke-linecap: round;
   stroke-linejoin: round;
+`
+
+const Projects = styled.div`
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr;
+  grid-row-gap: 1rem;
+  ${above.med`
+    grid-template-columns: 1fr 8fr 1fr;
+    max-width: 960px;
+    margin: 0 auto;
+    grid-row-gap: 2rem;
+  `}
+`
+
+const Heading2 = styled(motion.custom(H2))`
+  grid-column: 1;
+  color: ${({ theme }) => theme.colors.primary};
+  ${above.med`
+    grid-column: 2;
+  `}
+`
+
+const ProjectCard = styled(Card)`
+  grid-column: 1;
+  ${above.med`
+    grid-column: 2;
+  `}
 `
 
 export const IndexQuery = graphql`
@@ -332,10 +331,10 @@ export const IndexQuery = graphql`
       description
       image {
         alt
-        ...SanityHomepageImage
         asset {
           fluid(maxWidth: 700) {
             ...GatsbySanityImageFluid
+            src
           }
         }
       }
@@ -347,27 +346,6 @@ export const IndexQuery = graphql`
         timeperiod
         title
       }
-    }
-  }
-  fragment SanityHomepageImage on SanityHomepageImage {
-    crop {
-      _key
-      _type
-      top
-      bottom
-      left
-      right
-    }
-    hotspot {
-      _key
-      _type
-      x
-      y
-      height
-      width
-    }
-    asset {
-      _id
     }
   }
 `

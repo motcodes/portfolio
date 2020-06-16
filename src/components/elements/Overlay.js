@@ -7,7 +7,7 @@ import OverlayText from './OverlayText'
 export function Overlay({ title }) {
   useEffect(() => {
     document.body.style.overflow = 'hidden'
-    setTimeout(() => (document.body.style.overflow = 'unset'), 6500)
+    setTimeout(() => (document.body.style.overflow = 'unset'), 6000)
   }, [])
   return (
     <>

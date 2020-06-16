@@ -14,9 +14,6 @@ export const useScrollInView = exitAnimation => {
         controls.start('hover')
       }
     }
-    // else if (!inView && typeof exitAnimation !== 'undefined') {
-    //   controls.start(exitAnimation)
-    // }
   }, [controls, inView, isNotTouch])
 
   return {

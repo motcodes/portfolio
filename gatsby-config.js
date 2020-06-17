@@ -5,7 +5,7 @@ module.exports = {
     name: `Matthias Oberholzer`,
     author: `@codingMot`,
     siteUrl: `https://matthiasoberholzer.com`,
-    bannerImg: './static/banner.jpg',
+    bannerImg: 'https://matthiasoberholzer.com/banner.jpg',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

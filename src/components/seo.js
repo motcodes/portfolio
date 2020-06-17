@@ -73,7 +73,7 @@ const SEO = ({ description, lang, meta, title, img, data }) => {
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `twitter:creator`,
@@ -89,7 +89,7 @@ const SEO = ({ description, lang, meta, title, img, data }) => {
         },
         {
           property: `twitter:image`,
-          content: img || site.siteMetadata.bannerImg,
+          content: img === undefined ? site.siteMetadata.bannerImg : img,
         },
         {
           property: `twitter:image:alt`,

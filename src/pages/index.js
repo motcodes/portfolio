@@ -192,13 +192,14 @@ const Indruduction = styled.div`
   grid-template-rows: 1fr auto;
   grid-template-columns: 1fr;
   grid-column-gap: 1rem;
-  margin-top: ${({ linePosition }) => linePosition / 8 + 'px'};
-  margin-bottom: ${({ linePosition }) => linePosition / 1.5 + 'px'};
+  margin-top: 24px;
+  margin-bottom: ${({ linePosition }) =>
+    linePosition > 0 ? linePosition / 1.5 + 'px' : '128px'};
   ${above.med`
     grid-template-rows: 1fr auto 1fr;
     grid-template-columns: 6fr 4fr;
     max-width: 960px;
-    margin-top: ${({ linePosition }) => linePosition / 4 + 'px'};
+    margin-top: 10vh;
     margin-left: auto;
     margin-right: auto;
   `};
@@ -242,6 +243,8 @@ const SocialMediaContainer = styled.div`
     svg {
       width: 100%;
       height: 100%;
+      max-width: 24px;
+      max-height: 24px;
     }
   }
   ${above.med`

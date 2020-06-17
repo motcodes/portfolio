@@ -73,7 +73,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <>
-      <SEO title="The offical site of Matthias Oberholzer" />
+      <SEO title="The official site of Matthias Oberholzer" />
       <Overlay title="homepage" />
       <Indruduction id="intro" linePosition={linePosition}>
         <Heading1>

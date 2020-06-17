@@ -46,9 +46,11 @@ const TitleWrapper = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  display: flex;
   width: 100%;
   max-height: ${({ imgHeight }) => `${imgHeight}px`};
+  padding: 1rem;
+  text-align: center;
+  display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;

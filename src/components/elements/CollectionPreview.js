@@ -46,6 +46,8 @@ const TitleWrapper = styled(Link)`
   display: flex;
   width: 100%;
   height: 99.99%;
+  padding: 1rem;
+  text-align: center;
   justify-content: center;
   align-items: center;
   text-decoration: none;

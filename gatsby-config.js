@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Portfolio of Matthias Oberholzer`,
@@ -33,7 +37,7 @@ module.exports = {
     {
       resolve: `gatsby-source-sanity`,
       options: {
-        projectId: `qhdnmhc0`,
+        projectId: process.env.GATSBY_SANITY_PROJECT_ID,
         dataset: `production`,
         graphqlTag: 'default',
       },

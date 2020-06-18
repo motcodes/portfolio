@@ -6,9 +6,10 @@ import PortableText from '../helpers/portableText'
 import { above } from '../utilities'
 import SEO from '../seo'
 import { imageUrlFor, buildImageObj } from '../helpers'
+import { Helmet } from 'react-helmet'
 
 export default function Collection({ data }) {
-  const { title, mainImage, slug, _rawBody } = data.collection
+  const { title, publishedAt, mainImage, slug, _rawBody } = data.collection
   return (
     <>
       <SEO
@@ -17,7 +18,16 @@ export default function Collection({ data }) {
           .width(1200)
           .height(628)
           .url()}
+        date={publishedAt}
       />
+      <Helmet>
+        {publishedAt ? (
+          <meta
+            property="article:published_time"
+            content={new Date(publishedAt).toISOString()}
+          />
+        ) : null}
+      </Helmet>
       <Overlay title="collection" />
       <CollectionHeader imgSrc={mainImage} title={title} slug={slug} />
       <Text>
@@ -90,6 +100,7 @@ export const collectionQuery = graphql`
   query CollectionTemplateQuery($id: String!) {
     collection: sanityCollection(id: { eq: $id }) {
       title
+      publishedAt
       slug {
         current
       }

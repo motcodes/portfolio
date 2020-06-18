@@ -38,14 +38,14 @@ module.exports = {
       resolve: `gatsby-source-sanity`,
       options: {
         projectId: process.env.GATSBY_SANITY_PROJECT_ID,
-        dataset: `production`,
+        dataset: process.env.GATSBY_SANITY_DATASET,
         graphqlTag: 'default',
       },
     },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: 'UA-149456197-1',
+        trackingId: process.env.GATSBY_GA_ID,
       },
     },
     `gatsby-plugin-styled-components`,

@@ -8,7 +8,7 @@ const FooterWrapper = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 6rem;
+  margin-top: 8rem;
   margin-bottom: 3rem;
 `
 const LogoWrapper = styled.div`

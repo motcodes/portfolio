@@ -9,7 +9,7 @@ import { above } from '../utilities'
 
 const cardMotion = {
   rest: {
-    y: 256,
+    y: 160,
     opacity: 0,
     visibility: `hidden`,
   },

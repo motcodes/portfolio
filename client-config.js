@@ -4,7 +4,7 @@ require('dotenv').config({
 
 module.exports = {
   sanity: {
-    projectId: process.env.GATSBY_SANITY_PROJECT_ID,
+    projectId: process.env.SANITY_PROJECT_ID,
     dataset: 'production',
   },
 }

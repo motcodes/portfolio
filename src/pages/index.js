@@ -102,7 +102,7 @@ const IndexPage = ({ data }) => {
           <motion.a
             whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
-            href="https://github.com/codingMot"
+            href="https://github.com/motcodes"
             target="_blank"
             rel="noopener"
           >

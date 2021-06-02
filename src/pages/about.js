@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import Img from 'gatsby-image'
+import { GatsbyImage } from "gatsby-plugin-image";
 import { graphql } from 'gatsby'
 import SEO from '../components/seo'
 import { PrimaryGrid, above } from '../components/utilities'
@@ -121,7 +121,7 @@ const AboutContainer = styled(PrimaryGrid)`
   }
 `
 
-const AboutImage = styled(Img)`
+const AboutImage = styled(GatsbyImage)`
   grid-column: 1 / 5;
   grid-row: 1 / 2;
   width: 100%;

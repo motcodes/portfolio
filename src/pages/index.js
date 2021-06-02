@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage } from "gatsby-plugin-image";
 import { Twitter, Instagram, GitHub, Mail, Facebook, Link } from 'react-feather'
 import SEO from '../components/seo'
 import { useScrollInView } from '../components/helpers'
@@ -287,7 +287,7 @@ const SocialMediaContainer = styled.div`
     }
   `}
 `
-const Image = styled(Img)`
+const Image = styled(GatsbyImage)`
   grid-column: 1;
   grid-row: 1 / 2;
   height: 50vh;

@@ -6,7 +6,7 @@ import PortableText from '../helpers/portableText'
 import { above } from '../utilities'
 import SEO from '../seo'
 import { imageUrlFor, buildImageObj } from '../helpers'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { SharedAnimationLayout } from '../layouts/SharedAnimationLayout'
 
 export default function Collection({ data }) {

@@ -1,24 +1,20 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage } from "gatsby-plugin-image";
 
 export const LogoDarkmode = () => {
-  const data = useStaticQuery(graphql`
-    {
-      logoDarkmode: file(relativePath: { eq: "LogoDarkmode.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 112, maxHeight: 112) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
+  const data = useStaticQuery(graphql`{
+  logoDarkmode: file(relativePath: {eq: "LogoDarkmode.png"}) {
+    childImageSharp {
+      gatsbyImageData(width: 112, height: 112, layout: CONSTRAINED)
     }
-  `)
+  }
+}
+`)
 
   return (
-    <Img
-      fluid={data.logoDarkmode.childImageSharp.fluid}
-      alt="Logo of Matthias Oberholzer in Darkmode"
-    />
-  )
+    <GatsbyImage
+      image={data.logoDarkmode.childImageSharp.gatsbyImageData}
+      alt="Logo of Matthias Oberholzer in Darkmode" />
+  );
 }

@@ -13,7 +13,7 @@ module.exports = {
     bannerImg: 'https://matthiasoberholzer.com/banner.jpg',
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-react-helmet-async`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -51,7 +51,11 @@ module.exports = {
     },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-image`,
+    {
+      resolve: 'gatsby-plugin-sharp',
+      options: { failOnError: false },
+    },
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
   ],
 }

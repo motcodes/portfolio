@@ -127,7 +127,7 @@ const AboutImage = styled(Img)`
   width: 100%;
   height: 100%;
   max-height: 320px;
-  border-radius: 4px;
+  border-radius: 8px;
   transform: scaleX(-1);
   ${above.med`
       position: absolute !important;
@@ -138,6 +138,12 @@ const AboutImage = styled(Img)`
       max-height: 768px;
       max-width: 432px;
       z-index: 0;
+      box-shadow: 0px 1.02343px 1.4595px rgba(0, 0, 0, 0.0731357),
+        0px 2.28078px 3.59124px rgba(0, 0, 0, 0.102215),
+        0px 3.93246px 6.84841px rgba(0, 0, 0, 0.122983),
+        0px 6.31183px 12.2194px rgba(0, 0, 0, 0.142328),
+        0px 10.2324px 22.4911px rgba(0, 0, 0, 0.165942),
+        0px 18px 51px rgba(0, 0, 0, 0.21);
   `};
   ${above.large`
       position: unset !important;

@@ -7,11 +7,13 @@ import { above } from '../utilities'
 import SEO from '../seo'
 import { imageUrlFor, buildImageObj } from '../helpers'
 import { Helmet } from 'react-helmet'
+import { SharedAnimationLayout } from '../layouts/SharedAnimationLayout'
 
 export default function Collection({ data }) {
   const { title, publishedAt, mainImage, slug, _rawBody } = data.collection
   return (
     <>
+      {/* <SharedAnimationLayout> */}
       <SEO
         title={`${title} - a Collection by Matthias Oberholzer`}
         img={imageUrlFor(buildImageObj(mainImage))
@@ -28,11 +30,12 @@ export default function Collection({ data }) {
           />
         ) : null}
       </Helmet>
-      <Overlay title="collection" />
+      {/* <Overlay title="collection" /> */}
       <CollectionHeader imgSrc={mainImage} title={title} slug={slug} />
       <Text>
         <PortableText blocks={_rawBody} />
       </Text>
+      {/* </SharedAnimationLayout> */}
     </>
   )
 }

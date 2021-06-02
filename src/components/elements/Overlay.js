@@ -1,17 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { H1 } from './Headings'
 import OverlayText from './OverlayText'
 
 export function Overlay({ title }) {
+  const [canScroll, setCanScroll] = useState(false)
   useEffect(() => {
-    document.body.style.overflow = 'hidden'
-    setTimeout(() => (document.body.style.overflow = 'unset'), 5000)
-  }, [])
+    if (canScroll) {
+      document.body.style.overflow = 'unset'
+    } else {
+      document.body.style.overflow = 'hidden'
+    }
+  }, [canScroll])
+
   return (
     <>
       <Container
+        onAnimationComplete={() => setCanScroll(true)}
         initial={{ originX: 0, originY: 0 }}
         animate={{
           y: `100vh`,
@@ -102,7 +108,7 @@ const Container = styled(motion.div)`
   align-items: center;
   background-color: ${({ theme }) => theme.colors.bg};
 `
-const Heading = styled(motion.custom(H1))`
+const Heading = styled(motion(H1))`
   position: fixed;
   top: 50%;
   left: 50%;

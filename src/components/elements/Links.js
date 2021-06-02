@@ -6,8 +6,10 @@ export const A = styled.a`
   font-size: 16px;
   line-height: 20px;
   color: ${({ theme }) => theme.colors.primary};
+  border-bottom: 2px solid transparent;
   text-decoration: none;
   cursor: pointer;
+  transition: border 0.3s ease;
 
   &:hover {
     border-bottom: 2px solid ${({ theme }) => theme.colors.primary};

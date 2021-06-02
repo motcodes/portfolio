@@ -22,7 +22,9 @@ const FooterParagraph = styled(Paragraph)`
 export const Footer = ({ isDarkmode }) => {
   return (
     <FooterWrapper>
-      <LogoWrapper>{!isDarkmode ? <Logo /> : <LogoDarkmode />}</LogoWrapper>
+      <LogoWrapper>
+        <Logo />
+      </LogoWrapper>
       <FooterParagraph>
         © {new Date().getFullYear()} Matthias Oberholzer
       </FooterParagraph>

@@ -43,9 +43,10 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-portal`,
       options: {
-        trackingId: process.env.GATSBY_GA_ID,
+        key: 'portal',
+        id: 'portal',
       },
     },
     `gatsby-plugin-styled-components`,

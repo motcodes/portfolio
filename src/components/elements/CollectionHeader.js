@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { H1 } from './Headings'
 import { imageUrlFor, buildImageObj } from '../helpers'
 
@@ -13,16 +13,19 @@ export function CollectionHeader({ title, imgSrc }) {
   }, [])
 
   return (
-    <Container>
-      <Img
-        src={imageUrlFor(buildImageObj(imgSrc)).url()}
-        alt="header image"
-        imgHeight={imgHeight}
-      />
-      <TitleWrapper>
-        <Title>{title}</Title>
-      </TitleWrapper>
-    </Container>
+    <AnimatePresence>
+      <Container layoutId={title}>
+        <Img
+          src={imageUrlFor(buildImageObj(imgSrc)).url()}
+          alt="header image"
+          imgHeight={imgHeight}
+          layoutId={title}
+        />
+        <TitleWrapper>
+          <Title>{title}</Title>
+        </TitleWrapper>
+      </Container>
+    </AnimatePresence>
   )
 }
 
@@ -40,7 +43,7 @@ const Img = styled(motion.img)`
   position: relative;
 `
 
-const TitleWrapper = styled.div`
+const TitleWrapper = styled(motion.div)`
   position: absolute;
   top: 0;
   bottom: 0;

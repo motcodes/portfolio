@@ -1,13 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import { Twitter, Instagram, GitHub, Mail, Facebook } from 'react-feather'
+import { Twitter, Instagram, GitHub, Mail, Facebook, Link } from 'react-feather'
 import SEO from '../components/seo'
 import { useScrollInView } from '../components/helpers'
 import { above } from '../components/utilities'
-import { H1, H2, Paragraph, Overlay, Card } from '../components/elements'
+import {
+  H1,
+  H2,
+  Paragraph,
+  Overlay,
+  Card,
+  PageLink,
+  H3,
+} from '../components/elements'
+import { ImageCard } from '../components/elements/ImageCards'
+import Modal from '../components/elements/Modal'
 
 const xMotion = {
   rest: {
@@ -62,7 +72,11 @@ const h2Motion = {
 const IndexPage = ({ data }) => {
   const { homepage } = data
   const [linePosition, setLinePosition] = useState(0)
-  const { ref, controls } = useScrollInView()
+  const [lineRef, lineControls] = useScrollInView({
+    threshold: 1,
+    triggerOnce: true,
+  })
+  const [projectRef, projectControls] = useScrollInView()
 
   useEffect(() => {
     const pageHeight = window.innerHeight
@@ -71,10 +85,12 @@ const IndexPage = ({ data }) => {
     setLinePosition(pageHeight - (intro + header) + 96)
   }, [])
 
+  // const modalRef = useRef(null)
+
   return (
     <>
       <SEO title="The official site of Matthias Oberholzer" />
-      <Overlay title="homepage" />
+      {/* <Overlay title="homepage" /> */}
       <Indruduction id="intro" linePosition={linePosition}>
         <Heading1>
           Hello There! <span>I’m Matt.</span>
@@ -84,7 +100,7 @@ const IndexPage = ({ data }) => {
           <motion.a
             whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
-            href="https://twitter.com/codingMot"
+            href="https://twitter.com/motcodes"
             target="_blank"
             rel="noopener"
           >
@@ -140,9 +156,9 @@ const IndexPage = ({ data }) => {
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          ref={ref}
+          ref={lineRef}
           initial="rest"
-          animate={controls}
+          animate={lineControls}
           variants={xMotion}
         >
           <Path d="M20 4L4 20M4 4L20 20" />
@@ -153,9 +169,9 @@ const IndexPage = ({ data }) => {
           viewBox="0 0 16 192"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          ref={ref}
+          ref={lineRef}
           initial="rest"
-          animate={controls}
+          animate={lineControls}
           variants={lineMotion}
           style={{ marginTop: `24px` }}
         >
@@ -164,9 +180,9 @@ const IndexPage = ({ data }) => {
       </LineWrapper>
       <Projects as="section">
         <Heading2
-          ref={ref}
+          ref={projectRef}
           initial="rest"
-          animate={controls}
+          animate={projectControls}
           variants={h2Motion}
         >
           expierence &amp; projects
@@ -182,6 +198,23 @@ const IndexPage = ({ data }) => {
           />
         ))}
       </Projects>
+      <Collections as="section">
+        <Heading2>featured collections</Heading2>
+        {homepage.collections.map(collection => (
+          <CollectionCard collection={collection} key={collection.id} />
+        ))}
+        <PageLink
+          to="photography"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            width: 'max-content',
+          }}
+        >
+          more collections
+          <Link size="16" style={{ marginLeft: 8 }} />
+        </PageLink>
+      </Collections>
     </>
   )
 }
@@ -205,7 +238,7 @@ const Indruduction = styled.div`
   `};
 `
 
-const Heading1 = styled(H1)`
+const Heading1 = styled(motion(H1))`
   grid-column: 1;
   align-self: end;
   line-height: 1.25;
@@ -306,29 +339,68 @@ const Projects = styled.div`
   grid-template-columns: 1fr;
   grid-row-gap: 1rem;
   ${above.med`
-    grid-template-columns: 1fr 8fr 1fr;
-    max-width: 960px;
-    margin: 0 auto;
+    // grid-template-columns: 1fr 8fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    max-width: 720px;
+    margin: 0 auto 2rem;
     grid-row-gap: 2rem;
   `}
 `
+const Collections = styled.div`
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 3rem;
+  ${above.med`
+    grid-template-columns: 1fr 1fr;
+    max-width: 720px;
+    margin: 6rem auto 2rem;
+    gap: 2rem;
+  `}
+  h2 {
+    grid-column: span 2;
+  }
+`
 
-const Heading2 = styled(motion.custom(H2))`
+const Heading2 = styled(motion(H2))`
   grid-column: 1;
   color: ${({ theme }) => theme.colors.primary};
   ${above.med`
-    grid-column: 2;
+    grid-column: span 2;
   `}
 `
 
-const ProjectCard = styled(Card)`
+const ProjectCard = styled(motion(Card))`
   grid-column: 1;
   ${above.med`
-    grid-column: 2;
+    grid-column: span 2;
   `}
 `
+const CollectionCard = styled(motion(ImageCard))``
 
 export const IndexQuery = graphql`
+  fragment SanityImage on SanityImage {
+    crop {
+      _key
+      _type
+      top
+      bottom
+      left
+      right
+    }
+    hotspot {
+      _key
+      _type
+      x
+      y
+      height
+      width
+    }
+    asset {
+      _id
+    }
+  }
   query HomepageQuery {
     homepage: sanityHomepage {
       description
@@ -348,6 +420,17 @@ export const IndexQuery = graphql`
         subtitle
         timeperiod
         title
+      }
+      collections {
+        title
+        id
+        description
+        slug {
+          current
+        }
+        mainImage {
+          ...SanityImage
+        }
       }
     }
   }

@@ -1,62 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
-import { H2 } from './Headings'
+import { motion, useAnimation } from 'framer-motion'
+import { H3 } from './Headings'
 import { Paragraph } from './Paragraphs'
 import { A } from './Links'
 import { useScrollInView } from '../helpers'
-import { above } from '../utilities'
-
-const cardMotion = {
-  rest: {
-    y: 160,
-    opacity: 0,
-    visibility: `hidden`,
-  },
-  scroll: {
-    y: 0,
-    opacity: 1,
-    visibility: `visible`,
-    transition: {
-      duration: 0.5,
-      delay: 0.75,
-    },
-  },
-  exit: {
-    y: 32,
-    opacity: 0,
-    visibility: `hidden`,
-  },
-}
-
-const infoMotion = {
-  rest: {
-    height: 0,
-    visibility: `hidden`,
-    opacity: 0,
-  },
-  hover: {
-    height: `initial`,
-    visibility: `visible`,
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-      when: 'beforeChildren',
-      staggerChildren: 0.2,
-    },
-  },
-}
-
-const infoItemMotion = {
-  rest: {
-    y: 32,
-    opacity: 0,
-  },
-  hover: {
-    y: 0,
-    opacity: 1,
-  },
-}
 
 export const Card = ({
   title,
@@ -66,25 +14,45 @@ export const Card = ({
   link,
   className,
 }) => {
-  const { ref, controls } = useScrollInView()
+  const [cardRef, cardControls] = useScrollInView()
+
+  const motionContainer = {
+    initial: {
+      opacity: 0,
+    },
+    scroll: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.5,
+      },
+    },
+  }
+
+  const motionContent = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+    },
+  }
 
   return (
     <CardContainer
-      ref={ref}
+      layout
+      ref={cardRef}
       className={className}
-      initial="rest"
-      whileHover="hover"
-      animate={controls}
-      variants={cardMotion}
+      initial="initial"
+      animate={cardControls}
+      variants={motionContainer}
     >
-      <Heading>
+      <Heading variant={motionContent}>
         {title} <Subtitle>- {subtitle}</Subtitle>
       </Heading>
-      <InfoContainer variants={infoMotion}>
-        <Timeperiod variants={infoItemMotion}>{timeperiod}</Timeperiod>
-        <Description variants={infoItemMotion}>{description}</Description>
+      <Timeperiod variant={motionContent}>{timeperiod}</Timeperiod>
+      <InfoContainer variant={motionContent}>
+        <Description>{description}</Description>
         <ProjectLink
-          variants={infoItemMotion}
           href={link}
           target="_blank"
           rel="noopener"
@@ -98,38 +66,23 @@ export const Card = ({
 }
 
 const CardContainer = styled(motion.div)`
-  min-height: 16rem;
-  background: transparent;
-  border: 3px solid ${({ theme }) => theme.colors.primary};
-  border-radius: 8px;
-  padding: 0 1rem;
-  box-sizing: content-box;
-
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  cursor: pointer;
 `
 
-const Heading = styled(motion.custom(H2))`
-  margin-top: 1rem;
-  ${above.large`
-    text-align: center;
-  `}
-`
+const Heading = styled(motion(H3))``
 
-const Subtitle = styled.span`
-  font-weight: normal;
-`
+const Subtitle = styled.span``
 const InfoContainer = styled(motion.div)`
-  margin-bottom: 1rem;
-  > * {
-    margin-bottom: 1rem;
-  }
+  margin-top: 1rem;
 `
 
-const Timeperiod = styled(motion.custom(Paragraph))`
+const Timeperiod = styled(motion(Paragraph))`
   color: ${({ theme }) => theme.colors.grey};
 `
-const Description = styled(motion.custom(Paragraph))``
+const Description = styled(motion(Paragraph))``
 
-const ProjectLink = styled(motion.custom(A))``
+const ProjectLink = styled(motion(A))``

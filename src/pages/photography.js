@@ -10,6 +10,7 @@ import {
 } from '../components/elements'
 import SEO from '../components/seo'
 import { above } from '../components/utilities'
+import { SharedAnimationLayout } from '../components/layouts/SharedAnimationLayout'
 
 export default function Photography({ data }) {
   const collections = data.collections.edges.map(edge => edge.node)
@@ -20,7 +21,7 @@ export default function Photography({ data }) {
         title="Photography Collections by Matthias Oberholzer"
         description={description}
       />
-      <Overlay title="photography" />
+      {/* <Overlay title="photography" /> */}
       <DescriptionContainer>
         <Heading1>Some collections of my photos.</Heading1>
         <Description>{description}</Description>

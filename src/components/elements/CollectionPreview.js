@@ -1,15 +1,16 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { H2 } from './Headings'
 import { imageUrlFor, buildImageObj } from '../helpers'
 import { above } from '../utilities'
 
 export function CollectionPreview({ title, imgSrc, slug }) {
+  const croppedImg = imageUrlFor(buildImageObj(imgSrc)).url()
   return (
-    <Container whileTap={{ scale: 0.99 }}>
-      <Img src={imageUrlFor(buildImageObj(imgSrc)).url()} alt="header image" />
+    <Container whileTap={{ scale: 0.99 }} layoutId={title}>
+      <Img src={croppedImg} alt="header image" layoutId={title} />
       <TitleWrapper to={`/collections/${slug.current}`}>
         <Title>{title}</Title>
       </TitleWrapper>
@@ -23,18 +24,22 @@ const Container = styled(motion.div)`
   max-width: 1440px;
   max-height: 512px;
   margin: 0.5rem 0;
-
+  border-radius: 1rem;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.07),
+    0px 20px 30px rgba(0, 0, 0, 0.14);
   ${above.med`
     margin: 1rem 0;
   `}
 `
+
 const Img = styled(motion.img)`
-  border-radius: 4px;
+  border-radius: 16px;
   width: 100%;
   height: 100%;
   max-width: 1440px;
   max-height: 512px;
   object-fit: cover;
+  z-index: 2;
 `
 
 const TitleWrapper = styled(Link)`
@@ -51,8 +56,12 @@ const TitleWrapper = styled(Link)`
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  z-index: 2;
 
   @media (hover: hover) {
+    border-radius: 1rem;
+    z-index: 2;
+
     background-color: rgba(0, 0, 0, 0.3);
     transition: all 0.75s ease;
     &:hover {

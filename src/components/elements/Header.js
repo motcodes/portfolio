@@ -92,7 +92,7 @@ export const Header = ({ isDarkmode, toggleDarkmode }) => {
       }}
     >
       <LogoWrapper to="/">
-        {!isDarkmode ? <Logo /> : <LogoDarkmode />}
+        <Logo />
       </LogoWrapper>
       <nav>
         <DarkmodeButton

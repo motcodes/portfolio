@@ -6,6 +6,7 @@ import SEO from '../seo'
 import GlobalStyle from '../Global'
 import { DarkTheme, LightTheme } from '../utilities'
 import { useDarkmode } from '../helpers'
+import { SharedAnimationLayout } from './SharedAnimationLayout'
 
 const Container = styled(motion.div)`
   display: flex;
@@ -33,14 +34,15 @@ export default function Layout({
     <ThemeProvider theme={isDarkmode === true ? DarkTheme : LightTheme}>
       <SEO title="Matthias Oberholzer" />
       <GlobalStyle />
-      <AnimatePresence>
+      {/* <AnimatePresence> */}
+      <SharedAnimationLayout>
         <Container
           key={location.pathname}
           animate={{ opacity: 1 }}
-          exit={{
-            opacity: 0,
-            y: 80,
-          }}
+          // exit={{
+          //   opacity: 0,
+          //   y: 80,
+          // }}
           transition={{ duration: 0.5 }}
           style={{
             paddingLeft: location.pathname.includes('collections')
@@ -58,7 +60,8 @@ export default function Layout({
           <main>{children}</main>
           <Footer isDarkmode={isDarkmode} toggleDarkmode={toggleDarkmode} />
         </Container>
-      </AnimatePresence>
+      </SharedAnimationLayout>
+      {/* </AnimatePresence> */}
     </ThemeProvider>
   )
 }

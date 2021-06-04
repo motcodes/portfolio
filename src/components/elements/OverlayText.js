@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { useDarkmode } from '../helpers'
 import styled from 'styled-components'
 
-const SVG = styled(motion.svg)`
+const Svg = styled(motion.svg)`
   stroke: ${({ theme }) => theme.colors.text};
   box-sizing: border-box;
   max-width: 90vw;
@@ -52,7 +52,7 @@ export default function OverlayText({ title }) {
     },
   }
   return title === 'homepage' ? (
-    <SVG
+    <Svg
       // width="500"
       // height="40"
       viewBox="0 0 499 40"
@@ -167,9 +167,9 @@ export default function OverlayText({ title }) {
         initial="hidden"
         animate="visible"
       />
-    </SVG>
+    </Svg>
   ) : title === 'about' ? (
-    <SVG
+    <Svg
       // width="240"
       // height="40"
       viewBox="0 0 241 41"
@@ -218,9 +218,9 @@ export default function OverlayText({ title }) {
         initial="hidden"
         animate="visible"
       />
-    </SVG>
+    </Svg>
   ) : title === 'photography' ? (
-    <SVG
+    <Svg
       // width="310"
       // height="52"
       viewBox="0 0 310 52"
@@ -293,9 +293,9 @@ export default function OverlayText({ title }) {
         initial="hidden"
         animate="visible"
       />
-    </SVG>
+    </Svg>
   ) : (
-    <SVG
+    <Svg
       // width="390"
       // height="40"
       viewBox="0 0 390 40"
@@ -392,6 +392,6 @@ export default function OverlayText({ title }) {
         initial="hidden"
         animate="visible"
       />
-    </SVG>
+    </Svg>
   )
 }

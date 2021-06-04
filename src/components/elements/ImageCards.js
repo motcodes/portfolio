@@ -1,22 +1,47 @@
 import React from 'react'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { H3 } from './Headings'
 import { PageLink } from './Links'
-import { imageUrlFor, buildImageObj } from '../helpers'
+import { useScrollInView } from '../helpers'
 
-export function ImageCard({ collection, className }) {
+export function ImageCard({ collection, className, delay }) {
   const { title, slug, mainImage, description } = collection
-  const croppedImg = imageUrlFor(buildImageObj(mainImage))
-    .width(360)
-    .height(Math.floor(360 / 2))
-    .fit('clip')
-    .auto('format')
-    .url()
+
+  const [cardRef, cardControls] = useScrollInView({
+    threshold: 0.45,
+    triggerOnce: true,
+  })
+
+  const motionContainer = {
+    rest: {
+      y: 32,
+      opacity: 0,
+      visibility: `hidden`,
+    },
+    scroll: {
+      y: 0,
+      opacity: 1,
+      visibility: `visible`,
+      transition: {
+        duration: 0.6,
+        delay: 0.2 + 0.1 * delay,
+        ease: [0.22, 0.38, 0.545, 0.995],
+      },
+    },
+  }
 
   return (
-    <Container to={`/collections/${slug.current}`} className={className}>
-      <Image src={croppedImg} alt={description} />
+    <Container
+      ref={cardRef}
+      initial="rest"
+      animate={cardControls}
+      variants={motionContainer}
+      to={`/collections/${slug.current}`}
+      className={className}
+    >
+      <Image image={mainImage.asset.gatsbyImageData} alt={description} />
       <Title>{title}</Title>
     </Container>
   )
@@ -30,7 +55,7 @@ const Container = styled(motion(PageLink))`
   }
 `
 
-const Image = styled.img`
+const Image = styled(GatsbyImage)`
   max-width: 100%;
   max-height: 100%;
   border-radius: 8px;
@@ -45,5 +70,5 @@ const Image = styled.img`
   }
 `
 const Title = styled(motion(H3))`
-  color: ${({ theme }) => theme.colors.grey};
+  color: ${({ theme }) => theme.colors.black};
 `

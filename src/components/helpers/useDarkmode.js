@@ -14,12 +14,6 @@ function useDarkmode() {
     setEnabledState,
   ])
 
-  useEffect(() => {
-    window.onunload = () => {
-      setEnabledState(false)
-    }
-  })
-
   return [enabledState, toggle]
 }
 

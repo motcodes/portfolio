@@ -1,6 +1,7 @@
 export * from './useDarkmode'
 export * from './useMedia'
 export * from './canUseDom'
+export * from './useAnimationOnMount'
 export * from './useScrollInView'
 export * from './buildImageObj'
 export * from './image-url'

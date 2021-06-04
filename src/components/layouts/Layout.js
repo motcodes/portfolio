@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Header, Footer } from '../elements'
-import SEO from '../seo'
+import Seo from '../seo'
 import GlobalStyle from '../Global'
 import { DarkTheme, LightTheme } from '../utilities'
 import { useDarkmode } from '../helpers'
@@ -32,18 +32,15 @@ export default function Layout({
 
   return (
     <ThemeProvider theme={isDarkmode === true ? DarkTheme : LightTheme}>
-      <SEO title="Matthias Oberholzer" />
+      <Seo title="Matthias Oberholzer" />
       <GlobalStyle />
-      {/* <AnimatePresence> */}
       <SharedAnimationLayout>
         <Container
           key={location.pathname}
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          // exit={{
-          //   opacity: 0,
-          //   y: 80,
-          // }}
-          transition={{ duration: 0.5 }}
+          exit={{ opacity: 1 }}
+          transition={{ duration: 1 }}
           style={{
             paddingLeft: location.pathname.includes('collections')
               ? `0`
@@ -61,7 +58,6 @@ export default function Layout({
           <Footer isDarkmode={isDarkmode} toggleDarkmode={toggleDarkmode} />
         </Container>
       </SharedAnimationLayout>
-      {/* </AnimatePresence> */}
     </ThemeProvider>
   )
 }

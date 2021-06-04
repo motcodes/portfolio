@@ -7,7 +7,6 @@ import { useLocation } from '@reach/router'
 import { DarkGrey, LightGrey, above } from '../utilities'
 import { Logo } from './Logo'
 import { PageLink } from './Links'
-import { LogoDarkmode } from './LogoDarkmode'
 
 const HeaderWrapper = styled.header`
   display: flex;
@@ -55,18 +54,20 @@ const HeaderWrapper = styled.header`
 `
 
 const LogoWrapper = styled(Link)`
-  height: 3rem;
-  width: 3rem;
-  display: inline-block;
+  .gatsby-image-wrapper {
+    height: 3rem;
+    width: 3rem;
+    display: inline-block;
 
-  ${above.med`
+    ${above.med`
     height: 5rem;
     width: 5rem;
   `};
-  ${above.med`
+    ${above.med`
     height: 6rem;
     width: 6rem;
   `};
+  }
 `
 
 const DarkmodeButton = styled(motion.button)`
@@ -92,7 +93,7 @@ export const Header = ({ isDarkmode, toggleDarkmode }) => {
       }}
     >
       <LogoWrapper to="/">
-        <Logo />
+        <Logo isDarkmode={isDarkmode} />
       </LogoWrapper>
       <nav>
         <DarkmodeButton

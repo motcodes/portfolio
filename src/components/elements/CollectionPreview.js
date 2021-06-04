@@ -1,17 +1,16 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { H2 } from './Headings'
-import { imageUrlFor, buildImageObj } from '../helpers'
 import { above } from '../utilities'
 
-export function CollectionPreview({ title, imgSrc, slug }) {
-  const croppedImg = imageUrlFor(buildImageObj(imgSrc)).url()
+export function CollectionPreview({ title, image, slug }) {
   return (
-    <Container whileTap={{ scale: 0.99 }} layoutId={title}>
-      <Img src={croppedImg} alt="header image" layoutId={title} />
-      <TitleWrapper to={`/collections/${slug.current}`}>
+    <Container whileTap={{ scale: 0.99 }}>
+      <Img image={image} alt={title} />
+      <TitleWrapper to={`/collections/${slug}`}>
         <Title>{title}</Title>
       </TitleWrapper>
     </Container>
@@ -32,7 +31,7 @@ const Container = styled(motion.div)`
   `}
 `
 
-const Img = styled(motion.img)`
+const Img = styled(motion(GatsbyImage))`
   border-radius: 16px;
   width: 100%;
   height: 100%;

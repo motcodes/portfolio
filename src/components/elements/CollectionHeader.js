@@ -1,31 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { H1 } from './Headings'
-import { imageUrlFor, buildImageObj } from '../helpers'
 
-export function CollectionHeader({ title, imgSrc }) {
-  const [imgHeight, setImgHeight] = useState(0)
-  useEffect(() => {
-    const pageHeight = window.innerHeight
-    const header = document.getElementsByTagName('header')[0].clientHeight
-    setImgHeight(pageHeight - header)
-  }, [])
-
+export function CollectionHeader({ title, image }) {
   return (
-    <AnimatePresence>
-      <Container layoutId={title}>
-        <Img
-          src={imageUrlFor(buildImageObj(imgSrc)).url()}
-          alt="header image"
-          imgHeight={imgHeight}
-          layoutId={title}
-        />
-        <TitleWrapper>
-          <Title>{title}</Title>
-        </TitleWrapper>
-      </Container>
-    </AnimatePresence>
+    <Container>
+      <Img image={image} alt={title} />
+      <TitleWrapper>
+        <Title>{title}</Title>
+      </TitleWrapper>
+    </Container>
   )
 }
 
@@ -34,11 +20,11 @@ const Container = styled(motion.div)`
   position: relative;
   margin: 0 0 1rem;
   max-width: 100vw;
-  max-height: ${({ imgHeight }) => `${imgHeight}px`};
+  max-height: calc(100vh - 128px);
 `
-const Img = styled(motion.img)`
+const Img = styled(motion(GatsbyImage))`
   width: 100%;
-  max-height: ${({ imgHeight }) => `${imgHeight}px`};
+  max-height: calc(100vh - 128px);
   object-fit: cover;
   position: relative;
 `
@@ -50,7 +36,6 @@ const TitleWrapper = styled(motion.div)`
   left: 0;
   right: 0;
   width: 100%;
-  max-height: ${({ imgHeight }) => `${imgHeight}px`};
   padding: 1rem;
   text-align: center;
   display: flex;

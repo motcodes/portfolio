@@ -1,23 +1,55 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image'
 import { Twitter, Instagram, GitHub, Mail, Facebook, Link } from 'react-feather'
-import SEO from '../components/seo'
-import { useScrollInView } from '../components/helpers'
+import Seo from '../components/seo'
+import { useAnimationOnMount, useScrollInView } from '../components/helpers'
 import { above } from '../components/utilities'
-import {
-  H1,
-  H2,
-  Paragraph,
-  Overlay,
-  Card,
-  PageLink,
-  H3,
-} from '../components/elements'
+import { H1, H2, Paragraph, Card, PageLink } from '../components/elements'
 import { ImageCard } from '../components/elements/ImageCards'
-import Modal from '../components/elements/Modal'
+
+const introMotion = {
+  rest: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      when: 'beforeChildren',
+      staggerChildren: 0.4,
+      ease: [0.22, 0.38, 0.545, 0.995],
+    },
+  },
+}
+const LinksMotion = {
+  rest: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      when: 'beforeChildren',
+      staggerChildren: 0.15,
+      ease: [0.22, 0.38, 0.545, 0.995],
+    },
+  },
+}
+const introItemMotion = {
+  rest: {
+    opacity: 0,
+    y: 16,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      ease: [0.22, 0.38, 0.545, 0.995],
+    },
+  },
+}
 
 const xMotion = {
   rest: {
@@ -30,8 +62,9 @@ const xMotion = {
     opacity: 1,
     rotate: 720,
     transition: {
-      delay: 0.5,
-      duration: 1.5,
+      delay: 0.2,
+      default: { duration: 1.5 },
+      opacity: { duration: 0.3 },
     },
   },
 }
@@ -45,7 +78,7 @@ const lineMotion = {
     y: 0,
     opacity: 1,
     transition: {
-      delay: 0.5,
+      delay: 0.3,
       default: { duration: 1 },
       opacity: { duration: 0.4 },
     },
@@ -63,8 +96,8 @@ const h2Motion = {
     opacity: 1,
     visibility: `visible`,
     transition: {
-      duration: 0.5,
-      delay: 0.75,
+      duration: 0.33,
+      ease: [0.22, 0.38, 0.545, 0.995],
     },
   },
 }
@@ -77,6 +110,9 @@ const IndexPage = ({ data }) => {
     triggerOnce: true,
   })
   const [projectRef, projectControls] = useScrollInView()
+  const [collectionsRef, collectionsControls] = useScrollInView()
+
+  const indruductionControls = useAnimationOnMount()
 
   useEffect(() => {
     const pageHeight = window.innerHeight
@@ -85,24 +121,34 @@ const IndexPage = ({ data }) => {
     setLinePosition(pageHeight - (intro + header) + 96)
   }, [])
 
-  // const modalRef = useRef(null)
-
   return (
     <>
-      <SEO title="The official site of Matthias Oberholzer" />
-      {/* <Overlay title="homepage" /> */}
-      <Indruduction id="intro" linePosition={linePosition}>
-        <Heading1>
+      <Seo title="The official site of Matthias Oberholzer" />
+      <Indruduction
+        id="intro"
+        linePosition={linePosition}
+        initial="rest"
+        animate={indruductionControls}
+        variants={introMotion}
+      >
+        <Heading1 variants={introItemMotion}>
           Hello There! <span>I’m Matt.</span>
         </Heading1>
-        <Description>{homepage.description}</Description>
-        <SocialMediaContainer>
+        <Description variants={introItemMotion}>
+          {homepage.description}
+        </Description>
+        <SocialMediaContainer
+          initial="rest"
+          animate={indruductionControls}
+          variants={LinksMotion}
+        >
           <motion.a
             whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
             href="https://twitter.com/motcodes"
             target="_blank"
             rel="noopener"
+            variants={introItemMotion}
           >
             <Twitter title="Twitter Link to Matthias Oberholzer" />
           </motion.a>
@@ -112,6 +158,7 @@ const IndexPage = ({ data }) => {
             href="https://instagram.com/matthias.oberholzer"
             target="_blank"
             rel="noopener"
+            variants={introItemMotion}
           >
             <Instagram title="Instagram Link to Matthias Oberholzer" />
           </motion.a>
@@ -121,6 +168,7 @@ const IndexPage = ({ data }) => {
             href="https://github.com/motcodes"
             target="_blank"
             rel="noopener"
+            variants={introItemMotion}
           >
             <GitHub title="Github Link to Matthias Oberholzer" />
           </motion.a>
@@ -130,6 +178,7 @@ const IndexPage = ({ data }) => {
             href="mailto:matthias.m.oberholzer@gmail.com"
             target="_blank"
             rel="noopener"
+            variants={introItemMotion}
           >
             <Mail title="Email from Matthias Oberholzer" />
           </motion.a>
@@ -139,15 +188,17 @@ const IndexPage = ({ data }) => {
             href="https://facebook.com/mat.oberholzer"
             target="_blank"
             rel="noopener"
+            variants={introItemMotion}
           >
             <Facebook title="Facebook Link to Matthias Oberholzer" />
           </motion.a>
         </SocialMediaContainer>
-        <Image
-          fluid={homepage.image.asset.fluid}
-          alt={homepage.image.alt}
-          imgBackground={homepage.image.asset.fluid.src}
-        />
+        <ImageContainer variants={introItemMotion}>
+          <Image
+            image={homepage.image.asset.gatsbyImageData}
+            alt={homepage.image.alt}
+          />
+        </ImageContainer>
       </Indruduction>
       <LineWrapper>
         <motion.svg
@@ -199,9 +250,20 @@ const IndexPage = ({ data }) => {
         ))}
       </Projects>
       <Collections as="section">
-        <Heading2>featured collections</Heading2>
-        {homepage.collections.map(collection => (
-          <CollectionCard collection={collection} key={collection.id} />
+        <Heading2
+          ref={collectionsRef}
+          initial="rest"
+          animate={collectionsControls}
+          variants={h2Motion}
+        >
+          featured collections
+        </Heading2>
+        {homepage.collections.map((collection, index) => (
+          <CollectionCard
+            collection={collection}
+            key={collection.id}
+            delay={index}
+          />
         ))}
         <PageLink
           to="photography"
@@ -219,7 +281,7 @@ const IndexPage = ({ data }) => {
   )
 }
 
-const Indruduction = styled.div`
+const Indruduction = styled(motion.section)`
   display: grid;
   justify-content: center;
   grid-template-rows: 1fr auto;
@@ -256,12 +318,12 @@ const Heading1 = styled(motion(H1))`
   }
 `
 
-const Description = styled(Paragraph)`
+const Description = styled(motion(Paragraph))`
   grid-column: 1;
   align-self: start;
 `
 
-const SocialMediaContainer = styled.div`
+const SocialMediaContainer = styled(motion.div)`
   grid-column: 1;
   align-self: start;
   padding: 1rem 0 0.5rem;
@@ -287,9 +349,14 @@ const SocialMediaContainer = styled.div`
     }
   `}
 `
-const Image = styled(GatsbyImage)`
+const ImageContainer = styled(motion.div)`
   grid-column: 1;
   grid-row: 1 / 2;
+  ${above.med`
+    grid-row: 1 / 4;
+    grid-column: 2;`}
+`
+const Image = styled(GatsbyImage)`
   height: 50vh;
   width: 100%;
   border-radius: 0.5rem;
@@ -300,8 +367,6 @@ const Image = styled(GatsbyImage)`
   }
 
   ${above.med`
-    grid-row: 1 / 4;
-    grid-column: 2;
     height: initial;
     max-height: 512px;
     box-shadow: 0px 1.02343px 1.4595px rgba(0, 0, 0, 0.0731357),
@@ -380,37 +445,17 @@ const ProjectCard = styled(motion(Card))`
 const CollectionCard = styled(motion(ImageCard))``
 
 export const IndexQuery = graphql`
-  fragment SanityImage on SanityImage {
-    crop {
-      _key
-      _type
-      top
-      bottom
-      left
-      right
-    }
-    hotspot {
-      _key
-      _type
-      x
-      y
-      height
-      width
-    }
-    asset {
-      _id
-    }
-  }
-  query HomepageQuery {
+  {
     homepage: sanityHomepage {
       description
       image {
         alt
         asset {
-          fluid(maxWidth: 700) {
-            ...GatsbySanityImageFluid
-            src
-          }
+          gatsbyImageData(
+            layout: CONSTRAINED
+            placeholder: BLURRED
+            formats: AUTO
+          )
         }
       }
       projects {
@@ -423,14 +468,21 @@ export const IndexQuery = graphql`
       }
       collections {
         title
-        id
-        description
         slug {
           current
         }
         mainImage {
-          ...SanityImage
+          asset {
+            gatsbyImageData(
+              placeholder: BLURRED
+              layout: CONSTRAINED
+              formats: AUTO
+              height: 304
+              width: 512
+            )
+          }
         }
+        description
       }
     }
   }

@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { Paragraph } from './Paragraphs'
 import { Logo } from './Logo'
-import { LogoDarkmode } from './LogoDarkmode'
 
 const FooterWrapper = styled.footer`
   display: flex;
@@ -23,7 +22,7 @@ export const Footer = ({ isDarkmode }) => {
   return (
     <FooterWrapper>
       <LogoWrapper>
-        <Logo />
+        <Logo isDarkmode={isDarkmode} />
       </LogoWrapper>
       <FooterParagraph>
         © {new Date().getFullYear()} Matthias Oberholzer

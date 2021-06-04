@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image'
 import { graphql } from 'gatsby'
-import SEO from '../components/seo'
+import Seo from '../components/seo'
 import { PrimaryGrid, above } from '../components/utilities'
-import { H1, H2, Paragraph, Overlay } from '../components/elements'
+import { H1, H2, Paragraph } from '../components/elements'
 import { Twitter, Instagram, GitHub, Facebook, Mail } from 'react-feather'
 
 export default function About({ data }) {
@@ -13,22 +13,24 @@ export default function About({ data }) {
   const description = `My name is Matthias Oberholzer. I live in Schleedorf, Austria. My passions are designing things, taking photos and coding coole websites.`
   return (
     <>
-      <SEO
+      <Seo
         title="Some infos about this dude | Matthias Oberholzer"
         description={description}
       />
-      <Overlay title="about" />
       <AboutContainer>
         <H1>Here is some stuff about me.</H1>
         <Paragraph>{about.description}</Paragraph>
-        <AboutImage fluid={about.image.asset.fluid} alt={about.image.alt} />
+        <AboutImage
+          image={about.image.asset.gatsbyImageData}
+          alt={about.image.alt}
+        />
 
         <H2>Find me there</H2>
         <AboutLinks>
           <motion.a
             whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
-            href="https://twitter.com/codingMot"
+            href="https://twitter.com/motcodes"
             target="_blank"
             rel="noopener"
           >
@@ -48,7 +50,7 @@ export default function About({ data }) {
           <motion.a
             whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
-            href="https://github.com/codingMot"
+            href="https://github.com/motcodes"
             target="_blank"
             rel="noopener"
           >
@@ -184,16 +186,20 @@ const AboutLinks = styled.div`
 `
 
 export const AboutQuery = graphql`
-  query AboutPageQuery {
+  {
     about: sanityAbout {
       description
+      id
       image {
-        alt
         asset {
-          fluid(maxWidth: 1024) {
-            ...GatsbySanityImageFluid
-          }
+          gatsbyImageData(
+            formats: AUTO
+            width: 512
+            placeholder: BLURRED
+            layout: CONSTRAINED
+          )
         }
+        alt
       }
     }
   }

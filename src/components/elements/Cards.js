@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { motion, useAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { H3 } from './Headings'
 import { Paragraph } from './Paragraphs'
 import { A } from './Links'
@@ -14,16 +14,24 @@ export const Card = ({
   link,
   className,
 }) => {
-  const [cardRef, cardControls] = useScrollInView()
+  const [cardRef, cardControls] = useScrollInView({
+    threshold: 0.5,
+    triggerOnce: true,
+  })
 
   const motionContainer = {
-    initial: {
+    rest: {
+      y: 32,
       opacity: 0,
+      visibility: `hidden`,
     },
     scroll: {
+      y: 0,
       opacity: 1,
+      visibility: `visible`,
       transition: {
-        delayChildren: 0.5,
+        duration: 0.33,
+        ease: [0.22, 0.38, 0.545, 0.995],
       },
     },
   }
@@ -42,7 +50,7 @@ export const Card = ({
       layout
       ref={cardRef}
       className={className}
-      initial="initial"
+      initial="rest"
       animate={cardControls}
       variants={motionContainer}
     >

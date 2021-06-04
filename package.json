@@ -5,22 +5,22 @@
   "version": "1.1.0",
   "author": "Matthias Oberholzer <matthias.m.oberholzer@gmail.com>",
   "dependencies": {
-    "@sanity/block-content-to-react": "^2.0.7",
+    "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/image-url": "^0.140.18",
     "babel-plugin-styled-components": "^1.10.7",
-    "dotenv": "^8.2.0",
+    "dotenv": "^10.0.0",
     "framer-motion": "latest",
     "fs": "0.0.1-security",
     "gatsby": "latest",
     "gatsby-plugin-image": "^1.6.0",
-    "gatsby-plugin-manifest": "^2.2.16",
+    "gatsby-plugin-manifest": "^3.6.0",
     "gatsby-plugin-portal": "^1.0.7",
     "gatsby-plugin-react-helmet-async": "latest",
     "gatsby-plugin-sharp": "^3.6.0",
-    "gatsby-plugin-sitemap": "^2.2.14",
-    "gatsby-plugin-styled-components": "^3.3.4",
+    "gatsby-plugin-sitemap": "^4.2.0",
+    "gatsby-plugin-styled-components": "^4.6.0",
     "gatsby-source-filesystem": "^3.6.0",
-    "gatsby-source-sanity": "^5.0.6",
+    "gatsby-source-sanity": "^7.0.0",
     "gatsby-transformer-sharp": "^3.6.0",
     "prop-types": "^15.7.2",
     "react": "latest",
@@ -33,14 +33,14 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "babel-loader": "^8.0.6",
-    "prettier": "^1.18.2"
+    "prettier": "^2.3.0"
   },
   "keywords": [
     "gatsby"
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build -p 8000",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",

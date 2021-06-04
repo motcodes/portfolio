@@ -1,25 +1,26 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
-import { CollectionHeader, Overlay } from '../elements'
+import { Helmet } from 'react-helmet-async'
+import { CollectionHeader } from '../elements'
 import PortableText from '../helpers/portableText'
 import { above } from '../utilities'
-import SEO from '../seo'
-import { imageUrlFor, buildImageObj } from '../helpers'
-import { Helmet } from 'react-helmet-async'
-import { SharedAnimationLayout } from '../layouts/SharedAnimationLayout'
+import Seo from '../seo'
 
 export default function Collection({ data }) {
-  const { title, publishedAt, mainImage, slug, _rawBody } = data.collection
+  const {
+    title,
+    publishedAt,
+    mainImage,
+    seoImage,
+    slug,
+    _rawBody,
+  } = data.collection
   return (
     <>
-      {/* <SharedAnimationLayout> */}
-      <SEO
+      <Seo
         title={`${title} - a Collection by Matthias Oberholzer`}
-        img={imageUrlFor(buildImageObj(mainImage))
-          .width(1200)
-          .height(628)
-          .url()}
+        img={seoImage.url}
         date={publishedAt}
       />
       <Helmet>
@@ -30,12 +31,14 @@ export default function Collection({ data }) {
           />
         ) : null}
       </Helmet>
-      {/* <Overlay title="collection" /> */}
-      <CollectionHeader imgSrc={mainImage} title={title} slug={slug} />
+      <CollectionHeader
+        image={mainImage.asset.gatsbyImageData}
+        title={title}
+        slug={slug.current}
+      />
       <Text>
         <PortableText blocks={_rawBody} />
       </Text>
-      {/* </SharedAnimationLayout> */}
     </>
   )
 }
@@ -108,7 +111,20 @@ export const collectionQuery = graphql`
         current
       }
       mainImage {
-        ...SanityImage
+        asset {
+          gatsbyImageData(
+            width: 1440
+            placeholder: BLURRED
+            layout: CONSTRAINED
+            formats: AUTO
+            height: 512
+          )
+        }
+      }
+      seoImage: mainImage {
+        asset {
+          url
+        }
       }
       _rawBody
     }

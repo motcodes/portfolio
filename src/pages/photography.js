@@ -1,27 +1,19 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
-import {
-  H1,
-  Paragraph,
-  H2,
-  CollectionPreview,
-  Overlay,
-} from '../components/elements'
-import SEO from '../components/seo'
+import { H1, Paragraph, H2, CollectionPreview } from '../components/elements'
+import Seo from '../components/seo'
 import { above } from '../components/utilities'
-import { SharedAnimationLayout } from '../components/layouts/SharedAnimationLayout'
 
 export default function Photography({ data }) {
-  const collections = data.collections.edges.map(edge => edge.node)
+  const collections = data.allCollections.nodes
   const description = `I started taking pictures in 2018. Two months before I visited New York for the second time. Basically, I study photography in one of the most beautiful places in the world. But also to one of the swiftest and most scary places in the world, which can face a person from a simple village.`
   return (
     <>
-      <SEO
+      <Seo
         title="Photography Collections by Matthias Oberholzer"
         description={description}
       />
-      {/* <Overlay title="photography" /> */}
       <DescriptionContainer>
         <Heading1>Some collections of my photos.</Heading1>
         <Description>{description}</Description>
@@ -32,10 +24,10 @@ export default function Photography({ data }) {
         <CollectionList>
           {collections.map(node => (
             <CollectionPreview
-              imgSrc={node.mainImage}
-              title={node.title}
               key={node.id}
-              slug={node.slug}
+              image={node.mainImage.asset.gatsbyImageData}
+              title={node.title}
+              slug={node.slug.current}
             />
           ))}
         </CollectionList>
@@ -83,39 +75,24 @@ const CollectionList = styled.div`
 `
 
 export const query = graphql`
-  fragment SanityImage on SanityImage {
-    crop {
-      _key
-      _type
-      top
-      bottom
-      left
-      right
-    }
-    hotspot {
-      _key
-      _type
-      x
-      y
-      height
-      width
-    }
-    asset {
-      _id
-    }
-  }
-  query CollectionQuery {
-    collections: allSanityCollection {
-      edges {
-        node {
-          id
-          title
-          description
-          slug {
-            current
-          }
-          mainImage {
-            ...SanityImage
+  {
+    allCollections: allSanityCollection {
+      nodes {
+        id
+        title
+        description
+        slug {
+          current
+        }
+        mainImage {
+          asset {
+            gatsbyImageData(
+              width: 1440
+              placeholder: BLURRED
+              layout: CONSTRAINED
+              formats: AUTO
+              height: 512
+            )
           }
         }
       }

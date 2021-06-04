@@ -1,14 +1,11 @@
 import { useEffect } from 'react'
 import { useAnimation } from 'framer-motion'
 
-export const useAnimationOnMount = (
-  animationName = 'animate',
-  dependencies = []
-) => {
+export const useAnimationOnMount = (animationName = 'animate') => {
   const controls = useAnimation()
   useEffect(() => {
     controls.start(animationName)
-  }, dependencies)
+  }, [animationName, controls])
 
   return controls
 }

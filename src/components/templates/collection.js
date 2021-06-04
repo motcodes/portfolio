@@ -33,6 +33,7 @@ export default function Collection({ data }) {
       </Helmet>
       <CollectionHeader
         image={mainImage.asset.gatsbyImageData}
+        alt={title}
         title={title}
         slug={slug.current}
       />

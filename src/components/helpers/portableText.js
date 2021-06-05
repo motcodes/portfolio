@@ -9,12 +9,7 @@ const serializer = {
   types: {
     mainImage: props => (
       <figure>
-        <img
-          src={urlFor(props.node.asset)
-            .width(600)
-            .url()}
-          alt={props.node.alt}
-        />
+        <img src={urlFor(props.node.asset).url()} alt={props.node.alt} />
       </figure>
     ),
   },

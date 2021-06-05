@@ -3,7 +3,10 @@ import clientConfig from '../../../client-config'
 import BasePortableText from '@sanity/block-content-to-react'
 import imageUrlBuilder from '@sanity/image-url'
 
-const builder = imageUrlBuilder(clientConfig.sanity)
+const builder = imageUrlBuilder({
+  projectId: process.env.SANITY_PROJECT_ID,
+  dataset: process.env.SANITY_PROJECT_DATASET,
+})
 
 export function imageUrlFor(source) {
   return builder.image(source)
@@ -18,7 +21,7 @@ const serializer = {
           <img
             src={url}
             alt={props.node.alt || 'collection Image'}
-            srcSet={`https://cdn.sanity.io/images/${clientConfig.sanity.projectId}/${clientConfig.sanity.dataset}/${props.node.asset._ref}`}
+            srcSet={`https://cdn.sanity.io/images/${process.env.SANITY_PROJECT_ID}/${process.env.SANITY_PROJECT_DATASET}/${props.node.asset._ref}`}
           />
         </figure>
       )

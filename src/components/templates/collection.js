@@ -9,16 +9,13 @@ import Seo from '../seo'
 
 export default function Collection({ pageContext }) {
   const {
-    id,
     description,
     title,
     publishedAt,
     mainImage,
-    slug,
     categories,
     _rawBody,
   } = pageContext
-  console.log('pageContext :', categories)
   return (
     <>
       <Seo

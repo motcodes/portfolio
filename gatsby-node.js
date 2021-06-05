@@ -37,9 +37,7 @@ exports.createPages = ({ graphql, actions, reporter }) => {
   `).then(({ data, errors }) => {
     if (errors) throw errors
     const collectionNodes = data.collections.nodes
-    // console.log('collectionNodes :', collectionNodes[0])
     collectionNodes.forEach(node => {
-      // const { id, slug } = node.node
       reporter.info(`Creating photo collection page: ${node.slug.current}`)
 
       createPage({

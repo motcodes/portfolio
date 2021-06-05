@@ -8,28 +8,45 @@ exports.createPages = ({ graphql, actions, reporter }) => {
   return graphql(`
     {
       collections: allSanityCollection {
-        edges {
-          node {
-            id
-            slug {
-              current
+        nodes {
+          title
+          publishedAt
+          id
+          description
+          categories {
+            title
+          }
+          slug {
+            current
+          }
+          mainImage {
+            asset {
+              gatsbyImageData(
+                width: 1440
+                placeholder: BLURRED
+                layout: CONSTRAINED
+                formats: AUTO
+                height: 512
+              )
             }
           }
+          _rawBody
         }
       }
     }
-  `).then(result => {
-    if (result.errors) throw result.errors
-    const collectionEdges = result.data.collections.edges
-    collectionEdges.forEach(edge => {
-      const { id, slug } = edge.node
-      reporter.info(`Creating photo collection page: ${slug.current}`)
+  `).then(({ data, errors }) => {
+    if (errors) throw errors
+    const collectionNodes = data.collections.nodes
+    // console.log('collectionNodes :', collectionNodes[0])
+    collectionNodes.forEach(node => {
+      // const { id, slug } = node.node
+      reporter.info(`Creating photo collection page: ${node.slug.current}`)
 
       createPage({
-        path: `/collections/${slug.current}/`,
+        path: `/collections/${node.slug.current}/`,
         component: collectionTemplate,
         context: {
-          id,
+          ...node,
         },
       })
     })

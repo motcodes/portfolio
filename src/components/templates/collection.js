@@ -7,20 +7,24 @@ import PortableText from '../helpers/portableText'
 import { above } from '../utilities'
 import Seo from '../seo'
 
-export default function Collection({ data }) {
+export default function Collection({ pageContext }) {
   const {
+    id,
+    description,
     title,
     publishedAt,
     mainImage,
-    seoImage,
     slug,
+    categories,
     _rawBody,
-  } = data.collection
+  } = pageContext
+  console.log('pageContext :', categories)
   return (
     <>
       <Seo
         title={`${title} - a Collection by Matthias Oberholzer`}
-        img={seoImage.url}
+        description={description}
+        img={mainImage.asset.gatsbyImageData.images.fallback.src}
         date={publishedAt}
       />
       <Helmet>
@@ -33,13 +37,19 @@ export default function Collection({ data }) {
       </Helmet>
       <CollectionHeader
         image={mainImage.asset.gatsbyImageData}
-        alt={title}
+        alt={description}
         title={title}
-        slug={slug.current}
       />
       <Text>
         <PortableText blocks={_rawBody} />
       </Text>
+      {categories.length > 0 && (
+        <CategoryContainer>
+          {categories.map(({ title }) => (
+            <Tag>{title}</Tag>
+          ))}
+        </CategoryContainer>
+      )}
     </>
   )
 }
@@ -102,32 +112,18 @@ const Text = styled.article`
     }
   }
 `
+const CategoryContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 675px;
+  margin: 0 auto;
+  padding: 1rem;
+`
 
-export const collectionQuery = graphql`
-  query CollectionTemplateQuery($id: String!) {
-    collection: sanityCollection(id: { eq: $id }) {
-      title
-      publishedAt
-      slug {
-        current
-      }
-      mainImage {
-        asset {
-          gatsbyImageData(
-            width: 1440
-            placeholder: BLURRED
-            layout: CONSTRAINED
-            formats: AUTO
-            height: 512
-          )
-        }
-      }
-      seoImage: mainImage {
-        asset {
-          url
-        }
-      }
-      _rawBody
-    }
-  }
+const Tag = styled.span`
+  padding: 0.5rem;
+  border-radius: 6px;
+  background-color: hsl(220deg 100% 90%);
+  color: hsl(220deg 100% 37%);
 `

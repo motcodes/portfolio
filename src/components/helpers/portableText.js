@@ -3,7 +3,11 @@ import clientConfig from '../../../client-config'
 import { default as BasePortableText } from '@sanity/block-content-to-react'
 import urlBuilder from '@sanity/image-url'
 
-const urlFor = source => urlBuilder({ ...clientConfig.sanity }).image(source)
+const urlFor = source =>
+  urlBuilder({
+    projectId: clientConfig.sanity.projectId,
+    dataset: clientConfig.sanity.dataset,
+  }).image(source)
 
 const serializer = {
   types: {

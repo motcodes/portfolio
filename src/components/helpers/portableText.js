@@ -1,19 +1,19 @@
 import React from 'react'
 import clientConfig from '../../../client-config'
-import { default as BasePortableText } from '@sanity/block-content-to-react'
-import urlBuilder from '@sanity/image-url'
+import BasePortableText from '@sanity/block-content-to-react'
+import { ImageUrlBuilder } from '@sanity/image-url'
 
-const urlFor = source =>
-  urlBuilder({
-    projectId: clientConfig.sanity.projectId,
-    dataset: clientConfig.sanity.dataset,
-  }).image(source)
+const builder = ImageUrlBuilder(clientConfig.sanity)
+
+export function imageUrlFor(source) {
+  return builder.image(source)
+}
 
 const serializer = {
   types: {
-    mainImage: props => (
+    image: props => (
       <figure>
-        <img src={urlFor(props.node.asset).url()} alt={props.node.alt} />
+        <img src={imageUrlFor(props.node.asset).url()} alt={props.node.alt} />
       </figure>
     ),
   },

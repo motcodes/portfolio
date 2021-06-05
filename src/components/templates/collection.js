@@ -115,6 +115,7 @@ const CategoryContainer = styled.section`
   max-width: 675px;
   margin: 0 auto;
   padding: 1rem;
+  gap: 1rem;
 `
 
 const Tag = styled.span`

@@ -102,6 +102,7 @@ const Seo = ({ description, lang, meta, title, img }) => {
         },
       ].concat(meta)}
     >
+      <meta name="robots" content="index" />
       <link rel="stylesheet" href="https://use.typekit.net/vux8nyf.css" />
     </Helmet>
   )

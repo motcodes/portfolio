@@ -1,9 +1,9 @@
 import React from 'react'
 import clientConfig from '../../../client-config'
 import BasePortableText from '@sanity/block-content-to-react'
-import { ImageUrlBuilder } from '@sanity/image-url'
+import imageUrlBuilder from '@sanity/image-url'
 
-const builder = ImageUrlBuilder(clientConfig.sanity)
+const builder = imageUrlBuilder(clientConfig.sanity)
 
 export function imageUrlFor(source) {
   return builder.image(source)

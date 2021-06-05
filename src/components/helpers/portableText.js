@@ -11,11 +11,14 @@ export function imageUrlFor(source) {
 
 const serializer = {
   types: {
-    image: props => (
-      <figure>
-        <img src={imageUrlFor(props.node.asset).url()} alt={props.node.alt} />
-      </figure>
-    ),
+    image: props => {
+      // console.log(imageUrlFor(props.node.asset).url())
+      return (
+        <figure>
+          <img src={imageUrlFor(props.node.asset).url()} alt={props.node.alt} />
+        </figure>
+      )
+    },
   },
 }
 
@@ -23,7 +26,7 @@ const PortableText = ({ blocks }) => (
   <BasePortableText
     blocks={blocks}
     serializers={serializer}
-    {...clientConfig.sanity}
+    // {...clientConfig.sanity}
   />
 )
 

@@ -11,7 +11,7 @@
     "dotenv": "^10.0.0",
     "framer-motion": "latest",
     "fs": "0.0.1-security",
-    "gatsby": "latest",
+    "gatsby": "^3.14.1",
     "gatsby-plugin-image": "^1.6.0",
     "gatsby-plugin-manifest": "^3.6.0",
     "gatsby-plugin-portal": "^1.0.7",
@@ -26,9 +26,10 @@
     "react": "latest",
     "react-dom": "latest",
     "react-feather": "^2.0.3",
-    "react-helmet-async": "latest",
+    "react-helmet-async": "^1.1.2",
     "react-intersection-observer": "^8.26.1",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "use-media": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

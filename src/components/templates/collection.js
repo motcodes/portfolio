@@ -7,14 +7,8 @@ import { above } from '../utilities'
 import Seo from '../seo'
 
 export default function Collection({ pageContext }) {
-  const {
-    description,
-    title,
-    publishedAt,
-    mainImage,
-    categories,
-    _rawBody,
-  } = pageContext
+  const { description, title, publishedAt, mainImage, categories, _rawBody } =
+    pageContext
   return (
     <>
       <Seo
@@ -42,7 +36,7 @@ export default function Collection({ pageContext }) {
       {categories.length > 0 && (
         <CategoryContainer>
           {categories.map(({ title }) => (
-            <Tag>{title}</Tag>
+            <Tag key={title}>{title}</Tag>
           ))}
         </CategoryContainer>
       )}

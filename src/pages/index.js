@@ -238,7 +238,7 @@ const IndexPage = ({ data }) => {
         >
           expierence &amp; projects
         </Heading2>
-        {homepage.projects.map(project => (
+        {homepage.projects.map((project) => (
           <ProjectCard
             key={project.id}
             title={project.title}
@@ -261,7 +261,7 @@ const IndexPage = ({ data }) => {
         {homepage.collections.map((collection, index) => (
           <CollectionCard
             collection={collection}
-            key={collection.id}
+            key={collection.id + index}
             delay={index}
           />
         ))}

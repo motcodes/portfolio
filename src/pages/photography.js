@@ -7,6 +7,9 @@ import { above } from '../components/utilities'
 
 export default function Photography({ data }) {
   const collections = data.allCollections.nodes
+    .slice()
+    .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+
   const description = `I started taking pictures in 2018. Two months before I visited New York for the second time. Basically, I study photography in one of the most beautiful places in the world. But also to one of the swiftest and most scary places in the world, which can face a person from a simple village.`
   return (
     <>
@@ -22,7 +25,7 @@ export default function Photography({ data }) {
       <CollectionContainer>
         <CollectionHeading>collections</CollectionHeading>
         <CollectionList>
-          {collections.map(node => (
+          {collections.map((node) => (
             <CollectionPreview
               key={node.id}
               image={node.mainImage.asset.gatsbyImageData}
@@ -84,6 +87,7 @@ export const query = graphql`
         slug {
           current
         }
+        publishedAt
         mainImage {
           asset {
             gatsbyImageData(

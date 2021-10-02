@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Helmet } from 'react-helmet-async'
-import { CollectionHeader } from '../elements'
+import { ChevronUp } from 'react-feather'
+import { Button, CollectionHeader } from '../elements'
 import PortableText from '../helpers/portableText'
 import { above } from '../utilities'
 import Seo from '../seo'
@@ -9,6 +10,13 @@ import Seo from '../seo'
 export default function Collection({ pageContext }) {
   const { description, title, publishedAt, mainImage, categories, _rawBody } =
     pageContext
+
+  function scrollToTop() {
+    document.documentElement.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
   return (
     <>
       <Seo
@@ -34,12 +42,18 @@ export default function Collection({ pageContext }) {
         <PortableText blocks={_rawBody} />
       </Text>
       {categories.length > 0 && (
-        <CategoryContainer>
+        <CenterContainer>
           {categories.map(({ title }) => (
             <Tag key={title}>{title}</Tag>
           ))}
-        </CategoryContainer>
+        </CenterContainer>
       )}
+      <CenterContainer>
+        <Button onClick={scrollToTop}>
+          To Top
+          <ChevronUp style={{ marginLeft: 8 }} />
+        </Button>
+      </CenterContainer>
     </>
   )
 }
@@ -102,7 +116,7 @@ const Text = styled.article`
     }
   }
 `
-const CategoryContainer = styled.section`
+const CenterContainer = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -117,4 +131,7 @@ const Tag = styled.span`
   border-radius: 6px;
   background-color: hsl(220deg 100% 90%);
   color: hsl(220deg 100% 37%);
+  background-color: rgba(0, 129, 239, 0.2);
+
+  color: ${({ theme }) => theme.colors.primary};
 `

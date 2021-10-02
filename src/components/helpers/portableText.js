@@ -1,23 +1,11 @@
 import React from 'react'
-import clientConfig from '../../../client-config'
 import BasePortableText from '@sanity/block-content-to-react'
-import imageUrlBuilder from '@sanity/image-url'
-
-const builder = imageUrlBuilder(clientConfig.sanity)
-
-export function imageUrlFor(source) {
-  return builder.image(source)
-}
+import { Figure } from '../utilities'
+import clientConfig from '../../../client-config'
 
 const serializer = {
   types: {
-    image: (props) => {
-      return (
-        <figure>
-          <img src={imageUrlFor(props.node.asset).url()} alt={props.node.alt} />
-        </figure>
-      )
-    },
+    image: Figure,
   },
 }
 
@@ -25,7 +13,7 @@ const PortableText = ({ blocks }) => (
   <BasePortableText
     blocks={blocks}
     serializers={serializer}
-    // {...clientConfig.sanity}
+    {...clientConfig.sanity}
   />
 )
 

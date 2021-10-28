@@ -1,8 +1,6 @@
 import React from 'react'
-import { AnimatePresence, AnimateSharedLayout } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 
 export const SharedAnimationLayout = ({ children }) => (
-  <AnimateSharedLayout type="crossfade">
-    <AnimatePresence>{children}</AnimatePresence>
-  </AnimateSharedLayout>
+  <AnimatePresence exitBeforeEnter>{children}</AnimatePresence>
 )

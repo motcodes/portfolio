@@ -39,8 +39,8 @@ export default function Layout({
           key={location.pathname}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.666 }}
           style={{
             paddingLeft: location.pathname.includes('collections')
               ? `0`

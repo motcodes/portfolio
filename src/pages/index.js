@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import { Twitter, Instagram, GitHub, Mail, Facebook, Link } from 'react-feather'
+import { Twitter, Instagram, GitHub, Mail, Link } from 'react-feather'
 import Seo from '../components/seo'
 import { useAnimationOnMount, useScrollInView } from '../components/helpers'
 import { above } from '../components/utilities'
@@ -130,6 +130,7 @@ const IndexPage = ({ data }) => {
         initial="rest"
         animate={indruductionControls}
         variants={introMotion}
+        key="intro"
       >
         <Heading1 variants={introItemMotion}>
           Hello There! <span>I’m Matt.</span>
@@ -181,16 +182,6 @@ const IndexPage = ({ data }) => {
             variants={introItemMotion}
           >
             <Mail title="Email from Matthias Oberholzer" />
-          </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.25 }}
-            whileTap={{ scale: 0.9 }}
-            href="https://facebook.com/mat.oberholzer"
-            target="_blank"
-            rel="noopener"
-            variants={introItemMotion}
-          >
-            <Facebook title="Facebook Link to Matthias Oberholzer" />
           </motion.a>
         </SocialMediaContainer>
         <ImageContainer variants={introItemMotion}>
@@ -402,13 +393,13 @@ const Projects = styled.div`
   display: grid;
   justify-content: center;
   grid-template-columns: 1fr;
-  grid-row-gap: 1rem;
+  grid-row-gap: 2rem;
   ${above.med`
     // grid-template-columns: 1fr 8fr 1fr;
     grid-template-columns: 1fr 1fr;
     max-width: 720px;
     margin: 0 auto 2rem;
-    grid-row-gap: 2rem;
+    grid-row-gap: 4rem;
   `}
 `
 const Collections = styled.div`

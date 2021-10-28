@@ -18,7 +18,7 @@ const introMotion = {
     opacity: 1,
     transition: {
       when: 'beforeChildren',
-      staggerChildren: 0.4,
+      staggerChildren: 0.33,
       ease: [0.22, 0.38, 0.545, 0.995],
     },
   },
@@ -118,7 +118,7 @@ const IndexPage = ({ data }) => {
     const pageHeight = window.innerHeight
     const intro = document.getElementById('intro').offsetHeight
     const header = document.getElementsByTagName('header')[0].clientHeight
-    setLinePosition(pageHeight - (intro + header) + 96)
+    setLinePosition(pageHeight - (intro + header))
   }, [])
 
   return (
@@ -130,8 +130,13 @@ const IndexPage = ({ data }) => {
         initial="rest"
         animate={indruductionControls}
         variants={introMotion}
-        key="intro"
       >
+        <ImageContainer variants={introItemMotion}>
+          <Image
+            image={homepage.image.asset.gatsbyImageData}
+            alt={homepage.image.alt}
+          />
+        </ImageContainer>
         <Heading1 variants={introItemMotion}>
           Hello There! <span>I’m Matt.</span>
         </Heading1>
@@ -184,12 +189,6 @@ const IndexPage = ({ data }) => {
             <Mail title="Email from Matthias Oberholzer" />
           </motion.a>
         </SocialMediaContainer>
-        <ImageContainer variants={introItemMotion}>
-          <Image
-            image={homepage.image.asset.gatsbyImageData}
-            alt={homepage.image.alt}
-          />
-        </ImageContainer>
       </Indruduction>
       <LineWrapper>
         <motion.svg
@@ -280,7 +279,7 @@ const Indruduction = styled(motion.section)`
   grid-column-gap: 1rem;
   margin-top: 24px;
   margin-bottom: ${({ linePosition }) =>
-    linePosition > 0 ? linePosition / 1.5 + 'px' : '128px'};
+    linePosition > 0 ? linePosition / 1.5 + 'px' : '10rem'};
   ${above.med`
     grid-template-rows: 1fr auto 1fr;
     grid-template-columns: 6fr 4fr;
@@ -343,6 +342,7 @@ const SocialMediaContainer = styled(motion.div)`
 const ImageContainer = styled(motion.div)`
   grid-column: 1;
   grid-row: 1 / 2;
+  border-radius: 0.5rem;
   ${above.med`
     grid-row: 1 / 4;
     grid-column: 2;`}
@@ -353,8 +353,9 @@ const Image = styled(GatsbyImage)`
   border-radius: 0.5rem;
   margin-bottom: 1rem;
   object-fit: cover;
-  picture img {
-    object-position: 0 15% !important;
+  img {
+    border-radius: 0.5rem;
+    /* object-position: 0 15% !important; */
   }
 
   ${above.med`
@@ -373,7 +374,7 @@ const LineWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3rem auto;
+  margin: 6rem auto 8rem;
   text-align: center;
   svg {
     stroke: ${({ theme }) => theme.colors.text};

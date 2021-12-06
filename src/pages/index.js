@@ -181,7 +181,7 @@ const IndexPage = ({ data }) => {
           <motion.a
             whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
-            href="mailto:matthias.m.oberholzer@gmail.com"
+            href="mailto:hello@mot.codes"
             target="_blank"
             rel="noopener"
             variants={introItemMotion}

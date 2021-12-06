@@ -3,7 +3,7 @@
   "private": true,
   "description": "The officle website of Matthias Oberholzer",
   "version": "1.1.0",
-  "author": "Matthias Oberholzer <matthias.m.oberholzer@gmail.com>",
+  "author": "Matthias Oberholzer <hello@mot.codes>",
   "dependencies": {
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/image-url": "^1.0.1",

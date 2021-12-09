@@ -14,14 +14,14 @@ export function imageUrlFor(source) {
 
 const serializer = {
   types: {
-    image: props => {
+    image: (props) => {
       const url = imageUrlFor(props.node.asset).url()
       return (
         <figure>
           <img
             src={url}
             alt={props.node.alt || 'collection Image'}
-            srcSet={`https://cdn.sanity.io/images/${process.env.SANITY_PROJECT_ID}/${process.env.SANITY_PROJECT_DATASET}/${props.node.asset._ref}`}
+            srcSet={`https://cdn.sanity.io/images/${clientConfig.sanity.projectId}/${clientConfig.sanity.dataset}/${props.node.asset._ref}`}
           />
         </figure>
       )

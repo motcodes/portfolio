@@ -104,6 +104,7 @@ const h2Motion = {
 
 const IndexPage = ({ data }) => {
   const { homepage } = data
+  console.log('homepage :', homepage)
   const [linePosition, setLinePosition] = useState(0)
   const [lineRef, lineControls] = useScrollInView({
     threshold: 1,
@@ -251,7 +252,7 @@ const IndexPage = ({ data }) => {
         {homepage.collections.map((collection, index) => (
           <CollectionCard
             collection={collection}
-            key={collection.id + index}
+            key={collection.slug.current}
             delay={index}
           />
         ))}

@@ -78,16 +78,6 @@ export default function About({ data }) {
             </svg>
             <span>Polywork</span>
           </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.25 }}
-            whileTap={{ scale: 0.9 }}
-            href="https://facebook.com/mat.oberholzer"
-            target="_blank"
-            rel="noopener"
-          >
-            <Facebook title="Facebook Link to Matthias Oberholzer" />
-            <span>Facebook</span>
-          </motion.a>
         </AboutLinks>
         <H2>Wanna meet up for a coffee?</H2>
         <AboutLinks>

@@ -22,6 +22,7 @@ export default function Layout({
   BackgroundDarkmode,
 }) {
   const { isDarkmode, toggle } = useDarkmode()
+  console.log('isDarkmode :', isDarkmode)
 
   useEffect(() => {
     document.documentElement.style.setProperty(

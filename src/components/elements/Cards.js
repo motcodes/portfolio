@@ -7,6 +7,7 @@ import { A } from './Links'
 import { useScrollInView } from '../helpers'
 
 export const Card = ({
+  cardKey,
   title,
   subtitle,
   timeperiod,
@@ -47,6 +48,7 @@ export const Card = ({
 
   return (
     <CardContainer
+      key={cardKey}
       layout
       ref={cardRef}
       className={className}

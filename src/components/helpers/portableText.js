@@ -1,3 +1,4 @@
+import React from 'react'
 import BasePortableText from '@sanity/block-content-to-react'
 import { Figure } from '../utilities'
 import clientConfig from '../../../client-config'

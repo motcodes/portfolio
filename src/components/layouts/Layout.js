@@ -21,7 +21,7 @@ export default function Layout({
   BackgroundLightmode,
   BackgroundDarkmode,
 }) {
-  const [isDarkmode, toggleDarkmode] = useDarkmode()
+  const { isDarkmode, toggle } = useDarkmode()
 
   useEffect(() => {
     document.documentElement.style.setProperty(
@@ -31,7 +31,7 @@ export default function Layout({
   }, [])
 
   return (
-    <ThemeProvider theme={isDarkmode === true ? DarkTheme : LightTheme}>
+    <ThemeProvider theme={isDarkmode ? DarkTheme : LightTheme}>
       <Seo title="Matthias Oberholzer" />
       <GlobalStyle />
       <SharedAnimationLayout>
@@ -39,8 +39,8 @@ export default function Layout({
           key={location.pathname}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.666 }}
           style={{
             paddingLeft: location.pathname.includes('collections')
               ? `0`
@@ -53,9 +53,9 @@ export default function Layout({
               : BackgroundLightmode,
           }}
         >
-          <Header isDarkmode={isDarkmode} toggleDarkmode={toggleDarkmode} />
+          <Header isDarkmode={isDarkmode} toggleDarkmode={toggle} />
           <main>{children}</main>
-          <Footer isDarkmode={isDarkmode} toggleDarkmode={toggleDarkmode} />
+          <Footer isDarkmode={isDarkmode} toggleDarkmode={toggle} />
         </Container>
       </SharedAnimationLayout>
     </ThemeProvider>

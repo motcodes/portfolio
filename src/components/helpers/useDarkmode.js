@@ -1,23 +1,38 @@
-import { useCallback } from 'react'
-import { useMediaQuery } from './useMedia'
+import { useEffect } from 'react'
 import { useLocalStorage } from './useLocalStorage'
 
-function useDarkmode() {
-  const [enabledState, setEnabledState] = useLocalStorage('dark-mode-enabled')
-  const prefersDarkmode = usePrefersDarkmode()
+export function useDarkmode(defaultValue = false) {
+  const getPrefersScheme = () => {
+    // Prevents SSR issues
+    if (typeof window !== 'undefined') {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
 
-  const enabled =
-    typeof enabledState !== 'undefined' ? enabledState : prefersDarkmode
+    return !!defaultValue
+  }
 
-  const toggle = useCallback(() => setEnabledState(!enabled), [
-    enabled,
-    setEnabledState,
-  ])
+  const [isDarkmode, setDarkMode] = useLocalStorage(
+    'darkMode',
+    getPrefersScheme()
+  )
 
-  return [enabledState, toggle]
+  // Update darkMode if os prefers changes
+  useEffect(() => {
+    const handler = () => setDarkMode(getPrefersScheme)
+    const matchMedia = window.matchMedia('(prefers-color-scheme: dark)')
+
+    matchMedia.addEventListener('change', handler)
+
+    return () => {
+      matchMedia.removeEventListener('change', handler)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return {
+    isDarkmode,
+    toggle: () => setDarkMode((prev) => !prev),
+    enable: () => setDarkMode(true),
+    disable: () => setDarkMode(false),
+  }
 }
-
-function usePrefersDarkmode() {
-  return useMediaQuery('prefers-color-scheme: dark')
-}
-export { useDarkmode }

@@ -16,7 +16,7 @@ export function ImageCard({ collection, className, delay }) {
 
   const motionContainer = {
     rest: {
-      y: 32,
+      y: 24,
       opacity: 0,
       visibility: `hidden`,
     },
@@ -26,7 +26,7 @@ export function ImageCard({ collection, className, delay }) {
       visibility: `visible`,
       transition: {
         duration: 0.6,
-        delay: 0.2 + 0.1 * delay,
+        delay: 0.1 + 0.1 * delay,
         ease: [0.22, 0.38, 0.545, 0.995],
       },
     },

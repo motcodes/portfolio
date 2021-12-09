@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import { Twitter, Instagram, GitHub, Mail, Facebook, Link } from 'react-feather'
+import { Twitter, Instagram, GitHub, Mail, Link } from 'react-feather'
 import Seo from '../components/seo'
 import { useAnimationOnMount, useScrollInView } from '../components/helpers'
 import { above } from '../components/utilities'
@@ -18,7 +18,7 @@ const introMotion = {
     opacity: 1,
     transition: {
       when: 'beforeChildren',
-      staggerChildren: 0.4,
+      staggerChildren: 0.33,
       ease: [0.22, 0.38, 0.545, 0.995],
     },
   },
@@ -118,7 +118,7 @@ const IndexPage = ({ data }) => {
     const pageHeight = window.innerHeight
     const intro = document.getElementById('intro').offsetHeight
     const header = document.getElementsByTagName('header')[0].clientHeight
-    setLinePosition(pageHeight - (intro + header) + 96)
+    setLinePosition(pageHeight - (intro + header))
   }, [])
 
   return (
@@ -131,6 +131,12 @@ const IndexPage = ({ data }) => {
         animate={indruductionControls}
         variants={introMotion}
       >
+        <ImageContainer variants={introItemMotion}>
+          <Image
+            image={homepage.image.asset.gatsbyImageData}
+            alt={homepage.image.alt}
+          />
+        </ImageContainer>
         <Heading1 variants={introItemMotion}>
           Hello There! <span>I’m Matt.</span>
         </Heading1>
@@ -175,52 +181,14 @@ const IndexPage = ({ data }) => {
           <motion.a
             whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
-            href="https://updates.matthiasoberholzer.com"
-            target="_blank"
-            rel="noopener"
-            variants={introItemMotion}
-          >
-            <svg
-              viewBox="0 0 250 250"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M0 199.219V50.7813C0 22.6563 22.6562 0 50.7812 0H199.219C227.344 0 250 22.6563 250 50.7813V122.656C250 150.781 227.344 173.437 199.219 173.437H170.312V199.219C170.312 227.344 147.656 250 119.531 250H50.7812C22.6562 250 0 227.344 0 199.219ZM78.1249 78.9063H13.2812V50C13.2812 29.6875 29.6875 12.5 50.7812 12.5H78.1249V78.9063ZM199.219 160.937H171.875V93.7498H236.719V123.437C236.719 143.75 220.312 160.937 199.219 160.937ZM119.531 237.5H92.1871V175.781H157.031V200C157.031 220.312 140.625 237.5 119.531 237.5ZM92.1871 160.937H157.031V93.7498H92.1871V160.937ZM171.875 78.9063H236.719V50.7813C236.719 29.6875 219.531 13.2813 199.219 13.2813H171.875V78.9063ZM157.031 78.9063H92.1871V12.5H157.031V78.9063ZM12.5 175V199.219C12.5 220.312 29.6875 236.719 50 236.719H78.1249V175H12.5ZM78.1249 160.937H12.5V93.7498H78.1249V160.937Z"
-                fill="currentColor"
-                strokeWidth="1.5"
-              />
-            </svg>
-          </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.25 }}
-            whileTap={{ scale: 0.9 }}
-            href="mailto:matthias.m.oberholzer@gmail.com"
+            href="mailto:hello@mot.codes"
             target="_blank"
             rel="noopener"
             variants={introItemMotion}
           >
             <Mail title="Email from Matthias Oberholzer" />
           </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.25 }}
-            whileTap={{ scale: 0.9 }}
-            href="https://facebook.com/mat.oberholzer"
-            target="_blank"
-            rel="noopener"
-            variants={introItemMotion}
-          >
-            <Facebook title="Facebook Link to Matthias Oberholzer" />
-          </motion.a>
         </SocialMediaContainer>
-        <ImageContainer variants={introItemMotion}>
-          <Image
-            image={homepage.image.asset.gatsbyImageData}
-            alt={homepage.image.alt}
-          />
-        </ImageContainer>
       </Indruduction>
       <LineWrapper>
         <motion.svg
@@ -283,7 +251,7 @@ const IndexPage = ({ data }) => {
         {homepage.collections.map((collection, index) => (
           <CollectionCard
             collection={collection}
-            key={collection.id}
+            key={collection.id + index}
             delay={index}
           />
         ))}
@@ -311,7 +279,7 @@ const Indruduction = styled(motion.section)`
   grid-column-gap: 1rem;
   margin-top: 24px;
   margin-bottom: ${({ linePosition }) =>
-    linePosition > 0 ? linePosition / 1.5 + 'px' : '128px'};
+    linePosition > 0 ? linePosition / 1.5 + 'px' : '10rem'};
   ${above.med`
     grid-template-rows: 1fr auto 1fr;
     grid-template-columns: 6fr 4fr;
@@ -374,6 +342,7 @@ const SocialMediaContainer = styled(motion.div)`
 const ImageContainer = styled(motion.div)`
   grid-column: 1;
   grid-row: 1 / 2;
+  border-radius: 0.5rem;
   ${above.med`
     grid-row: 1 / 4;
     grid-column: 2;`}
@@ -384,8 +353,9 @@ const Image = styled(GatsbyImage)`
   border-radius: 0.5rem;
   margin-bottom: 1rem;
   object-fit: cover;
-  picture img {
-    object-position: 0 15% !important;
+  img {
+    border-radius: 0.5rem;
+    /* object-position: 0 15% !important; */
   }
 
   ${above.med`
@@ -404,7 +374,7 @@ const LineWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3rem auto;
+  margin: 6rem auto 8rem;
   text-align: center;
   svg {
     stroke: ${({ theme }) => theme.colors.text};
@@ -424,13 +394,13 @@ const Projects = styled.div`
   display: grid;
   justify-content: center;
   grid-template-columns: 1fr;
-  grid-row-gap: 1rem;
+  grid-row-gap: 2rem;
   ${above.med`
     // grid-template-columns: 1fr 8fr 1fr;
     grid-template-columns: 1fr 1fr;
     max-width: 720px;
     margin: 0 auto 2rem;
-    grid-row-gap: 2rem;
+    grid-row-gap: 4rem;
   `}
 `
 const Collections = styled.div`

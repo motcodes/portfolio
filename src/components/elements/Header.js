@@ -90,6 +90,7 @@ export const Header = ({ isDarkmode, toggleDarkmode }) => {
       style={{
         paddingLeft: pathname.includes('collections') ? `1rem` : `0`,
         paddingRight: pathname.includes('collections') ? `1rem` : `0`,
+        maxWidth: pathname.includes('collections') ? `992px` : `960px`,
       }}
     >
       <LogoWrapper to="/">

@@ -22,6 +22,7 @@ const Container = styled(motion.div)`
   max-width: 100vw;
   max-height: calc(100vh - 128px);
 `
+
 const Img = styled(motion(GatsbyImage))`
   width: 100%;
   max-height: calc(100vh - 128px);

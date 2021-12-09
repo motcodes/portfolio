@@ -38,7 +38,8 @@ module.exports = {
     {
       resolve: `gatsby-source-sanity`,
       options: {
-        ...clientConfig.sanity,
+        projectId: process.env.GATSBY_SANITY_PROJECT_ID,
+        dataset: process.env.GATSBY_SANITY_PROJECT_DATASET,
         graphqlTag: 'default',
       },
     },

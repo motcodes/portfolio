@@ -94,12 +94,12 @@ export default function About({ data }) {
           <motion.a
             whileHover={{ scale: 1.124 }}
             whileTap={{ scale: 0.9 }}
-            href="mailto:matthias.m.oberholzer@gmail.com"
+            href="mailto:hello@mot.codes"
             target="_blank"
             rel="noopener"
           >
             <Mail title="Email from Matthias Oberholzer" />
-            <span>matthias.m.oberholzer@gmail.com</span>
+            <span>hello@mot.codes</span>
           </motion.a>
         </AboutLinks>
       </AboutContainer>

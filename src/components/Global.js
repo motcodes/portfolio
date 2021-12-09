@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.colors.text};
     font-family: work-sans, sans-serif;
     background-color: ${({ theme }) => theme.colors.bg};
+    scroll-behavior: smooth;
   }
 
   *, *::before, *::after{

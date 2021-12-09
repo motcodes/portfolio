@@ -81,7 +81,9 @@ const CardContainer = styled(motion.div)`
   cursor: pointer;
 `
 
-const Heading = styled(motion(H3))``
+const Heading = styled(motion(H3))`
+  font-size: clamp(1.25rem, 2.7vw + 0.7rem, 2rem);
+`
 
 const Subtitle = styled.span``
 const InfoContainer = styled(motion.div)`
@@ -91,6 +93,10 @@ const InfoContainer = styled(motion.div)`
 const Timeperiod = styled(motion(Paragraph))`
   color: ${({ theme }) => theme.colors.grey};
 `
-const Description = styled(motion(Paragraph))``
+const Description = styled(motion(Paragraph))`
+  line-height: 1.4;
+`
 
-const ProjectLink = styled(motion(A))``
+const ProjectLink = styled(motion(A))`
+  line-height: 2.5;
+`

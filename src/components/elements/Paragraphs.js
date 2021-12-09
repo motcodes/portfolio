@@ -7,6 +7,10 @@ export const Paragraph = styled.p`
   line-height: 20px;
   color: ${({ theme }) => theme.colors.text};
 
+  @media (prefers-color-scheme: dark) {
+    letter-spacing: 0.3px;
+  }
+
   ${({ size }) => {
     if (size === 'large') {
       return `

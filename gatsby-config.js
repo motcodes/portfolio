@@ -58,5 +58,12 @@ module.exports = {
       options: { failOnError: false },
     },
     `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-plugin-use-dark-mode`,
+      options: {
+        storageKey: 'darkMode',
+        minify: true,
+      },
+    },
   ],
 }

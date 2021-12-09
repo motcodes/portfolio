@@ -104,7 +104,6 @@ const h2Motion = {
 
 const IndexPage = ({ data }) => {
   const { homepage } = data
-  console.log('homepage :', homepage)
   const [linePosition, setLinePosition] = useState(0)
   const [lineRef, lineControls] = useScrollInView({
     threshold: 1,

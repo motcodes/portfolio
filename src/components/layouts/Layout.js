@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 import { motion } from 'framer-motion'
 import { Header, Footer } from '../elements'
@@ -6,6 +6,7 @@ import Seo from '../seo'
 import GlobalStyle from '../Global'
 import { DarkTheme, LightTheme } from '../utilities'
 import { useDarkmode } from '../helpers'
+import { useLocalStorage } from '../helpers/useLocalStorage'
 import { SharedAnimationLayout } from './SharedAnimationLayout'
 import useDarkMode from 'use-dark-mode'
 
@@ -23,12 +24,16 @@ export default function Layout({
   BackgroundDarkmode,
 }) {
   // const { isDarkmode, toggle } = useDarkmode()
-  const { value: isDarkmode, toggle } = useDarkMode(false, {
-    storageKey: null,
-    onChange: null,
-  })
-  console.log('isDarkmode :', isDarkmode)
-  // console.log('isDarkmode :', isDarkmode)
+  // const {
+  //   value: isDarkmode,
+  //   toggle,
+  //   enable,
+  // } = useDarkMode(false, {
+  //   storageKey: 'darkMode',
+  // })
+  // const [theme, setTheme] = useState(LightTheme)
+  // const [bg, setBg] = useState(BackgroundLightmode)
+  // const [darkMode, setDarkMode] = useLocalStorage('darkMode')
 
   useEffect(() => {
     document.documentElement.style.setProperty(
@@ -37,8 +42,15 @@ export default function Layout({
     )
   }, [])
 
+  // useEffect(() => {
+  //   if (isDarkmode) {
+  //     setTheme(DarkTheme)
+  //     setBg(BackgroundDarkmode)
+  //   }
+  // }, [isDarkmode])
+  // console.log(isDarkmode)
   return (
-    <ThemeProvider theme={isDarkmode ? DarkTheme : LightTheme}>
+    <ThemeProvider theme={LightTheme}>
       <Seo title="Matthias Oberholzer" />
       <GlobalStyle />
       <SharedAnimationLayout>
@@ -55,14 +67,12 @@ export default function Layout({
             paddingRight: location.pathname.includes('collections')
               ? `0`
               : `1rem`,
-            backgroundColor: isDarkmode
-              ? BackgroundDarkmode
-              : BackgroundLightmode,
+            backgroundColor: BackgroundLightmode,
           }}
         >
-          <Header isDarkmode={isDarkmode} toggleDarkmode={toggle} />
+          <Header />
           <main>{children}</main>
-          <Footer isDarkmode={isDarkmode} />
+          <Footer />
         </Container>
       </SharedAnimationLayout>
     </ThemeProvider>

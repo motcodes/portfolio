@@ -18,11 +18,11 @@ const FooterParagraph = styled(Paragraph)`
   padding-top: 1rem;
 `
 
-export const Footer = ({ isDarkmode }) => {
+export const Footer = () => {
   return (
     <FooterWrapper>
       <LogoWrapper>
-        <Logo isDarkmode={isDarkmode} />
+        <Logo />
       </LogoWrapper>
       <FooterParagraph>
         © {new Date().getFullYear()} Matthias Oberholzer

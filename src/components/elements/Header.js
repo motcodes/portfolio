@@ -83,7 +83,7 @@ const DarkmodeButton = styled(motion.button)`
   }
 `
 
-export const Header = ({ isDarkmode, toggleDarkmode }) => {
+export const Header = () => {
   const { pathname } = useLocation()
   return (
     <HeaderWrapper
@@ -94,10 +94,10 @@ export const Header = ({ isDarkmode, toggleDarkmode }) => {
       }}
     >
       <LogoWrapper to="/">
-        <Logo isDarkmode={isDarkmode} />
+        <Logo />
       </LogoWrapper>
       <nav>
-        <DarkmodeButton
+        {/* <DarkmodeButton
           whileHover={{ scale: 1.25 }}
           whileTap={{ scale: 0.9 }}
           onClick={toggleDarkmode}
@@ -108,7 +108,7 @@ export const Header = ({ isDarkmode, toggleDarkmode }) => {
           ) : (
             <Sun color={LightGrey} style={{ margin: 0 }} />
           )}
-        </DarkmodeButton>
+        </DarkmodeButton> */}
         <PageLink to="/about/" activeClassName="active">
           About
         </PageLink>

@@ -7,6 +7,7 @@ import GlobalStyle from '../Global'
 import { DarkTheme, LightTheme } from '../utilities'
 import { useDarkmode } from '../helpers'
 import { SharedAnimationLayout } from './SharedAnimationLayout'
+import useDarkMode from 'use-dark-mode'
 
 const Container = styled(motion.div)`
   display: flex;
@@ -21,8 +22,13 @@ export default function Layout({
   BackgroundLightmode,
   BackgroundDarkmode,
 }) {
-  const { isDarkmode, toggle } = useDarkmode()
+  // const { isDarkmode, toggle } = useDarkmode()
+  const { value: isDarkmode, toggle } = useDarkMode(false, {
+    storageKey: null,
+    onChange: null,
+  })
   console.log('isDarkmode :', isDarkmode)
+  // console.log('isDarkmode :', isDarkmode)
 
   useEffect(() => {
     document.documentElement.style.setProperty(
@@ -56,7 +62,7 @@ export default function Layout({
         >
           <Header isDarkmode={isDarkmode} toggleDarkmode={toggle} />
           <main>{children}</main>
-          <Footer isDarkmode={isDarkmode} toggleDarkmode={toggle} />
+          <Footer isDarkmode={isDarkmode} />
         </Container>
       </SharedAnimationLayout>
     </ThemeProvider>

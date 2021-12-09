@@ -6,7 +6,7 @@ import { graphql } from 'gatsby'
 import Seo from '../components/seo'
 import { PrimaryGrid, above } from '../components/utilities'
 import { H1, H2, Paragraph } from '../components/elements'
-import { Twitter, Instagram, GitHub, Facebook, Mail } from 'react-feather'
+import { Twitter, Instagram, GitHub, Mail } from 'react-feather'
 
 export default function About({ data }) {
   const { about } = data

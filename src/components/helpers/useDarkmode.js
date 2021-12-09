@@ -26,7 +26,8 @@ export function useDarkmode(defaultValue = false) {
     return () => {
       matchMedia.removeEventListener('change', handler)
     }
-  }, [getPrefersScheme, setDarkMode])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setDarkMode])
 
   return {
     isDarkmode,

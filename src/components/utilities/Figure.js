@@ -9,7 +9,7 @@ export function imageUrlFor(source) {
 }
 
 export const Figure = ({ node }) => {
-  const imageData = imageUrlFor(node.asset).url()
+  const imageData = imageUrlFor(node.asset).width(1024).url()
   return (
     <figure>
       <img src={imageData} alt={node.alt} />

@@ -1,5 +1,28 @@
-export default function Homepage() {
+const DOM = () => {
   return <h1>Matthias</h1>
+}
+
+const R3F = () => {
+  return <></>
+}
+
+const Page = () => {
+  return (
+    <>
+      <DOM />
+      <R3F r3f />
+    </>
+  )
+}
+
+export default Page
+
+export async function getStaticProps() {
+  return {
+    props: {
+      title: 'Index',
+    },
+  }
 }
 
 export const IndexQuery = `

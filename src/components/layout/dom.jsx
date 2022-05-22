@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import useStore from '@/hooks/useStore'
+import { useStore } from '@/hooks'
 
 const Dom = ({ children }) => {
   const ref = useRef(null)

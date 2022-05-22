@@ -1,11 +1,13 @@
 # dependencies
 /node_modules
+**/node_modules
 
 # testing
 /coverage
 
 # next.js
 /.next/
+**/.next/
 /out/
 
 # production
@@ -40,3 +42,9 @@ report.*.json
 
 # .vscode Debugging
 .vscode/*-debug-profile
+
+# turborepo
+**/.turbo
+**/build/**
+**/dist/**
+**/.next/**

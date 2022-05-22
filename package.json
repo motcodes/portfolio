@@ -1,65 +1,33 @@
 {
   "name": "portfolio",
   "private": true,
-  "description": "The officle website of Matthias Oberholzer",
+  "description": "Portfolio of Matthias Oberholzer",
   "version": "2.0.0",
   "author": "Matthias Oberholzer <hello@mot.codes>",
-  "dependencies": {
-    "@babel/plugin-transform-runtime": "^7.17.0",
-    "@react-three/drei": "^9.11.2",
-    "@react-three/fiber": "^8.0.19",
-    "@sanity/block-content-to-react": "^3.0.0",
-    "@sanity/image-url": "^1.0.1",
-    "babel-plugin-glsl": "^1.0.0",
-    "dotenv": "^10.0.0",
-    "glsl-random": "^0.0.5",
-    "next": "^12.1.6",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-feather": "^2.0.3",
-    "react-intersection-observer": "^8.26.1",
-    "three": "^0.140.2",
-    "three-stdlib": "^2.10.1",
-    "use-media": "^1.4.0",
-    "zustand": "^4.0.0-rc.1"
-  },
-  "devDependencies": {
-    "@next/bundle-analyzer": "^12.0.10",
-    "autoprefixer": "^10.4.2",
-    "eslint": "^8.8.0",
-    "eslint-config-next": "^12.1.6",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-tailwind": "^0.2.1",
-    "file-loader": "^6.2.0",
-    "glslify": "^7.1.1",
-    "glslify-loader": "^2.0.0",
-    "next-compose-plugins": "^2.2.1",
-    "next-offline": "^5.0.5",
-    "postcss": "^8.4.12",
-    "prettier": "^2.6.2",
-    "raw-loader": "^4.0.2",
-    "tailwindcss": "^3.0.23",
-    "url-loader": "^4.1.1"
-  },
   "keywords": [
-    "nextjs", "threejs", "r3f"
+    "nextjs",
+    "threejs",
+    "r3f"
   ],
+  "workspaces":["apps/*"],
   "license": "MIT",
   "scripts": {
-    "lint": "yarn prettier && yarn eslint",
-    "eslint": "next lint --fix --dir src",
-    "prettier": "prettier -l \"./src/**/*.{js,jsx,md}\"",
-    "dev": "next dev",
-    "build": "next build",
-    "export": "EXPORT=true next build && EXPORT=true next export",
-    "analyze": "ANALYZE=true next build",
-    "start": "next start"
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "engines": {
-    "node": ">=14"
+    "yarn": ">=1.22.17",
+    "node": ">=14.19.0"
   },
+  "packageManager": "yarn@1.22.17",
   "repository": {
     "type": "git",
     "url": "https://github.com/motcodes/portfolio"
+  },
+  "devDependencies": {
+    "prettier": "^2.6.2",
+    "turbo": "^1.2.11"
   }
 }

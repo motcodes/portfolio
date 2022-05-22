@@ -1,0 +1,40 @@
+{
+  "name": "studio",
+  "private": true,
+  "version": "2.0.0",
+  "description": "",
+  "main": "package.json",
+  "author": "Matthias Oberholzer <hello@mot.codes>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "sanity start",
+    "dev": "sanity start",
+    "test": "sanity check",
+    "build": "sanity build public -y",
+    "graphql-deploy": "sanity graphql deploy",
+    "deploy": "sanity deploy"
+  },
+  "keywords": [
+    "sanity",
+    "studio"
+  ],
+  "dependencies": {
+    "@sanity/base": "^2.1.3",
+    "@sanity/components": "^2.1.0",
+    "@sanity/core": "^2.1.2",
+    "@sanity/default-layout": "^2.1.3",
+    "@sanity/default-login": "^2.1.0",
+    "@sanity/desk-tool": "^2.1.3",
+    "@sanity/vision": "^2.1.0",
+    "prop-types": "^15.6",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-icons": "^4.1.0",
+    "sanity-plugin-google-analytics": "^0.2.6",
+    "sanity-plugin-seo-tools": "^2.2.0",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@sanity/cli": "latest"
+  }
+}

@@ -42,22 +42,24 @@
     "url-loader": "^4.1.1"
   },
   "keywords": [
-    "gatsby"
+    "nextjs", "threejs", "r3f"
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
+    "lint": "yarn prettier && yarn eslint",
+    "eslint": "next lint --fix --dir src",
+    "prettier": "prettier -l \"./src/**/*.{js,jsx,md}\"",
+    "dev": "next dev",
+    "build": "next build",
+    "export": "EXPORT=true next build && EXPORT=true next export",
+    "analyze": "ANALYZE=true next build",
+    "start": "next start"
+  },
+  "engines": {
+    "node": ">=14"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/codingMot/portfolio"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/motcodes/portfolio"
   }
 }

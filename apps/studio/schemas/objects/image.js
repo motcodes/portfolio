@@ -1,5 +1,5 @@
-export default {
-  name: 'aboutImage',
+const defaultImage = {
+  name: 'defaultImage',
   title: 'Image',
   type: 'image',
   options: {
@@ -18,4 +18,6 @@ export default {
       },
     },
   ],
-};
+}
+
+export default defaultImage

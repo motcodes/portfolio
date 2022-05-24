@@ -1,27 +1,33 @@
-export default {
+const homepage = {
   name: 'homepage',
   title: 'Homepage',
   type: 'document',
   __experimental_actions: ['update', 'publish'],
   fields: [
     {
-      title: 'Description',
-      name: 'description',
-      type: 'text',
+      title: 'Seo',
+      name: 'seo',
+      type: 'seo',
     },
     {
-      title: 'Image',
-      name: 'image',
-      type: 'homepageImage',
+      title: 'Homepage Copy',
+      name: 'copy',
+      type: 'blockContent',
     },
     {
-      title: 'Project and Experience',
-      name: 'projects',
+      title: 'Selected Works',
+      name: 'selectedWorks',
       type: 'array',
-      of: [{ type: 'reference', to: { type: 'project' } }],
+      of: [{ type: 'reference', to: { type: 'caseStudy' } }],
     },
     {
-      title: 'Collections',
+      title: 'Small Projects',
+      name: 'smallProjects',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'smallProject' } }],
+    },
+    {
+      title: 'Photography Collections',
       name: 'collections',
       type: 'array',
       of: [{ type: 'reference', to: { type: 'collection' } }],
@@ -32,4 +38,6 @@ export default {
       title: 'title',
     },
   },
-};
+}
+
+export default homepage

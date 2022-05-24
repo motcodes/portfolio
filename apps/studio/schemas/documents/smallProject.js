@@ -1,18 +1,19 @@
-import { CgBolt } from 'react-icons/cg';
-export default {
-  title: 'Project',
-  name: 'project',
+import {
+  orderRankField,
+  orderRankOrdering,
+} from '@sanity/orderable-document-list'
+import { CgBolt } from 'react-icons/cg'
+
+const smallProject = {
+  title: 'Small Project',
+  name: 'smallProject',
   type: 'document',
-  icon: CgBolt,
+  orderings: [orderRankOrdering],
   fields: [
+    orderRankField({ type: 'smallProject' }),
     {
       title: 'Title',
       name: 'title',
-      type: 'string',
-    },
-    {
-      title: 'Subtitle',
-      name: 'subtitle',
       type: 'string',
     },
     {
@@ -31,7 +32,7 @@ export default {
       type: 'url',
       validation: (Rule) =>
         Rule.uri({
-          scheme: ['http', 'https', 'mailto', 'tel'],
+          scheme: ['http', 'https'],
         }),
     },
   ],
@@ -41,4 +42,6 @@ export default {
       title: 'title',
     },
   },
-};
+}
+
+export default smallProject

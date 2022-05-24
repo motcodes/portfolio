@@ -1,10 +1,17 @@
-import { CgCollage } from 'react-icons/cg';
-export default {
+import {
+  orderRankField,
+  orderRankOrdering,
+} from '@sanity/orderable-document-list'
+import { CgCollage } from 'react-icons/cg'
+
+const collection = {
   name: 'collection',
   title: 'Collection',
   type: 'document',
   icon: CgCollage,
+  orderings: [orderRankOrdering],
   fields: [
+    orderRankField({ type: 'collection' }),
     {
       name: 'title',
       title: 'Title',
@@ -61,4 +68,6 @@ export default {
       media: 'mainImage',
     },
   },
-};
+}
+
+export default collection

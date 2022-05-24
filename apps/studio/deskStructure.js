@@ -1,8 +1,9 @@
 // deskStructure.js
-import S from '@sanity/desk-tool/structure-builder';
-import { CgHome, CgUser } from 'react-icons/cg';
+import S from '@sanity/desk-tool/structure-builder'
+import { CgBolt, CgCollage, CgHome, CgUser } from 'react-icons/cg'
+import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
 
-export default () =>
+const deskStructure = () =>
   S.list()
     .title('Content')
     .items([
@@ -22,10 +23,43 @@ export default () =>
         .child(
           S.document().title('About').schemaType('about').documentId('about')
         ),
+
+      orderableDocumentListDeskItem({
+        type: 'caseStudy',
+        title: 'Case Studies',
+        icon: CgBolt,
+      }),
+
+      orderableDocumentListDeskItem({
+        type: 'smallProject',
+        title: 'Small Projects',
+        icon: CgBolt,
+      }),
+
+      orderableDocumentListDeskItem({
+        type: 'experience',
+        title: 'Experiences',
+        icon: CgBolt,
+      }),
+      orderableDocumentListDeskItem({
+        type: 'collection',
+        title: 'Collections',
+        icon: CgCollage,
+      }),
       // Add a visual divider (optional)
       // S.divider(),
       // List out the rest of the document types, but filter out the config type
       ...S.documentTypeListItems().filter(
-        (listItem) => !['homepage', 'about'].includes(listItem.getId())
+        (listItem) =>
+          ![
+            'homepage',
+            'about',
+            'experience',
+            'smallProject',
+            'caseStudy',
+            'collection',
+          ].includes(listItem.getId())
       ),
-    ]);
+    ])
+
+export default deskStructure

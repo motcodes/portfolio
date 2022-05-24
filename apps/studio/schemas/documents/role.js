@@ -1,8 +1,8 @@
 import { CgStyle } from 'react-icons/cg'
 
-const category = {
-  name: 'category',
-  title: 'Category',
+const role = {
+  name: 'role',
+  title: 'Role',
   type: 'document',
   icon: CgStyle,
   fields: [
@@ -14,4 +14,4 @@ const category = {
   ],
 }
 
-export default category
+export default role

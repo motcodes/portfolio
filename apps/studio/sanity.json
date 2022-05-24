@@ -14,11 +14,14 @@
     "@sanity/default-login",
     "@sanity/desk-tool",
     "google-analytics",
-    "seo-tools"
+    "seo-tools",
+    "@sanity/orderable-document-list"
   ],
   "env": {
     "development": {
-      "plugins": ["@sanity/vision"]
+      "plugins": [
+        "@sanity/vision"
+      ]
     }
   },
   "parts": [

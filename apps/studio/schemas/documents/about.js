@@ -1,18 +1,34 @@
-export default {
+const about = {
   name: 'about',
   title: 'About',
   type: 'document',
   __experimental_actions: ['update', 'create', 'publish'],
   fields: [
     {
-      title: 'Description',
-      name: 'description',
-      type: 'text',
+      title: 'Seo',
+      name: 'seo',
+      type: 'seo',
+    },
+    {
+      title: 'Title',
+      name: 'title',
+      type: 'string',
+    },
+    {
+      title: 'Copy',
+      name: 'copy',
+      type: 'blockContent',
     },
     {
       title: 'Image',
       name: 'image',
-      type: 'aboutImage',
+      type: 'defaultImage',
+    },
+    {
+      title: 'Experiences',
+      name: 'experiences',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'experience' } }],
     },
   ],
   preview: {
@@ -20,4 +36,6 @@ export default {
       title: 'title',
     },
   },
-};
+}
+
+export default about

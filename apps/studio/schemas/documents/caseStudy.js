@@ -22,6 +22,15 @@ const caseStudy = {
       type: 'string',
     },
     {
+      title: 'Slug',
+      name: 'slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 200,
+      },
+    },
+    {
       title: 'Description',
       name: 'description',
       type: 'text',
@@ -67,6 +76,7 @@ const caseStudy = {
   preview: {
     select: {
       title: 'title',
+      media: 'seo.seoImage',
     },
   },
 }

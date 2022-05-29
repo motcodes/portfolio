@@ -1,8 +1,9 @@
+import React from 'react'
 import {
   orderRankField,
   orderRankOrdering,
 } from '@sanity/orderable-document-list'
-import { CgBolt } from 'react-icons/cg'
+import { emojis } from '../objects/emojis'
 
 const smallProject = {
   title: 'Small Project',
@@ -15,6 +16,15 @@ const smallProject = {
       title: 'Title',
       name: 'title',
       type: 'string',
+    },
+    {
+      title: 'Slug',
+      name: 'slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
     },
     {
       title: 'Timeperiod',
@@ -40,6 +50,16 @@ const smallProject = {
   preview: {
     select: {
       title: 'title',
+    },
+    prepare({ title }) {
+      return {
+        title: title,
+        media: (
+          <span style={{ fontSize: '1.5rem' }}>
+            {emojis[Math.floor(Math.random() * emojis.length)]}
+          </span>
+        ),
+      }
     },
   },
 }

@@ -1,8 +1,9 @@
+import React from 'react'
 import {
   orderRankField,
   orderRankOrdering,
 } from '@sanity/orderable-document-list'
-import { CgBolt } from 'react-icons/cg'
+import { emojis } from '../objects/emojis'
 
 const experience = {
   title: 'Experience',
@@ -45,6 +46,16 @@ const experience = {
   preview: {
     select: {
       title: 'company',
+    },
+    prepare({ title }) {
+      return {
+        title: title,
+        media: (
+          <span style={{ fontSize: '1.5rem' }}>
+            {emojis[Math.floor(Math.random() * emojis.length)]}
+          </span>
+        ),
+      }
     },
   },
 }

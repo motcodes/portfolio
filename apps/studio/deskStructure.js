@@ -46,8 +46,8 @@ const deskStructure = () =>
         title: 'Collections',
         icon: CgCollage,
       }),
-      // Add a visual divider (optional)
-      // S.divider(),
+
+      S.divider(),
       // List out the rest of the document types, but filter out the config type
       ...S.documentTypeListItems().filter(
         (listItem) =>

@@ -18,8 +18,8 @@ const collection = {
       type: 'string',
     },
     {
-      name: 'slug',
       title: 'Slug',
+      name: 'slug',
       type: 'slug',
       options: {
         source: 'title',

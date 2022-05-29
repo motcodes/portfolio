@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
-import Header from '@/config'
+import Header from '@/components/config'
 import Dom from '@/components/layout/dom'
 import '@/styles/index.css'
 import { useStore } from '@/hooks'
@@ -36,7 +36,11 @@ function App({ Component, pageProps = { title: 'index' } }) {
 
   return (
     <>
-      <Header title={pageProps.title} />
+      <Header
+        title={pageProps.title}
+        description={pageProps.description}
+        ogImage={pageProps.ogImage}
+      />
       <Balance child={child} />
     </>
   )

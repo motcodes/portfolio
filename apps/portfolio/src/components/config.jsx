@@ -84,6 +84,51 @@ export default function Header({
         Be sure validate your Twitter card markup on the documentation site. */}
         <meta name='twitter:card' content='summary' />
         <meta name='twitter:site' content='@motcodes' />
+
+        <link
+          rel='preload'
+          href='/fonts/PPNeueMontreal-Book.woff'
+          as='font'
+          type='font/woff'
+          crossOrigin=''
+        />
+        <link
+          rel='preload'
+          href='/fonts/PPNeueMontreal-Book.woff2'
+          as='font'
+          type='font/woff2'
+          crossOrigin=''
+        />
+
+        <link
+          rel='preload'
+          href='/fonts/PPNeueMontreal-Regular.woff'
+          as='font'
+          type='font/woff'
+          crossOrigin=''
+        />
+        <link
+          rel='preload'
+          href='/fonts/PPNeueMontreal-Regular.woff2'
+          as='font'
+          type='font/woff2'
+          crossOrigin=''
+        />
+
+        <link
+          rel='preload'
+          href='/fonts/PPNeueMontreal-Medium.woff'
+          as='font'
+          type='font/woff'
+          crossOrigin=''
+        />
+        <link
+          rel='preload'
+          href='/fonts/PPNeueMontreal-Medium.woff2'
+          as='font'
+          type='font/woff2'
+          crossOrigin=''
+        />
       </Head>
     </>
   )

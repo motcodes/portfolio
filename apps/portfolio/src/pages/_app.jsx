@@ -3,9 +3,9 @@ import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import Header from '@/components/config'
 import Dom from '@/components/layout/dom'
-import '@/styles/index.css'
 import { useStore } from '@/hooks'
 import { partition } from '@/helpers'
+import '@/styles/index.css'
 
 const LCanvas = dynamic(() => import('@/components/layout/canvas'), {
   ssr: false,

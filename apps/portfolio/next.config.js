@@ -6,6 +6,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const withOffline = require('next-offline')
 
 const nextConfig = {
+  images: {
+    domains: ['cdn.sanity.io'],
+  },
   webpack(config, { isServer }) {
     // audio support
     config.module.rules.push({

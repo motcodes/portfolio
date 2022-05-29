@@ -1,16 +1,14 @@
+import { sanityConfig } from '@/lib/config'
 import BasePortableText from '@sanity/block-content-to-react'
-import clientConfig from '../../../../client-config'
 
 const serializer = {
   types: {},
 }
 
-const PortableText = ({ blocks }) => (
+export const PortableText = ({ blocks }) => (
   <BasePortableText
     blocks={blocks}
     serializers={serializer}
-    {...clientConfig.sanity}
+    {...sanityConfig}
   />
 )
-
-export default PortableText

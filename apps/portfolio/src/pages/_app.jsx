@@ -6,6 +6,7 @@ import Dom from '@/components/layout/dom'
 import { useStore } from '@/hooks'
 import { partition } from '@/helpers'
 import '@/styles/index.css'
+// import 'react-nice-scroll/dist/styles.css'
 
 const LCanvas = dynamic(() => import('@/components/layout/canvas'), {
   ssr: false,

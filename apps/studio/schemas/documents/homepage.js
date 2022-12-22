@@ -15,6 +15,14 @@ const homepage = {
       type: 'blockContent',
     },
     {
+      title: 'Background Image',
+      name: 'image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       title: 'Selected Works',
       name: 'selectedWorks',
       type: 'array',

@@ -2,6 +2,7 @@ export const indexQuery = `
  *[_type == "homepage"][0]{
    seo,
    copy,
+   image,
    collections[]->{
      mainImage,
      title,

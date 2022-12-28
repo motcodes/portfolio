@@ -65,8 +65,8 @@ export default function Header({
           href='/icons/safari-pinned-tab.svg'
           color='#000000'
         />
-        <meta name='msapplication-TileColor' content='#f5f5f5' />
-        <meta name='theme-color' content='#f5f5f5' />
+        <meta name='msapplication-TileColor' content='#0d0d0d' />
+        <meta name='theme-color' content='#0d0d0d' />
 
         {/* Meta Tags for HTML pages on Mobile */}
         {/* <meta name="format-detection" content="telephone=yes"/>
@@ -75,7 +75,7 @@ export default function Header({
           name='viewport'
           content='width=device-width, minimum-scale=1, initial-scale=1.0'
         />
-        <meta name='theme-color' content='#f5f5f5' />
+        <meta name='theme-color' content='#0d0d0d' />
         <link rel='shortcut icon' href='/icons/favicon.ico' />
 
         {/* 

@@ -3,7 +3,7 @@ import {
   orderRankField,
   orderRankOrdering,
 } from '@sanity/orderable-document-list'
-import { emojis } from '../objects/emojis'
+import { EmojiMedia } from '../../components/emojiMedia'
 
 const smallProject = {
   title: 'Small Project',
@@ -54,11 +54,7 @@ const smallProject = {
     prepare({ title }) {
       return {
         title: title,
-        media: (
-          <span style={{ fontSize: '1.5rem' }}>
-            {emojis[Math.floor(Math.random() * emojis.length)]}
-          </span>
-        ),
+        media: EmojiMedia,
       }
     },
   },

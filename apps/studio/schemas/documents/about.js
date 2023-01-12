@@ -22,7 +22,7 @@ const about = {
     {
       title: 'Image',
       name: 'image',
-      type: 'defaultImage',
+      type: 'imageAlt',
     },
     {
       title: 'Experiences',

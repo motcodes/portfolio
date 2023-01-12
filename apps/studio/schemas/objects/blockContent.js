@@ -1,9 +1,11 @@
+import { defineArrayMember } from 'sanity'
+
 const blockContent = {
   title: 'Block Content',
   name: 'blockContent',
   type: 'array',
   of: [
-    {
+    defineArrayMember({
       title: 'Block',
       type: 'block',
       styles: [
@@ -35,17 +37,17 @@ const blockContent = {
           },
         ],
       },
-    },
-    {
+    }),
+    defineArrayMember({
       title: 'Image',
-      name: 'image',
-      type: 'defaultImage',
-    },
-    {
+      name: 'imageAlt',
+      type: 'imageAlt',
+    }),
+    defineArrayMember({
       title: 'Full Size Image',
       name: 'fullsizeImage',
-      type: 'fullsizeImage',
-    },
+      type: 'imageAlt',
+    }),
   ],
 }
 

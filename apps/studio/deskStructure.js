@@ -1,9 +1,14 @@
-// deskStructure.js
-import S from '@sanity/desk-tool/structure-builder'
-import { CgBolt, CgCollage, CgHome, CgUser } from 'react-icons/cg'
+import {
+  CgBolt,
+  CgCollage,
+  CgFilm,
+  CgFormatJustify,
+  CgHome,
+  CgUser,
+} from 'react-icons/cg'
 import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
 
-const deskStructure = () =>
+const deskStructure = (S, context) =>
   S.list()
     .title('Content')
     .items([
@@ -18,33 +23,54 @@ const deskStructure = () =>
         ),
 
       S.listItem()
-        .title('About')
-        .icon(CgUser)
+        .title('Projects')
+        .icon(CgFilm)
         .child(
-          S.document().title('About').schemaType('about').documentId('about')
+          S.document()
+            .title('Projects')
+            .schemaType('projects')
+            .documentId('projects')
+        ),
+
+      S.listItem()
+        .title('Imprint')
+        .icon(CgFormatJustify)
+        .child(
+          S.document()
+            .title('Imprint')
+            .schemaType('imprint')
+            .documentId('imprint')
         ),
 
       orderableDocumentListDeskItem({
         type: 'caseStudy',
         title: 'Case Studies',
         icon: CgBolt,
+        S,
+        context,
       }),
 
       orderableDocumentListDeskItem({
         type: 'smallProject',
         title: 'Small Projects',
         icon: CgBolt,
+        S,
+        context,
       }),
 
       orderableDocumentListDeskItem({
         type: 'experience',
         title: 'Experiences',
         icon: CgBolt,
+        S,
+        context,
       }),
       orderableDocumentListDeskItem({
         type: 'collection',
         title: 'Collections',
         icon: CgCollage,
+        S,
+        context,
       }),
 
       S.divider(),
@@ -54,6 +80,8 @@ const deskStructure = () =>
           ![
             'homepage',
             'about',
+            'imprint',
+            'projects',
             'experience',
             'smallProject',
             'caseStudy',

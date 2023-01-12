@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber'
 import { Preload } from '@react-three/drei'
-import { useStore, useWindowSize } from '@/hooks'
+import { useStore } from '@/hooks'
 
 const LCanvas = ({ children }) => {
   const dom = useStore((state) => state.dom)

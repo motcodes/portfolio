@@ -1,12 +1,4 @@
-import {
-  CgBolt,
-  CgCollage,
-  CgFilm,
-  CgFormatJustify,
-  CgHome,
-  CgUser,
-} from 'react-icons/cg'
-import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
+import { CgFilm, CgFormatJustify, CgHome } from 'react-icons/cg'
 
 const deskStructure = (S, context) =>
   S.list()
@@ -41,52 +33,20 @@ const deskStructure = (S, context) =>
             .schemaType('imprint')
             .documentId('imprint')
         ),
-
-      orderableDocumentListDeskItem({
-        type: 'caseStudy',
-        title: 'Case Studies',
-        icon: CgBolt,
-        S,
-        context,
-      }),
-
-      orderableDocumentListDeskItem({
-        type: 'smallProject',
-        title: 'Small Projects',
-        icon: CgBolt,
-        S,
-        context,
-      }),
-
-      orderableDocumentListDeskItem({
-        type: 'experience',
-        title: 'Experiences',
-        icon: CgBolt,
-        S,
-        context,
-      }),
-      orderableDocumentListDeskItem({
-        type: 'collection',
-        title: 'Collections',
-        icon: CgCollage,
-        S,
-        context,
-      }),
+      S.listItem()
+        .title('Footer')
+        .icon(CgFormatJustify)
+        .child(
+          S.document().title('Footer').schemaType('footer').documentId('footer')
+        ),
 
       S.divider(),
       // List out the rest of the document types, but filter out the config type
       ...S.documentTypeListItems().filter(
         (listItem) =>
-          ![
-            'homepage',
-            'about',
-            'imprint',
-            'projects',
-            'experience',
-            'smallProject',
-            'caseStudy',
-            'collection',
-          ].includes(listItem.getId())
+          !['homepage', 'about', 'imprint', 'projects', 'footer'].includes(
+            listItem.getId()
+          )
       ),
     ])
 

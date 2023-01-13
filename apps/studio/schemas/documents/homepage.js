@@ -13,37 +13,11 @@ const homepage = {
       name: 'copy',
       type: 'blockContent',
     },
-    {
-      title: 'Background Image',
-      name: 'image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    },
-    {
-      title: 'Selected Works',
-      name: 'selectedWorks',
-      type: 'array',
-      of: [{ type: 'reference', to: { type: 'caseStudy' } }],
-    },
-    {
-      title: 'Small Projects',
-      name: 'smallProjects',
-      type: 'array',
-      of: [{ type: 'reference', to: { type: 'smallProject' } }],
-    },
-    {
-      title: 'Photography Collections',
-      name: 'collections',
-      type: 'array',
-      of: [{ type: 'reference', to: { type: 'collection' } }],
-    },
   ],
   preview: {
-    select: {
-      title: 'title',
-    },
+    prepare: ({ title }) => ({
+      title: 'Homepage',
+    }),
   },
 }
 

@@ -19,7 +19,10 @@ export default {
   ],
   preview: {
     select: {
-      title: 'Imprint',
+      title: 'title',
     },
+    prepare: ({ title }) => ({
+      title,
+    }),
   },
 }

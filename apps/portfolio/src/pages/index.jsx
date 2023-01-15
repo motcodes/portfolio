@@ -116,11 +116,10 @@ export default Page
 export async function getStaticProps() {
   const data = await sanityClient.fetch(indexQuery)
   const seoImage = urlForImage(data.seo.seoImage).url()
-  const image = urlForImage(data.image).url()
 
   return {
     props: {
-      data: { ...data, image },
+      data,
       title: data.seo.seoTitle,
       description: data.seo.seoDescription,
       ogImage: seoImage,

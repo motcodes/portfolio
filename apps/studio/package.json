@@ -20,16 +20,16 @@
   ],
   "dependencies": {
     "@sanity/orderable-document-list": "^1.0.2",
-    "@sanity/vision": "^3.2.3",
+    "@sanity/vision": "^3.2.4",
     "prop-types": "^15.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
-    "sanity": "^3.2.3",
+    "sanity": "^3.2.4",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {
-    "prettier": "^2.8.2",
+    "prettier": "^2.8.3",
     "turbo": "^1.7.0"
   }
 }

@@ -9,7 +9,9 @@
     "threejs",
     "r3f"
   ],
-  "workspaces":["apps/*"],
+  "workspaces": [
+    "apps/*"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "turbo run build",
@@ -27,7 +29,7 @@
     "url": "https://github.com/motcodes/portfolio"
   },
   "devDependencies": {
-    "prettier": "^2.6.2",
-    "turbo": "^1.2.11"
+    "prettier": "^2.8.3",
+    "turbo": "^1.7.0"
   }
 }

@@ -1,9 +1,12 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "baseBranch": "origin/master",
   "pipeline": {
+    "prebuild": {
+      "inputs": ["next/**", "tailwind/**"],
+      "outputs": ["dist/**"]
+    },
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["lint", "prebuild", "^build"],
       "outputs": ["dist/**", ".next/**"]
     },
     "test": {
@@ -14,6 +17,7 @@
       "outputs": []
     },
     "dev": {
+      "dependsOn": ["prebuild"],
       "cache": true
     }
   }

@@ -10,9 +10,6 @@ const defaultImage = {
       name: 'alt',
       type: 'string',
       title: 'Alternative text',
-      options: {
-        isHighlighted: true,
-      },
     },
   ],
 }

@@ -11,7 +11,7 @@ const Dom = ({ children }) => {
 
   return (
     <div
-      className='absolute top-0 left-0 z-10 w-screen h-full overflow-x-hidden text-slate-300 dom'
+      className='absolute top-0 left-0 z-10 w-screen h-full overflow-x-hidden font-light text-slate-300 dom'
       ref={ref}
     >
       {children}

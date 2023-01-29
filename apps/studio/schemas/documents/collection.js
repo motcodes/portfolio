@@ -44,12 +44,12 @@ const collection = {
         hotspot: true,
       },
     },
-    {
-      name: 'categories',
-      title: 'Categories',
-      type: 'array',
-      of: [{ type: 'reference', to: { type: 'category' } }],
-    },
+    // {
+    //   name: 'categories',
+    //   title: 'Categories',
+    //   type: 'array',
+    //   of: [{ type: 'reference', to: { type: 'category' } }],
+    // },
     {
       name: 'publishedAt',
       title: 'Published at',

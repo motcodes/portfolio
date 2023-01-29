@@ -1,4 +1,5 @@
-import { CgFilm, CgFormatJustify, CgHome } from 'react-icons/cg'
+import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
+import { CgFilm, CgFormatJustify, CgHome, CgImage } from 'react-icons/cg'
 
 const deskStructure = (S, context) =>
   S.list()
@@ -23,6 +24,21 @@ const deskStructure = (S, context) =>
             .schemaType('projects')
             .documentId('projects')
         ),
+      S.listItem()
+        .title('Gallery')
+        .icon(CgImage)
+        .child(
+          S.document()
+            .title('Gallery')
+            .schemaType('gallery')
+            .documentId('gallery')
+        ),
+      orderableDocumentListDeskItem({
+        type: 'collection',
+        title: 'Collections',
+        S,
+        context,
+      }),
 
       S.listItem()
         .title('Imprint')
@@ -44,9 +60,14 @@ const deskStructure = (S, context) =>
       // List out the rest of the document types, but filter out the config type
       ...S.documentTypeListItems().filter(
         (listItem) =>
-          !['homepage', 'about', 'imprint', 'projects', 'footer'].includes(
-            listItem.getId()
-          )
+          ![
+            'homepage',
+            'about',
+            'imprint',
+            'projects',
+            'gallery',
+            'footer',
+          ].includes(listItem.getId())
       ),
     ])
 

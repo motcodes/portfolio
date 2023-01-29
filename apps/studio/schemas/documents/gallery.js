@@ -1,11 +1,16 @@
 import { CgFormatJustify } from 'react-icons/cg'
 
 export default {
-  name: 'imprint',
-  title: 'Imprint',
+  name: 'gallery',
+  title: 'Gallery',
   type: 'document',
   icon: CgFormatJustify,
   fields: [
+    {
+      title: 'Seo',
+      name: 'seo',
+      type: 'seo',
+    },
     {
       title: 'Title',
       name: 'title',
@@ -21,9 +26,10 @@ export default {
       },
     },
     {
-      title: 'Copy',
-      name: 'copy',
-      type: 'blockContent',
+      title: 'Images',
+      name: 'images',
+      type: 'array',
+      of: [{ type: 'imageAlt' }],
     },
   ],
   preview: {

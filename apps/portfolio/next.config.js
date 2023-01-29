@@ -5,7 +5,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const nextConfig = {
   images: {
-    domains: ['cdn.sanity.io'],
+    domains: ['cdn.sanity.io', 'images.unsplash.com'],
   },
   webpack(config, { isServer }) {
     // audio support

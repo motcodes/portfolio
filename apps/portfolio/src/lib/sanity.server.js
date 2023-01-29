@@ -1,7 +1,7 @@
-import { createClient } from 'next-sanity'
+import PicoSanity from 'picosanity'
 import { sanityConfig } from './config'
 
-export const sanityClient = createClient({
+export const sanityClient = PicoSanity({
   ...sanityConfig,
   token: process.env.SANITY_API_TOKEN,
 })

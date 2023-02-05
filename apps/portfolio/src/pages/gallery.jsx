@@ -9,7 +9,7 @@ import useDevice from '@/hooks/useDevice'
 
 const Page = ({ data, images }) => {
   const { title } = data
-  const [_images, setImages] = useState(images)
+  const [_images, setImages] = useState([images])
   const device = useDevice()
   const size = `(max-width: 767px) 100vw,
               (max-width: 1023px) 50vw,

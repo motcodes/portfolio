@@ -9,7 +9,7 @@ import useDevice from '@/hooks/useDevice'
 
 const Page = ({ data, images }) => {
   const { title } = data
-  const [_images, setImages] = useState([[], [], []])
+  const [_images, setImages] = useState(images)
   const device = useDevice()
   const size = `(max-width: 767px) 100vw,
               (max-width: 1023px) 50vw,
@@ -17,12 +17,14 @@ const Page = ({ data, images }) => {
 
   useEffect(() => {
     let modulo = device === 'desktop' ? 3 : device === 'tablet' ? 2 : 1
-    let arr = Array.from(Array(modulo), () => [])
-    for (let i = 0; i < images.length; i++) {
-      const index = i % modulo
-      arr[index] = [...arr[index], images[i]]
+    if (modulo > 1) {
+      let arr = Array.from(Array(modulo), () => [])
+      for (let i = 0; i < images.length; i++) {
+        const index = i % modulo
+        arr[index] = [...arr[index], images[i]]
+      }
+      setImages(arr)
     }
-    setImages(arr)
   }, [device])
 
   return (
@@ -40,15 +42,30 @@ const Page = ({ data, images }) => {
             _images.map((col, index) => (
               <div key={index} className='flex flex-col gap-4'>
                 {col.map((img) => (
-                  <GalleryImage
-                    width={512}
-                    height={512 * img.ratio}
-                    size={size}
-                    priority={index < 2}
-                    key={img.id}
-                    src={img.image}
-                    alt='An image taken by Matthias Oberholzer'
-                  />
+                  <>
+                    <GalleryImage
+                      width={375}
+                      height={375 * img.ratio}
+                      size={size}
+                      priority={index === 0}
+                      key={img.id}
+                      src={img.image}
+                      alt='An image taken by Matthias Oberholzer'
+                      className={clsx(`aspect-[${375}/${375 * img.ratio}]`)}
+                      mobileOnly
+                    />
+                    <GalleryImage
+                      width={640}
+                      height={640 * img.ratio}
+                      size={size}
+                      priority={index < 2}
+                      key={img.id}
+                      src={img.image}
+                      alt='An image taken by Matthias Oberholzer'
+                      className={clsx(`aspect-[${640}/${640 * img.ratio}]`)}
+                      desktopOnly
+                    />
+                  </>
                 ))}
               </div>
             ))}

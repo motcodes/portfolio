@@ -5,6 +5,12 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const nextConfig = {
   images: {
     domains: ['cdn.sanity.io', 'images.unsplash.com'],
+    deviceSizes: [
+      96, 128, 256, 384, 512, 640, 750, 828, 1080, 1200, 1920, 2048, 3840,
+    ],
+    imageSizes: [
+      16, 32, 48, 64, 96, 128, 256, 384, 375, 640, 720, 800, 960, 1080,
+    ],
   },
   webpack(config, { isServer }) {
     // audio support

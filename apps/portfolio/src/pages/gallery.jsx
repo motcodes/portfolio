@@ -1,10 +1,10 @@
+import clsx from 'clsx'
+import { useEffect, useState } from 'react'
 import { galleryQuery } from '@/lib/queries'
 import { urlForImage } from '@/lib/sanity'
 import { sanityClient } from '@/lib/sanity.server'
 import { Header } from '@/components/header'
-import clsx from 'clsx'
 import GalleryImage from '@/components/galleryImage'
-import { useEffect, useState } from 'react'
 import useDevice from '@/hooks/useDevice'
 
 const Page = ({ data, images }) => {

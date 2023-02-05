@@ -39,10 +39,6 @@
     box-sizing: border-box;
   }
 
-  html {
-    /* font-family: 'Neue Montreal'; */
-  }
-
   html,
   body,
   #__next {
@@ -52,5 +48,11 @@
     padding: 0;
     background: var(--black);
     color: var(--white);
+  }
+}
+
+@supports (font: -apple-system-body) and (-webkit-appearance: none) {
+  img[loading='lazy'] {
+    clip-path: inset(0.6px);
   }
 }

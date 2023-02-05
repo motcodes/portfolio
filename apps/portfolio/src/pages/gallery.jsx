@@ -3,10 +3,25 @@ import { urlForImage } from '@/lib/sanity'
 import { sanityClient } from '@/lib/sanity.server'
 import { Header } from '@/components/header'
 import clsx from 'clsx'
-import Image from 'next/image'
+import GalleryImage from '@/components/galleryImage'
+import { useEffect, useState } from 'react'
+import useDevice from '@/hooks/useDevice'
 
 const Page = ({ data, images }) => {
   const { title } = data
+  const [_images, setImages] = useState([[], [], []])
+  const device = useDevice()
+
+  useEffect(() => {
+    let modulo = device === 'desktop' ? 3 : device === 'tablet' ? 2 : 1
+    let arr = Array.from(Array(modulo), () => [])
+    for (let i = 0; i < images.length; i++) {
+      const index = i % modulo
+      arr[index] = [...arr[index], images[i]]
+    }
+    setImages(arr)
+  }, [device])
+
   return (
     <>
       <main>
@@ -18,15 +33,13 @@ const Page = ({ data, images }) => {
             'lg:px-6 lg:p-4 lg:grid-cols-3'
           )}
         >
-          {!!images?.length &&
-            images.map((col, index) => (
+          {!!_images?.length &&
+            _images.map((col, index) => (
               <div key={index} className='flex flex-col gap-4'>
                 {col.map((img) => (
-                  <Image
+                  <GalleryImage
                     width={512}
                     height={512 * img.ratio}
-                    placeholder='blur'
-                    blurDataURL={img.blur_hash}
                     key={img.id}
                     src={img.image}
                     alt='An image taken by Matthias Oberholzer'
@@ -45,16 +58,16 @@ export default Page
 export async function getStaticProps() {
   const data = await sanityClient.fetch(galleryQuery)
   let _images = []
-  for (let i = 1; i <= 20; i++) {
+  for (let i = 1; i <= 25; i++) {
     const res = await fetch(
       `https://api.unsplash.com/users/matthiasoberholzer/photos?page=${i}&client_id=7fa359ea7087a00fe9e4d1e0646ecf7314644f43bb5687aeb1454f8152893109`
     )
     const image = await res.json()
-    if (image[0]?.urls.small) {
+    if (image[0]?.urls.regular) {
       const _image = image.map((item) => ({
         id: item.id,
         blur_hash: `data:image/png;base64,${item.blur_hash}`,
-        image: item.urls.small,
+        image: item.urls.regular,
         link: item.links.html,
         ratio: item.width / item.height,
       }))
@@ -62,17 +75,12 @@ export async function getStaticProps() {
     }
   }
 
-  let arr = [[], [], []]
-  for (let i = 0; i < _images.length; i++) {
-    const index = i % 3
-    arr[index] = [...arr[index], _images[i]]
-  }
   const seoImage = urlForImage(data.seo.seoImage).url()
 
   return {
     props: {
       data,
-      images: arr,
+      images: _images,
       title: data.seo.seoTitle,
       description: data.seo.seoDescription,
       ogImage: seoImage,

@@ -93,7 +93,12 @@ const linkInternal = {
       title: 'Document',
       name: 'reference',
       type: 'reference',
-      to: [{ type: 'imprint' }, { type: 'homepage' }, { type: 'projects' }],
+      to: [
+        { type: 'imprint' },
+        { type: 'homepage' },
+        { type: 'projects' },
+        { type: 'gallery' },
+      ],
       validation: (Rule) => Rule.required(),
     },
   ],

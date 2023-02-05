@@ -1,8 +1,7 @@
 import { PortableText } from '@/components/portableText'
-import { imprintQuery, indexQuery } from '@/lib/queries'
+import { imprintQuery } from '@/lib/queries'
 import { urlForImage } from '@/lib/sanity'
 import { sanityClient } from '@/lib/sanity.server'
-import { PixelDistortion } from '@/components/pixelDistortion'
 import { Header } from '@/components/header'
 import clsx from 'clsx'
 
@@ -24,15 +23,10 @@ const DOM = ({ title, copy }) => {
   )
 }
 
-const R3F = () => {
-  return <PixelDistortion />
-}
-
 const Page = ({ data }) => {
   return (
     <>
       <DOM {...data} />
-      {/* <R3F r3f /> */}
     </>
   )
 }

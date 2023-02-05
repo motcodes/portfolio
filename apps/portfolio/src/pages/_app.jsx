@@ -5,10 +5,10 @@ import Header from '@/components/config'
 import Dom from '@/components/layout/dom'
 import { useStore } from '@/hooks'
 import { partition } from '@/helpers'
-import '@/styles/index.css'
 import { sanityClient } from '@/lib/sanity.server'
 import { footerQuery } from '@/lib/queries'
 import { Footer } from '@/components/footer'
+import '@/styles/index.css'
 
 const LCanvas = dynamic(() => import('@/components/layout/canvas'), {
   ssr: false,

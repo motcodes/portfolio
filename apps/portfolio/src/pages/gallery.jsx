@@ -15,6 +15,8 @@ const Page = ({ data, images }) => {
               (max-width: 1023px) 50vw,
               33vw`
 
+  // TODO: add infinite scroller to fetch images
+
   useEffect(() => {
     let modulo = device === 'desktop' ? 3 : device === 'tablet' ? 2 : 1
     if (modulo > 1) {
@@ -80,7 +82,7 @@ export default Page
 export async function getStaticProps() {
   const data = await sanityClient.fetch(galleryQuery)
   let _images = []
-  for (let i = 1; i <= 25; i++) {
+  for (let i = 1; i <= 3; i++) {
     const res = await fetch(
       `https://api.unsplash.com/users/matthiasoberholzer/photos?page=${i}&client_id=7fa359ea7087a00fe9e4d1e0646ecf7314644f43bb5687aeb1454f8152893109`
     )

@@ -47,6 +47,7 @@ export default function GalleryImage({
           priority={priority}
           fill={fill}
           onLoadingComplete={onLoad}
+          quality={70}
         />
       )}
     </div>

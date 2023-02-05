@@ -11,6 +11,9 @@ const Page = ({ data, images }) => {
   const { title } = data
   const [_images, setImages] = useState([[], [], []])
   const device = useDevice()
+  const size = `(max-width: 767px) 100vw,
+              (max-width: 1023px) 50vw,
+              33vw`
 
   useEffect(() => {
     let modulo = device === 'desktop' ? 3 : device === 'tablet' ? 2 : 1
@@ -28,7 +31,7 @@ const Page = ({ data, images }) => {
         <Header title={title} />
         <section
           className={clsx(
-            'px-3 py-12 grid grid-cols-1 gap-4',
+            'px-3 py-12 grid grid-cols-1 gap-4 min-h-screen',
             'md:grid-cols-2',
             'lg:px-6 lg:p-4 lg:grid-cols-3'
           )}
@@ -40,6 +43,8 @@ const Page = ({ data, images }) => {
                   <GalleryImage
                     width={512}
                     height={512 * img.ratio}
+                    size={size}
+                    priority={index < 2}
                     key={img.id}
                     src={img.image}
                     alt='An image taken by Matthias Oberholzer'

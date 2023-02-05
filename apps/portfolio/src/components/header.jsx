@@ -5,7 +5,7 @@ export function Header({ title }) {
   return (
     <header
       className={clsx(
-        'sticky top-0 flex flex-col items-start justify-start pt-6 px-3 gap-3 uppercase',
+        'sticky top-0 flex flex-col items-start justify-start pt-6 px-3 gap-3 uppercase z-10',
         'bg-[linear-gradient(180deg,_#0D0D0D_34.38%,_rgba(13,13,13,0.6)_68.23%,_rgba(13,13,13,0)_100%)]',
         'lg:bg-[linear-gradient(180deg,_#0D0D0D_22.4%,_rgba(13,13,13,0.6)_63.54%,_rgba(13,13,13,0)_100%)]',
         'lg:flex-row lg:p-6 lg:sticky lg:top-0 lg:left-0 lg:right-0 lg:justify-between'

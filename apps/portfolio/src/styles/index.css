@@ -5,28 +5,10 @@
 @font-face {
   font-family: 'Neue Montreal';
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/PPNeueMontreal-Regular.woff2') format('woff2')
-    url('/fonts/PPNeueMontreal-Regular.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Neue Montreal';
-  font-style: normal;
-  font-weight: 375;
+  font-weight: 300;
   font-display: swap;
   src: url('/fonts/PPNeueMontreal-Book.woff2') format('woff2')
     url('/fonts/PPNeueMontreal-Book.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Neue Montreal';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('/fonts/PPNeueMontreal-Medium.woff2') format('woff2')
-    url('/fonts/PPNeueMontreal-Medium.woff') format('woff');
 }
 
 @layer base {

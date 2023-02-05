@@ -72,7 +72,7 @@ export async function getStaticProps() {
       const _image = image.map((item) => ({
         id: item.id,
         blur_hash: `data:image/png;base64,${item.blur_hash}`,
-        image: item.urls.regular,
+        image: `${item.urls.raw}?w=768&q=75&auto=format`,
         link: item.links.html,
         ratio: item.width / item.height,
       }))

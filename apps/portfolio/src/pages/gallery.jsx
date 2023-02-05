@@ -49,7 +49,7 @@ const Page = ({ data, images }) => {
                       size={size}
                       priority={index === 0}
                       key={img.id}
-                      src={img.image}
+                      src={img.imageSmall}
                       alt='An image taken by Matthias Oberholzer'
                       className={clsx(`aspect-[${375}/${375 * img.ratio}]`)}
                       mobileOnly
@@ -60,7 +60,7 @@ const Page = ({ data, images }) => {
                       size={size}
                       priority={index < 2}
                       key={img.id}
-                      src={img.image}
+                      src={img.imageRegular}
                       alt='An image taken by Matthias Oberholzer'
                       className={clsx(`aspect-[${640}/${640 * img.ratio}]`)}
                       desktopOnly
@@ -89,7 +89,8 @@ export async function getStaticProps() {
       const _image = image.map((item) => ({
         id: item.id,
         blur_hash: `data:image/png;base64,${item.blur_hash}`,
-        image: `${item.urls.raw}?w=768&q=75&auto=format`,
+        imageSmall: item.urls.small,
+        imageRegular: item.urls.regular,
         link: item.links.html,
         ratio: item.width / item.height,
       }))

@@ -1,5 +1,5 @@
 import { defineConfig } from 'sanity'
-import { deskTool } from 'sanity/desk'
+import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import schemaTypes from './schemas/schema'
 import deskStructure from './deskStructure'
@@ -12,7 +12,7 @@ export default defineConfig({
   projectId: import.meta.env.SANITY_STUDIO_API_PROJECT_ID,
   dataset: import.meta.env.SANITY_STUDIO_API_DATASET,
   plugins: [
-    deskTool({ structure: (S, context) => deskStructure(S, context) }),
+    structureTool({ structure: (S, context) => deskStructure(S, context) }),
     visionTool({
       // Note: These are both optional
       defaultApiVersion: 'v2021-10-21',

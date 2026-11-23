@@ -1,4 +1,5 @@
-import { LaunchIcon, LinkIcon } from '@sanity/icons'
+import LaunchIcon from '@sanity/icons/Launch'
+import LinkIcon from '@sanity/icons/Link'
 
 const linkSocial = {
   title: 'Social Link',

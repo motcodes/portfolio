@@ -1,4 +1,4 @@
-import { defineType, prepareConfig } from 'sanity'
+import { defineType } from 'sanity'
 import { EmojiMedia } from '../../components/emojiMedia'
 
 export default defineType({

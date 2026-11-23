@@ -16,6 +16,9 @@
         "prebuild",
         "^build"
       ],
+      "env": [
+        "SANITY_API_TOKEN"
+      ],
       "outputs": [
         "dist/**",
         ".next/**"

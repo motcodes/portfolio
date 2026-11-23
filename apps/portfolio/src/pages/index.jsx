@@ -38,7 +38,7 @@ const DOM = ({ data }) => {
             <PortableText value={data.copy} />
           </div>
           {/* mt-1 plus the bio paragraph's pb-2 makes the 12px gap */}
-          <div className='lg:mt-1 px-3 text-xs lg:hidden'>
+          <div className='px-3 text-xs lg:mt-1 lg:hidden'>
             <PortableText value={data.status} />
           </div>
           <ProjectCarousel

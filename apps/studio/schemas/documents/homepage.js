@@ -13,6 +13,12 @@ const homepage = {
       name: 'copy',
       type: 'blockContent',
     },
+    {
+      title: 'Projects',
+      name: 'projects',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'homeProject' }] }],
+    },
   ],
   preview: {
     prepare: ({ title }) => ({

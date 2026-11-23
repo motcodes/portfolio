@@ -3,6 +3,7 @@ import homepage from './documents/homepage'
 import imprint from './documents/imprint'
 import projects from './documents/projects'
 import footer from './documents/footer'
+import homeProject from './documents/homeProject'
 import collection from './documents/collection'
 
 // objects
@@ -18,6 +19,7 @@ export default [
   homepage,
   imprint,
   projects,
+  homeProject,
   gallery,
   footer,
   collection,

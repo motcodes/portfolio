@@ -1,6 +1,6 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
-  "pipeline": {
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
     "prebuild": {
       "inputs": [
         "next/**",
@@ -34,7 +34,8 @@
       "dependsOn": [
         "prebuild"
       ],
-      "cache": false
+      "cache": false,
+      "persistent": true
     }
   }
 }

@@ -15,21 +15,23 @@
   "license": "MIT",
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
+    "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "engines": {
-    "yarn": ">=1.22.17",
-    "node": ">=14.19.0"
+    "bun": ">=1.4.1"
   },
-  "packageManager": "yarn@1.22.17",
+  "packageManager": "bun@1.4.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/motcodes/portfolio"
   },
   "devDependencies": {
     "prettier": "^2.8.3",
-    "turbo": "^1.7.3"
+    "turbo": "^2"
+  },
+  "overrides": {
+    "yargs": "^17.7.2"
   }
 }

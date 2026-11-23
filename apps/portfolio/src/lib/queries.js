@@ -17,6 +17,12 @@ export const indexQuery = `
   *[_type == "homepage"][0]{
     seo,
     copy,
+    projects[]->{
+      _id,
+      name,
+      "image": image.asset->url,
+    },
+    "status": *[_type == "footer"][0].status,
   }
 `
 

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>03 scatter reassemble</title><link rel="stylesheet" href="shared.css"></head>
+<body>
+<canvas id="gl"></canvas>
+<div class="dom"><main>
+  <div class="top">
+    <div class="pad"><h1><span>Matthias&nbsp;&nbsp;M.</span><br><span>Oberholzer</span></h1>
+      <div class="status"><p>Available for freelance work</p></div></div>
+    <ul id="carousel" class="carousel"></ul>
+    <div class="copy"><p>Matthias is a web developer, student, and Awwwards Young Jury Member who explores WebGL and Three.js.</p></div>
+  </div>
+  <ul id="list" class="list"></ul>
+</main>
+<footer class="footer"><div>Salzburg, Austria</div><div>hello@mot.codes &copy; 2026</div></footer></div>
+<script src="shared.js"></script>
+<script>
+const K = PreviewKit, d = PREVIEW_DATA;
+const stage = PixelStage(document.getElementById('gl'), { portrait: d.portrait, images: d.projects.map(p => p.image) });
+K.label('03 scatter reassemble', 'pixels blast outward from the cursor, then relax into the new view (reuses the intro scatter)');
+stage.settings.relaxation = 0.93;                          // a touch slower than the intro: reassembles in ~1.1s
+const blast = (pt, ms) => K.tween(ms, (e) => stage.kick(pt.u, pt.v, 6 * (0.2 + 0.8 * e)), K.ease.quartIn);
+K.flow({
+  stage,
+  show() { stage.fx.zoom = 1; },
+  hide() { stage.fx.zoom = 0; },
+  async enter(c) {
+    K.indexParts().forEach((el, i) => K.anim(el, [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'scale(.98)' }], { duration: 320, delay: i * 15, easing: K.css.quartIn }));
+    await blast(c.pt, 400);
+    c.awayIndex(); c.openProject();
+    stage.cut(c.i); stage.fx.zoom = 1;                    // swap at peak chaos, offsets relax into the hero
+    K.stagger(c.el.parts.items, 'in', { delay: 500, step: 70 });
+    await K.sleep(1500);
+  },
+  async leave(c) {
+    K.anim(c.el, [{ opacity: 1 }, { opacity: 0 }], { duration: 350, easing: 'ease-out' });
+    await blast(c.pt, 400);
+    c.closeProject(); c.returnIndex();
+    stage.cut(c.i); stage.fx.zoom = 0;
+    K.stagger(K.indexParts(), 'in', { delay: 450, step: 40, duration: 900, y: 20 });
+    await K.sleep(1500);
+  },
+});
+</script></body></html>

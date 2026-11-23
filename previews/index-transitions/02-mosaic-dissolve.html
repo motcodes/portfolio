@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>02 mosaic dissolve</title><link rel="stylesheet" href="shared.css"></head>
+<body>
+<canvas id="gl"></canvas>
+<div class="dom"><main>
+  <div class="top">
+    <div class="pad"><h1><span>Matthias&nbsp;&nbsp;M.</span><br><span>Oberholzer</span></h1>
+      <div class="status"><p>Available for freelance work</p></div></div>
+    <ul id="carousel" class="carousel"></ul>
+    <div class="copy"><p>Matthias is a web developer, student, and Awwwards Young Jury Member who explores WebGL and Three.js.</p></div>
+  </div>
+  <ul id="list" class="list"></ul>
+</main>
+<footer class="footer"><div>Salzburg, Austria</div><div>hello@mot.codes &copy; 2026</div></footer></div>
+<script src="shared.js"></script>
+<script>
+const K = PreviewKit, d = PREVIEW_DATA;
+const stage = PixelStage(document.getElementById('gl'), { portrait: d.portrait, images: d.projects.map(p => p.image) });
+K.label('02 mosaic dissolve', 'image breaks into 4→128px blocks, swaps under cover, hero resolves from the click point');
+const LEVELS = [0, 4, 8, 16, 32, 64, 128];
+const blockUp = (ms) => K.tween(ms, (e) => (stage.fx.block = LEVELS[Math.min(6, Math.floor(e * 7))]), K.ease.quartIn);
+K.flow({
+  stage,
+  show() { stage.fx.zoom = 1; },
+  hide() { stage.fx.zoom = 0; },
+  async enter(c) {
+    stage.fx.origin = [c.pt.u, c.pt.v];
+    K.indexParts().forEach((el, i) => K.anim(el, [{ opacity: 1 }, { opacity: 0 }], { duration: 300, delay: i * 20, easing: 'ease-out' }));
+    await blockUp(560);                                   // sharp → flat blocks
+    c.awayIndex(); c.openProject();                       // DOM swaps under the blocks
+    stage.fx.zoom = 1; stage.fx.block = 0; stage.fx.baseBlock = 128;
+    stage.replay(1.3);                                    // ring from the click resolves 32→4px→sharp
+    K.stagger(c.el.parts.items, 'in', { delay: 500, step: 70 });
+    await K.sleep(1300 + 500);
+    stage.fx.baseBlock = 0;
+  },
+  async leave(c) {
+    stage.fx.origin = [c.pt.u, c.pt.v];
+    K.anim(c.el, [{ opacity: 1 }, { opacity: 0 }], { duration: 350, easing: 'ease-out' });
+    await blockUp(560);
+    c.closeProject(); c.returnIndex();
+    stage.fx.zoom = 0; stage.fx.block = 0; stage.fx.baseBlock = 128;
+    stage.replay(1.3);
+    K.stagger(K.indexParts(), 'in', { delay: 500, step: 40, duration: 900, y: 20 });
+    await K.sleep(1300 + 400);
+    stage.fx.baseBlock = 0;
+  },
+});
+</script></body></html>

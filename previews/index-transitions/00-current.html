@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>00 current</title><link rel="stylesheet" href="shared.css"></head>
+<body>
+<canvas id="gl"></canvas>
+<div class="dom"><main>
+  <div class="top">
+    <div class="pad"><h1><span>Matthias&nbsp;&nbsp;M.</span><br><span>Oberholzer</span></h1>
+      <div class="status"><p>Available for freelance work</p></div></div>
+    <ul id="carousel" class="carousel"></ul>
+    <div class="copy"><p>Matthias is a web developer, student, and Awwwards Young Jury Member who explores WebGL and Three.js.</p></div>
+  </div>
+  <ul id="list" class="list"></ul>
+</main>
+<footer class="footer"><div>Salzburg, Austria</div><div>hello@mot.codes &copy; 2026</div></footer></div>
+<script src="shared.js"></script>
+<script>
+  const d = PREVIEW_DATA;
+  const stage = PixelStage(document.getElementById('gl'), { portrait: d.portrait, images: d.projects.map(p => p.image) });
+  mountIndex(stage);
+</script></body></html>

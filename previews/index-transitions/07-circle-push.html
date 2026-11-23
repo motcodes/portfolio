@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>07 circle push</title><link rel="stylesheet" href="shared.css">
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div class="dom"><main>
+  <div class="top">
+    <div class="pad"><h1><span>Matthias&nbsp;&nbsp;M.</span><br><span>Oberholzer</span></h1>
+      <div class="status"><p>Available for freelance work</p></div></div>
+    <ul id="carousel" class="carousel"></ul>
+    <div class="copy"><p>Matthias is an Austrian Web Engineer focused on building complex digital experiences that are accessible, fluid, and thoughtfully crafted down to the smallest detail.</p></div>
+  </div>
+  <ul id="list" class="list"></ul>
+</main>
+<footer class="footer"><div>Salzburg, Austria</div><div>hello@mot.codes &copy; 2026</div></footer></div>
+<script src="shared.js"></script>
+<script>
+const K = PreviewKit, d = PREVIEW_DATA;
+const btnFor = (i) => document.querySelectorAll(matchMedia('(min-width:1024px)').matches ? '#list button' : '#carousel button')[i];
+
+// Circle push, as specified in the site thread (apps/portfolio/src/shader/fragment.glsl + mosaic-lab.html):
+// 24x24 cells, ringEase outCubic, cell time 0.45 (sweep 0.55), jitter 0.15, angle 0, cell ease outCubic, push distance 1 cell, 2.5s.
+// A ring grows from the origin; in each cell it reaches, the new image slides in from the side facing the origin and pushes the old content out the far side.
+const FRAG = `precision highp float;
+uniform sampler2D uDataTexture;uniform sampler2D uNoise;uniform vec2 uResolution;
+uniform sampler2D uBase;uniform vec2 uBaseScale;uniform vec4 uProgress;
+uniform sampler2D uLayer0;uniform sampler2D uLayer1;uniform sampler2D uLayer2;uniform sampler2D uLayer3;
+uniform vec2 uScale0;uniform vec2 uScale1;uniform vec2 uScale2;uniform vec2 uScale3;
+uniform vec4 uMask0;uniform vec4 uMask1;uniform vec4 uMask2;uniform vec4 uMask3;
+uniform vec2 uOrigin0;uniform vec2 uOrigin1;uniform vec2 uOrigin2;uniform vec2 uOrigin3;
+uniform float uScroll;uniform float uDim;
+varying vec2 vUv;
+const vec4 background=vec4(vec3(13.0/255.0),1.0);
+const float grid=24.0;const float sweep=0.55;const float resolve=0.45;
+vec4 sampleFit(sampler2D tex,vec2 scale,vec2 screenUv,vec2 offset){
+  vec2 uv=(screenUv-vec2(0.5))*scale+vec2(0.5);
+  if(uv.x<0.0||uv.x>1.0||uv.y<0.0||uv.y>1.0)return background;
+  // the mouse distortion may smear the image but never punches a dark hole into it (the margin test uses the undisplaced uv)
+  return texture2D(tex,clamp(uv-offset,0.0,1.0));}
+float easeOutCubic(float t){return 1.0-pow(1.0-t,3.0);}
+bool layer(sampler2D tex,float progress,vec2 scale,vec4 mask,vec2 origin,vec2 offset,inout vec2 pos,inout vec4 color){
+  if(progress<0.0)return false;
+  vec2 cellSize=uResolution/grid;
+  vec2 px=pos*uResolution;
+  vec2 cell=floor(pos*grid);
+  vec2 centre=(cell+0.5)*cellSize;
+  vec2 o=origin*uResolution;
+  vec2 rel=centre-o;
+  vec2 dir=length(rel)>0.001?normalize(rel):vec2(1.0,0.0);
+  float far=max(max(length(o),length(o-vec2(uResolution.x,0.0))),max(length(o-vec2(0.0,uResolution.y)),length(o-uResolution)));
+  float dist=length(rel)/far;
+  float jitter=dot(texture2D(uNoise,(cell+0.5)/grid),mask);
+  float local=(easeOutCubic(progress)-(dist*0.85+jitter*0.15)*sweep)/resolve;
+  if(local<=0.0)return false;
+  if(local>=1.0){color=sampleFit(tex,scale,pos,offset);return true;}
+  float e=easeOutCubic(local);
+  float span=abs(dir.x)*cellSize.x+abs(dir.y)*cellSize.y;
+  float u=dot(px-centre,dir)/span+0.5;
+  if(u<e){color=sampleFit(tex,scale,(px+(1.0-e)*span*dir)/uResolution,offset);return true;}
+  pos=(px-e*span*dir)/uResolution;
+  return false;}
+void main(){
+  vec2 offset=0.02*texture2D(uDataTexture,vUv).rg;
+  vec2 pos=vUv;vec4 color;
+  if(!layer(uLayer3,uProgress.w,uScale3,uMask3,uOrigin3,offset,pos,color)
+  &&!layer(uLayer2,uProgress.z,uScale2,uMask2,uOrigin2,offset,pos,color)
+  &&!layer(uLayer1,uProgress.y,uScale1,uMask1,uOrigin1,offset,pos,color)
+  &&!layer(uLayer0,uProgress.x,uScale0,uMask0,uOrigin0,offset,pos,color)){
+    // base = the page hero: scrolls up with the article (uv y is up) and darkens under the body copy
+    color=sampleFit(uBase,uBaseScale,pos-vec2(0.0,uScroll),offset);
+    color.rgb*=1.0-uDim;}
+  gl_FragColor=color;}`;
+
+K.label('07 circle push', 'cell-wise circle push: hover ring from the centre, page ring from the click point');
+const stage = PixelStage(document.getElementById('gl'), { portrait: d.portrait, images: d.projects.map(p => p.image), fragment: FRAG, settings: { grid: 24, duration: 2.5 } });
+
+// hover swap: the thread's origin "centre" (page transitions move the origin, so reset it)
+const setActive = stage.setActive;
+stage.setActive = (i) => { stage.fx.origin = [0.5, 0.5]; setActive(i); };
+
+const RING = 1.8; // seconds, page transitions
+const clamp01 = (n) => Math.max(0, Math.min(1, n));
+// page scroll -> hero parallax (half speed) + darkening, so the canvas hero belongs to the page instead of sitting behind it
+const bindScroll = (el) => {
+  if (!el._pv) { el._pv = () => { if (el._frozen) return; const t = el.scrollTop / innerHeight; stage.fx.scroll = t * 0.5; stage.fx.dim = clamp01(t) * 0.6; }; el.addEventListener('scroll', el._pv, { passive: true }); }
+  el._pv();
+};
+// resolves once the ring started last has reached progress p (or is gone): ties UI timing to the ring, not to a clock
+const ring = () => stage.state.layers.at(-1);
+const until = (L, p) => new Promise((res) => (function poll() { stage.state.layers.includes(L) && L.progress < p ? requestAnimationFrame(poll) : res(); })());
+// progress at which the ring front reaches normalised distance dn from the origin (shader: start = dn*0.85*0.55 in outCubic space)
+const frontAt = (dn) => 1 - Math.pow(1 - dn * 0.85 * 0.55, 1 / 3);
+const farthest = (o) => Math.max(...[[0, 0], [1, 0], [0, 1], [1, 1]].map(([x, y]) => Math.hypot((x - o[0]) * innerWidth, (y - o[1]) * innerHeight)));
+const centreDist = (o) => Math.hypot((0.5 - o[0]) * innerWidth, (0.5 - o[1]) * innerHeight) / farthest(o);
+const origin = (pt) => [clamp01(pt.u), clamp01(pt.v)];
+
+K.flow({
+  stage,
+  show(c) { stage.fx.zoom = 1; bindScroll(c.el); },
+  hide() { stage.fx.zoom = 0; stage.fx.scroll = 0; stage.fx.dim = 0; },
+  // page transition: same push from the click point; the incoming image is the full-bleed hero (zoom 1) / the contained index image (zoom 0)
+  async enter(c) {
+    stage.fx.origin = origin(c.pt);
+    stage.replay(RING, { zoom: 1 });
+    const L = ring();
+    bindScroll(c.el);
+    K.stagger(K.indexParts(), 'out', { step: 20, duration: 700 });   // index text is gone before the ring reaches it
+    await until(L, 0.5);                                              // far cells have landed: no text over a half-pushed image
+    c.openProject();
+    K.anim(c.el.parts.hero, [{ opacity: 0 }, { opacity: 1 }], { duration: 600, easing: K.css.expoOut });
+    const anims = K.stagger(c.el.parts.items, 'in', { step: 40, duration: 700 });
+    await Promise.all([until(L, 1), ...anims.map((a) => a.finished)]);
+  },
+  async leave(c) {
+    const o = origin(c.pt);
+    stage.fx.origin = o;
+    c.el.style.pointerEvents = 'none'; c.el._frozen = true;           // no scrolling mid-transition; the canvas keeps the scroll it has until the ring lands
+    const gone = K.anim(c.el, [{ opacity: 1 }, { opacity: 0 }], { duration: 350, easing: K.css.quartIn });
+    await Promise.race([gone.finished, K.sleep(150)]);                // ring starts while the article is leaving
+    stage.replay(RING, { zoom: 0 });                                  // pushes the index image over the hero as it is scrolled right now
+    const L = ring();
+    await gone.finished;
+    c.closeProject(); c.el.scrollTop = 0; c.el.style.pointerEvents = '';   // reset scroll only once hidden
+    await until(L, Math.max(0.3, frontAt(centreDist(o)) + 0.12));     // text returns after the ring has passed the centre
+    c.returnIndex();
+    const anims = K.stagger(K.indexParts(), 'in', { step: 30, duration: 800, y: 20 });
+    await Promise.all([until(L, 1), ...anims.map((a) => a.finished)]);
+    c.el._frozen = false;
+  },
+});
+</script></body></html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>01 pixel zoom</title><link rel="stylesheet" href="shared.css"></head>
+<body>
+<canvas id="gl"></canvas>
+<div class="dom"><main>
+  <div class="top">
+    <div class="pad"><h1><span>Matthias&nbsp;&nbsp;M.</span><br><span>Oberholzer</span></h1>
+      <div class="status"><p>Available for freelance work</p></div></div>
+    <ul id="carousel" class="carousel"></ul>
+    <div class="copy"><p>Matthias is a web developer, student, and Awwwards Young Jury Member who explores WebGL and Three.js.</p></div>
+  </div>
+  <ul id="list" class="list"></ul>
+</main>
+<footer class="footer"><div>Salzburg, Austria</div><div>hello@mot.codes &copy; 2026</div></footer></div>
+<script src="shared.js"></script>
+<script>
+const K = PreviewKit, d = PREVIEW_DATA;
+const stage = PixelStage(document.getElementById('gl'), { portrait: d.portrait, images: d.projects.map(p => p.image) });
+K.label('01 pixel zoom', 'image grows contain → full-bleed while the mosaic ring re-resolves; text staggers out/in');
+K.flow({
+  stage,
+  show() { stage.fx.zoom = 1; },
+  hide() { stage.fx.zoom = 0; },
+  async enter(c) {
+    stage.fx.origin = [0.5, 0.5];
+    stage.replay(1.3);                                   // mosaic resolve runs again while it grows
+    const grow = K.tween(1300, (e) => (stage.fx.zoom = e), K.ease.expoInOut);
+    K.indexParts().forEach((el, i) => K.anim(el, [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(-14px)' }], { duration: 450, delay: i * 35, easing: K.css.quartIn }));
+    await K.sleep(650);
+    c.openProject();
+    K.stagger(c.el.parts.items, 'in', { step: 70 });
+    await grow; await K.sleep(500);
+  },
+  async leave(c) {
+    stage.fx.origin = [0.5, 0.5];
+    K.anim(c.el, [{ opacity: 1 }, { opacity: 0 }], { duration: 350, easing: 'ease-out' });
+    stage.replay(1.2);
+    const shrink = K.tween(1200, (e) => (stage.fx.zoom = 1 - e), K.ease.expoInOut);
+    c.returnIndex();
+    K.stagger(K.indexParts(), 'in', { delay: 450, step: 40, duration: 900, y: 20 });
+    await shrink; await K.sleep(300);
+  },
+});
+</script></body></html>

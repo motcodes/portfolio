@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>04 list title flip</title><link rel="stylesheet" href="shared.css">
+<style>.ghost{position:fixed;z-index:50;margin:0;font-weight:300;line-height:.88;text-transform:uppercase;white-space:nowrap;transform-origin:0 0;pointer-events:none}</style>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div class="dom"><main>
+  <div class="top">
+    <div class="pad"><h1><span>Matthias&nbsp;&nbsp;M.</span><br><span>Oberholzer</span></h1>
+      <div class="status"><p>Available for freelance work</p></div></div>
+    <ul id="carousel" class="carousel"></ul>
+    <div class="copy"><p>Matthias is a web developer, student, and Awwwards Young Jury Member who explores WebGL and Three.js.</p></div>
+  </div>
+  <ul id="list" class="list"></ul>
+</main>
+<footer class="footer"><div>Salzburg, Austria</div><div>hello@mot.codes &copy; 2026</div></footer></div>
+<script src="shared.js"></script>
+<script>
+const K = PreviewKit, d = PREVIEW_DATA;
+const stage = PixelStage(document.getElementById('gl'), { portrait: d.portrait, images: d.projects.map(p => p.image) });
+const btnFor = (i) => document.querySelectorAll(matchMedia('(min-width:1024px)').matches ? '#list button' : '#carousel button')[i];
+K.label('04 list title flip', 'clicked list item flips into the big project title, rest staggers out; back reverses');
+const textRect = (el) => { const r = document.createRange(); r.selectNodeContents(el); return r.getBoundingClientRect(); };
+const others = (li) => [...document.querySelectorAll('h1,.status,.copy,.list li,.carousel li,.footer')].filter((e) => e !== li);
+// ghost = fixed copy of the title sitting exactly on it; `from` maps it onto the list label (translate + font-size scale)
+function ghost(title, btn) {
+  const tb = title.getBoundingClientRect(), fs = getComputedStyle(title).fontSize;
+  const g = document.createElement('div');
+  g.className = 'ghost'; g.textContent = title.textContent;
+  Object.assign(g.style, { left: tb.left + 'px', top: tb.top + 'px', fontSize: fs });
+  document.body.append(g);
+  const G = textRect(g), F = textRect(btn), s = parseFloat(getComputedStyle(btn).fontSize) / parseFloat(fs);
+  const from = `translate(${F.left - (tb.left + s * (G.left - tb.left))}px, ${F.top - (tb.top + s * (G.top - tb.top))}px) scale(${s})`;
+  return { g, from };
+}
+K.flow({
+  stage,
+  show() { stage.fx.zoom = 1; },
+  hide() { stage.fx.zoom = 0; },
+  async enter(c) {
+    const btn = btnFor(c.i), li = btn.closest('li'), { title, items } = c.el.parts;
+    const { g, from } = ghost(title, btn);
+    title.style.visibility = 'hidden'; btn.style.opacity = 0;
+    K.stagger(others(li), 'out', { step: 40, duration: 900 });
+    K.stagger(items.filter((x) => x !== title), 'in', { delay: 450, step: 70 });
+    c.openProject();
+    stage.replay(1.2);
+    await Promise.all([
+      g.animate([{ transform: from }, { transform: 'none' }], { duration: 1000, easing: K.css.expoOut }).finished,
+      K.tween(1200, (e) => (stage.fx.zoom = e)),
+    ]);
+    g.remove(); title.style.visibility = ''; btn.style.opacity = '';
+  },
+  async leave(c) {
+    const btn = btnFor(c.i), li = btn.closest('li'), { title } = c.el.parts;
+    c.el.scrollTop = 0;
+    const { g, from } = ghost(title, btn);
+    title.style.visibility = 'hidden'; btn.style.transition = 'none'; btn.style.opacity = 0;
+    K.anim(c.el, [{ opacity: 1 }, { opacity: 0 }], { duration: 450, easing: 'ease-out' });
+    c.returnIndex();
+    K.stagger(others(li), 'in', { delay: 350, step: 40, duration: 900, y: 20 });
+    stage.replay(1.2);
+    await Promise.all([
+      g.animate([{ transform: 'none' }, { transform: from }], { duration: 1000, easing: K.css.expoOut, fill: 'forwards' }).finished,
+      K.tween(1200, (e) => (stage.fx.zoom = 1 - e)),
+    ]);
+    btn.style.opacity = ''; g.remove(); title.style.visibility = '';
+    setTimeout(() => (btn.style.transition = ''), 50);
+  },
+});
+</script></body></html>

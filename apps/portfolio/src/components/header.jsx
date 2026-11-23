@@ -1,31 +1,40 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 
+// the name: one line filling the width between the 12px margins on mobile, two lines on desktop
+export function Name({ href }) {
+  const name = (
+    <>
+      <span>Matthias&nbsp;&nbsp;M.</span> <br className='lg-max:hidden' />
+      <span>Oberholzer</span>
+    </>
+  )
+
+  return (
+    <h1
+      className={clsx(
+        // the name renders about 12.2 × font size + 8px wide, so (100vw - 2 × 12px - 8px) / 12.2
+        'whitespace-nowrap text-[length:calc((100vw-32px)/12.2)] leading-[100%]',
+        'lg:whitespace-normal lg:text-[2rem]'
+      )}
+    >
+      {href ? <Link href={href}>{name}</Link> : name}
+    </h1>
+  )
+}
+
 export function Header({ title }) {
   return (
     <header
       className={clsx(
-        'sticky top-0 flex flex-col items-start justify-start pt-6 px-3 gap-3 uppercase z-10',
+        'sticky top-0 flex flex-col items-start justify-start pt-3 px-3 pb-12 gap-2 uppercase z-10',
         'bg-[linear-gradient(180deg,_#0D0D0D_34.38%,_rgba(13,13,13,0.6)_68.23%,_rgba(13,13,13,0)_100%)]',
         'lg:bg-[linear-gradient(180deg,_#0D0D0D_22.4%,_rgba(13,13,13,0.6)_63.54%,_rgba(13,13,13,0)_100%)]',
-        'lg:flex-row lg:p-6 lg:sticky lg:top-0 lg:left-0 lg:right-0 lg:justify-between'
+        'lg:flex-row lg:px-6 lg:pt-6 lg:justify-between'
       )}
     >
-      <h1 className={clsx('text-[32px] leading-[100%]', 'lg:text-[48px]')}>
-        <Link href='/'>
-          <span>Matthias&nbsp;&nbsp;M.</span>
-          <br />
-          <span>Oberholzer</span>
-        </Link>
-      </h1>
-      <div
-        className={clsx(
-          'flex flex-col leading-[100%] text-[20px]',
-          'lg:text-right lg:text-[32px] '
-        )}
-      >
-        <h2>{title}</h2>
-      </div>
+      <Name href='/' />
+      <h2 className='text-[12px] leading-[130%] lg:text-right'>{title}</h2>
     </header>
   )
 }

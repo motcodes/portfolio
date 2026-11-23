@@ -15,9 +15,10 @@ export function Footer({ status, center, right }) {
     <footer
       className={clsx(
         'bottom-0 left-0 right-0 flex text-white uppercase leading-[130%] text-[12px]',
-        'from-[#0A0A0A] via-[#0a0a0ac2]',
         'relative bottom-0 px-3 py-6',
-        'lg:fixed lg:flex-col lg:px-12 lg:pt-8 lg:pb-12 lg:gap-6 lg:bg-gradient-to-t xl:text-[14px]'
+        'lg:fixed lg:flex-col lg:px-6 lg:pt-16 lg:pb-6 lg:gap-6',
+        // mirrors the header gradient so content scrolling under the fixed footer stays readable
+        'lg:bg-[linear-gradient(0deg,_#0D0D0D_22.4%,_rgba(13,13,13,0.6)_63.54%,_rgba(13,13,13,0)_100%)]'
       )}
     >
       <div
@@ -26,7 +27,7 @@ export function Footer({ status, center, right }) {
           'lg-max:gap-6'
         )}
       >
-        <div className='lg-max:w-full'>
+        <div className='lg-max:hidden [&_p]:pb-0'>
           <PortableText value={status} />
         </div>
         {!!center?.length && (

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>06 view transitions</title><link rel="stylesheet" href="shared.css">
+<style>
+::view-transition-group(morph){animation-duration:1.1s;animation-timing-function:cubic-bezier(.16,1,.3,1)}
+::view-transition-old(root){animation:none}
+::view-transition-new(root){animation:px-reveal 1.2s steps(14,end) both}
+@keyframes px-reveal{from{clip-path:circle(0px at var(--x) var(--y))}to{clip-path:circle(150vmax at var(--x) var(--y))}}
+</style>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div class="dom"><main>
+  <div class="top">
+    <div class="pad"><h1><span>Matthias&nbsp;&nbsp;M.</span><br><span>Oberholzer</span></h1>
+      <div class="status"><p>Available for freelance work</p></div></div>
+    <ul id="carousel" class="carousel"></ul>
+    <div class="copy"><p>Matthias is a web developer, student, and Awwwards Young Jury Member who explores WebGL and Three.js.</p></div>
+  </div>
+  <ul id="list" class="list"></ul>
+</main>
+<footer class="footer"><div>Salzburg, Austria</div><div>hello@mot.codes &copy; 2026</div></footer></div>
+<script src="shared.js"></script>
+<script>
+const K = PreviewKit, d = PREVIEW_DATA;
+const stage = PixelStage(document.getElementById('gl'), { portrait: d.portrait, images: d.projects.map(p => p.image) });
+const btnFor = (i) => document.querySelectorAll(matchMedia('(min-width:1024px)').matches ? '#list button' : '#carousel button')[i];
+K.label('06 view transitions', 'document.startViewTransition: list item morphs into the title, stepped circle reveal');
+const root = document.documentElement;
+// pre() names elements before the old snapshot, apply() swaps the DOM, post() cleans names
+function vt(o, pre, apply, post) {
+  root.style.setProperty('--x', o.x + 'px'); root.style.setProperty('--y', o.y + 'px');
+  pre();
+  if (!document.startViewTransition) { apply(); post(); return Promise.resolve(); }
+  return document.startViewTransition(apply).finished.catch(() => {}).then(post);
+}
+K.flow({
+  stage,
+  show() { stage.fx.zoom = 1; },
+  hide() { stage.fx.zoom = 0; },
+  enter(c) {
+    const btn = btnFor(c.i), title = c.el.parts.title;
+    return vt(c.pt, () => { btn.style.viewTransitionName = 'morph'; },
+      () => { btn.style.viewTransitionName = ''; stage.fx.zoom = 1; c.awayIndex(); c.openProject(); title.style.viewTransitionName = 'morph'; },
+      () => { title.style.viewTransitionName = ''; });
+  },
+  leave(c) {
+    const btn = btnFor(c.i), title = c.el.parts.title;
+    return vt(c.pt, () => { title.style.viewTransitionName = 'morph'; },
+      () => { title.style.viewTransitionName = ''; btn.style.viewTransitionName = 'morph'; stage.fx.zoom = 0; c.closeProject(); c.returnIndex(); },
+      () => { btn.style.viewTransitionName = ''; });
+  },
+});
+</script></body></html>

@@ -7,7 +7,15 @@ const LCanvas = ({ children }) => {
 
   return (
     <Canvas
-      className='bg-[#0D0D0D]'
+      // inline: Canvas sets position relative inline, a class could not override it;
+      // z-index -1 keeps it under the page text inside the scrolling layer
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        height: '100svh',
+        zIndex: -1,
+      }}
       mode='concurrent'
       orthographic
       onCreated={(state) => state.events.connect(dom.current)}

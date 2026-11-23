@@ -8,6 +8,7 @@ import { partition } from '@/helpers'
 import { sanityClient } from '@/lib/sanity.server'
 import { footerQuery } from '@/lib/queries'
 import { Footer } from '@/components/footer'
+import '@blossom-carousel/react/style.css'
 import '@/styles/index.css'
 
 const LCanvas = dynamic(() => import('@/components/layout/canvas'), {
@@ -21,11 +22,12 @@ const Balance = ({ child, footer }) => {
 
   return (
     <>
+      {/* the canvas sits inside the scrolling layer so it scrolls away with the first screen */}
       <Dom>
+        <LCanvas>{r3f}</LCanvas>
         {dom}
         <Footer {...footer} />
       </Dom>
-      <LCanvas>{r3f}</LCanvas>
     </>
   )
 }

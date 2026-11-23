@@ -1,18 +1,15 @@
-uniform float time;
-uniform float progress;
+// shows the transition result with the hover mosaic on top
+uniform sampler2D uComposite;
 uniform sampler2D uDataTexture;
-uniform sampler2D uTexture;
+// fit of the image being shown; mosaic offsets are in image uv
+uniform vec2 uFrameScale;
 
-
-uniform vec4 resolution;
 varying vec2 vUv;
-varying vec3 vPosition;
-float PI = 3.141592653589793238;
+
+const vec4 background = vec4(vec3(13.0 / 255.0), 1.0);
 
 void main()	{
-	vec2 newUV = (vUv - vec2(0.5))*resolution.zw + vec2(0.5);
-	vec4 color = texture2D(uTexture,newUV);
-	vec4 offset = texture2D(uDataTexture,vUv);
-
-	gl_FragColor = texture2D(uTexture,newUV - 0.02*offset.rg);
+	vec2 at = vUv - 0.02 * texture2D(uDataTexture, vUv).rg / uFrameScale;
+	if (any(lessThan(at, vec2(0.0))) || any(greaterThan(at, vec2(1.0)))) gl_FragColor = background;
+	else gl_FragColor = texture2D(uComposite, at);
 }

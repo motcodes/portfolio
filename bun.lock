@@ -16,7 +16,7 @@
         "@babel/plugin-transform-runtime": "^7.19.6",
         "@blossom-carousel/react": "^1.8.0",
         "@portabletext/react": "^2.0.1",
-        "@react-three/drei": "^9.56.17",
+        "@react-three/drei": "9.56.17",
         "@react-three/fiber": "^8.10.4",
         "@sanity/image-url": "^1.0.2",
         "babel-plugin-glsl": "^1.0.0",

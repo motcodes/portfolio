@@ -14,7 +14,7 @@ const DOM = ({ title, copy }) => {
           className={clsx(
             'px-3 pb-12 text-xs leading-[160%]',
             // bottom padding clears the fixed footer and its gradient
-            'lg:px-6 lg:pb-32 lg:max-w-2xl'
+            'lg:max-w-2xl lg:px-6 lg:pb-32'
           )}
         >
           <PortableText value={copy} />

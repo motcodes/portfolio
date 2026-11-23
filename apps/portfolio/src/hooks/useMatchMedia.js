@@ -12,7 +12,8 @@ export const useMatchMedia = (queries, callback) => {
       mq.addListener(handleChange)
       if (mq.matches) callback(mq)
     })
-    return () =>
-      mediaQueryLists.forEach((mq) => mq.removeListener(handleChange))
+    return () => {
+      for (const mq of mediaQueryLists) mq.removeListener(handleChange)
+    }
   }, [])
 }

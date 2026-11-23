@@ -91,7 +91,7 @@ export const PixelDistortion = ({ images = [] }) => {
   useEffect(
     () => () => {
       passes.material.dispose()
-      passes.targets.forEach((target) => target.dispose())
+      for (const target of passes.targets) target.dispose()
     },
     [passes]
   )

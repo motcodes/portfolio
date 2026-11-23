@@ -1,0 +1,20 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.6.8/schema.json",
+  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+  "formatter": { "enabled": false },
+  "assist": { "enabled": false },
+  "css": { "linter": { "enabled": false } },
+  "linter": {
+    "enabled": true,
+    "domains": { "react": "recommended", "next": "recommended" },
+    "rules": {
+      "preset": "recommended",
+      "suspicious": { "noConsole": "warn", "noVar": "error" },
+      "correctness": { "useExhaustiveDependencies": "warn" },
+      "nursery": {
+        "useTailwindSortedClasses": { "level": "warn", "fix": "safe" }
+      }
+    }
+  },
+  "tailwind": { "mergeFunctions": ["clsx"] }
+}

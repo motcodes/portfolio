@@ -102,15 +102,15 @@ export function ProjectCarousel({ projects, className }) {
     }
 
     const interactions = ['pointerdown', 'wheel', 'keydown']
-    interactions.forEach((type) => element.addEventListener(type, onInteract))
+    for (const type of interactions) element.addEventListener(type, onInteract)
     element.addEventListener('scroll', onScroll, { passive: true })
 
     return () => {
       cancelAnimationFrame(frame)
       clearTimeout(settle)
-      interactions.forEach((type) =>
+      for (const type of interactions) {
         element.removeEventListener(type, onInteract)
-      )
+      }
       element.removeEventListener('scroll', onScroll)
     }
   }, [projects.length])
@@ -128,10 +128,11 @@ export function ProjectCarousel({ projects, className }) {
           const clone = copy !== 1
           return (
             <li
+              // biome-ignore lint/suspicious/noArrayIndexKey: copy is one of COPIES fixed clones, stable across renders
               key={`${copy}-${project._id}`}
               data-index={index}
               aria-hidden={clone || undefined}
-              className='inline-block px-3 whitespace-nowrap snap-center'
+              className='inline-block snap-center px-3 whitespace-nowrap'
             >
               <button
                 type='button'

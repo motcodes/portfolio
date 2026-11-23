@@ -5,8 +5,8 @@
   "version": "2.0.0",
   "author": "Matthias Oberholzer <hello@mot.codes>",
   "scripts": {
-    "lint": "bun run prettier && bun run eslint",
-    "eslint": "next lint --fix --dir src",
+    "lint": "bun run prettier && bun run biome",
+    "biome": "biome lint src",
     "prettier": "prettier -l \"./src/**/*.{js,jsx,md}\"",
     "dev": "next dev",
     "build": "next build",
@@ -38,12 +38,9 @@
     "zustand": "^4.3.2"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.6.8",
     "@next/bundle-analyzer": "^13.1.6",
     "autoprefixer": "^10.4.13",
-    "eslint": "^8.33.0",
-    "eslint-config-next": "^13.1.6",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-tailwind": "^0.2.1",
     "file-loader": "^6.2.0",
     "glslify": "^7.1.1",
     "glslify-loader": "^2.0.0",

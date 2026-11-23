@@ -36,9 +36,9 @@ const Page = () => {
         <Header title={'Coming soon...'} />
         <section
           className={clsx(
-            'px-3 py-12 grid grid-cols-1 gap-4 min-h-screen',
+            'grid min-h-screen grid-cols-1 gap-4 px-3 py-12',
             'md:grid-cols-2',
-            'lg:px-6 lg:p-4 lg:grid-cols-3'
+            'lg:grid-cols-3 lg:p-4 lg:px-6'
           )}
         >
           <h1>Coming soon...</h1>

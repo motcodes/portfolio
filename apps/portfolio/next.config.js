@@ -3,6 +3,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 const nextConfig = {
+  // linting runs through Biome in the lint task, not next build
+  eslint: { ignoreDuringBuilds: true },
   images: {
     domains: ['cdn.sanity.io', 'images.unsplash.com'],
     deviceSizes: [

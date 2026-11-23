@@ -20,9 +20,9 @@ const DOM = ({ data }) => {
       <main className='z-10 uppercase'>
         <div
           className={clsx(
-            'flex flex-col h-[100svh] pt-3 pb-6',
-            'lg:flex-row lg:items-start lg:justify-between lg:h-auto lg:px-6 lg:pt-6',
-            'lg:fixed lg:top-0 lg:left-0 lg:right-0'
+            'flex h-[100svh] flex-col pt-3 pb-6',
+            'lg:h-auto lg:flex-row lg:items-start lg:justify-between lg:px-6 lg:pt-6',
+            'lg:fixed lg:top-0 lg:right-0 lg:left-0'
           )}
         >
           <div className='px-3 lg:px-0'>
@@ -31,8 +31,8 @@ const DOM = ({ data }) => {
           <div
             className={clsx(
               'flex flex-col leading-[130%]',
-              'text-xs px-3 mt-2',
-              'lg:text-right lg:max-w-[360px] lg:p-0 lg:mt-0'
+              'mt-2 px-3 text-xs',
+              'lg:mt-0 lg:max-w-[360px] lg:p-0 lg:text-right'
             )}
           >
             <PortableText value={data.copy} />
@@ -50,7 +50,7 @@ const DOM = ({ data }) => {
           projects={projects}
           className={clsx(
             'text-[16px] leading-[130%]',
-            'lg-max:hidden fixed left-6 top-1/2 -translate-y-1/2'
+            'lg-max:hidden fixed top-1/2 left-6 -translate-y-1/2'
           )}
         />
       </main>

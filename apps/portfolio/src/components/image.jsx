@@ -47,7 +47,7 @@ export default function Image({
 
   return (
     <div
-      className={`overflow-clip w-fit rounded-[3px] bg-gray-50 ${className}`}
+      className={`w-fit overflow-clip rounded-[3px] bg-gray-50 ${className}`}
     >
       {imageUrl && (
         <NextImage
@@ -55,9 +55,9 @@ export default function Image({
           src={imageUrl}
           className={`
             ${mobileOnly && 'lg:hidden'}
-            ${desktopOnly && 'lg-max:hidden'}
-            opacity-0 transition-opacity
-            ${priority && 'block'}
+            ${desktopOnly && 'lg-max:hidden'}opacity-0 transition-opacity ${
+            priority && 'block'
+          }
             ${(priority || isLoaded) && 'opacity-100'}
             ${imageClassName}
           `}
